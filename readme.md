@@ -6,3 +6,5 @@
 yarn install
 yarn dev
 ```
+
+`git config --global core.autocrlf false`
