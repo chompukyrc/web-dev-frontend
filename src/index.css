@@ -5,3 +5,14 @@
 #root {
     margin: 0 auto;
 }
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
