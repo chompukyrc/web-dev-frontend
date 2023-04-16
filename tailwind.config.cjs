@@ -5,6 +5,13 @@ module.exports = {
         extend: {
             borderRadius: {
                 primary: '5rem',
+                secondary: '10rem',
+            },
+            width: {
+                primary: '84.75rem',
+            },
+            height: {
+                primary: '53.4375rem',
             },
             padding: {
                 primary: '28rem',

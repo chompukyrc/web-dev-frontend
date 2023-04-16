@@ -1,3 +1,4 @@
+@import url('@mdi/font/css/materialdesignicons.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,4 +16,8 @@ select:focus {
 ::-webkit-scrollbar {
     width: 0px;
     background: transparent;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
 }

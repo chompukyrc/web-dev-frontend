@@ -11,9 +11,13 @@
         "format": "prettier --write \"**/*.{js,jsx,html}\""
     },
     "dependencies": {
+        "@mdi/font": "^7.2.96",
+        "axios": "^1.3.5",
+        "date-fns": "^2.29.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-router-dom": "^6.10.0"
+        "react-router-dom": "^6.10.0",
+        "react-toastify": "^9.1.2"
     },
     "devDependencies": {
         "@types/react": "^18.0.28",
