@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import axios from 'axios'
 
-export default function newJobModal({ showModal }) {
+export default function newJobModal({ showModal, setShowModal }) {
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
     const [creatJob, setCreatJob] = useState({
         restaurant: '',
         time: '00:00',
         limit: 1,
         description: '',
     })
-    const [isLoading, setIsLoading] = useState(false)
 
     async function creatJobHandler() {
         const token = localStorage.getItem('token')
@@ -20,8 +20,7 @@ export default function newJobModal({ showModal }) {
         if (
             creatJob.restaurant == '' ||
             creatJob.time == '' ||
-            creatJob.limit == '' ||
-            creatJob.description == ''
+            creatJob.limit == ''
         ) {
             toast.error('🍔 Missing Information', {
                 position: 'top-center',
@@ -36,7 +35,7 @@ export default function newJobModal({ showModal }) {
             return
         }
 
-        const _time = '12:34'.split(':')
+        const _time = creatJob.time.split(':')
         const now = new Date()
         now.setHours(parseInt(_time[0]), parseInt(_time[1]))
 
@@ -91,8 +90,8 @@ export default function newJobModal({ showModal }) {
                                 {/*header*/}
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                                     <h3 className="text-3xl font-semibold">
-                                        🍔 You'll be the delivery person for
-                                        your friend
+                                        🍔 You'll be the delivery man for your
+                                        friend
                                     </h3>
                                     <button
                                         className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -221,6 +220,7 @@ export default function newJobModal({ showModal }) {
                             </div>
                         </div>
                     </div>
+                    <div className="opacity-50 fixed inset-0 z-40 bg-black"></div>
                 </>
             ) : null}
         </div>
