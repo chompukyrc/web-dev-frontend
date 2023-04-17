@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import axios, { Axios } from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { toast, ToastContainer } from 'react-toastify'
 
 function login() {
     const navigate = useNavigate()
@@ -12,16 +14,44 @@ function login() {
     async function loginHandler() {
         console.log('Click!!!')
         setIsLoading(true)
-        setTimeout(() => {
-            console.log('loigin')
 
+        try {
+            const res = await axios({
+                url: 'https://localhost:7130/api/Users/Login',
+                method: 'POST',
+                data: {
+                    Username: userLogin.username,
+                    Password: userLogin.password,
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            if (res.data) {
+                setTimeout(() => {
+                    setIsLoading(false)
+                    localStorage.setItem('token', res.data)
+                    return navigate('/')
+                }, 2000)
+            }
+        } catch (error) {
+            toast.error('🍔 Username or password is incorrect!', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
             setIsLoading(false)
-            return navigate('/')
-        }, 1000)
+        }
     }
 
     return (
         <div className="flex justify-center w-full bg-gray-200 h-screen items-center relative overflow-hidden">
+            <ToastContainer />
             <div className="w-full h-full absolute flex z-0">
                 <div className="bg-gradient-to-br from-[#4a9d51] to-[#66aac0] w-1/2 h-full"></div>
                 <div className="bg-gray w-1/2 h-full"></div>
