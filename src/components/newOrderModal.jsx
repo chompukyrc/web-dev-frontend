@@ -4,6 +4,7 @@ import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
 export default function newOrderModal({ job, setJob }) {
+    console.log('job', job)
     const [isLoading, setIsLoading] = useState(false)
     const [ownerData, setOwnerData] = useState({})
     const [creatOrder, setCreatOrder] = useState({
@@ -36,8 +37,18 @@ export default function newOrderModal({ job, setJob }) {
 
     //Send order
     async function creatOrderHandler() {
+        if (isLoading) {
+            return
+        }
         const token = localStorage.getItem('token')
-        console.log('clickyyyy')
+        // console.log({
+        //     Job: job.id,
+        //     Restaurant: '',
+        //     Destination: '',
+        //     Menu: '',
+        //     Description: '',
+        //     Count: 1,
+        // })
 
         if (
             creatOrder.restaurant == '' ||
@@ -64,8 +75,45 @@ export default function newOrderModal({ job, setJob }) {
             const res = await axios({
                 url: 'https://localhost:7130/api/Order',
                 method: 'POST',
-                data: {},
+                data: {
+                    Job: job.id,
+                    Restaurant: creatOrder.restaurant,
+                    Destination: creatOrder.destination,
+                    Menu: creatOrder.menu,
+                    Description:
+                        creatOrder.description == ''
+                            ? '-'
+                            : creatOrder.description,
+                    Count: creatOrder.count,
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
             })
+            if (res.data) {
+                toast.success('🍔 You just order now', {
+                    position: 'top-center',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                })
+                setTimeout(() => {
+                    setIsLoading(false)
+                    setCreatOrder({
+                        restaurant: '',
+                        destination: '',
+                        menu: '',
+                        description: '-',
+                        count: 1,
+                    })
+                    return setJob(false)
+                }, 2000)
+            }
         } catch (error) {
             console.log(error)
             setIsLoading(false)
@@ -130,6 +178,13 @@ export default function newOrderModal({ job, setJob }) {
                                         id="restaurant"
                                         className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
                                         placeholder="eg. เทคเตออินโน"
+                                        value={creatOrder.restaurant}
+                                        onChange={(e) => {
+                                            setCreatOrder({
+                                                ...creatOrder,
+                                                restaurant: e.target.value,
+                                            })
+                                        }}
                                     />
                                     <div className="flex justify-between">
                                         <div className="w-full">
@@ -145,6 +200,13 @@ export default function newOrderModal({ job, setJob }) {
                                                 id="menu"
                                                 className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
                                                 placeholder="eg. พาสต้า"
+                                                value={creatOrder.menu}
+                                                onChange={(e) => {
+                                                    setCreatOrder({
+                                                        ...creatOrder,
+                                                        menu: e.target.value,
+                                                    })
+                                                }}
                                             />
                                         </div>
                                         <div>
@@ -161,6 +223,13 @@ export default function newOrderModal({ job, setJob }) {
                                                 id="count"
                                                 className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
                                                 placeholder="eg. 1"
+                                                value={creatOrder.count}
+                                                onChange={(e) => {
+                                                    setCreatOrder({
+                                                        ...creatOrder,
+                                                        count: e.target.value,
+                                                    })
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -177,6 +246,13 @@ export default function newOrderModal({ job, setJob }) {
                                         id="destination"
                                         className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
                                         placeholder="eg. ECC ISAG(701)"
+                                        value={creatOrder.destination}
+                                        onChange={(e) => {
+                                            setCreatOrder({
+                                                ...creatOrder,
+                                                destination: e.target.value,
+                                            })
+                                        }}
                                     />
                                     {/* หมายเหตุ */}
                                     <label
@@ -187,9 +263,16 @@ export default function newOrderModal({ job, setJob }) {
                                     </label>
                                     <input
                                         type="text"
-                                        id="destination"
+                                        id="description"
                                         className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
                                         placeholder="eg. ไม่ใส่กระเทียม"
+                                        value={creatOrder.description}
+                                        onChange={(e) => {
+                                            setCreatOrder({
+                                                ...creatOrder,
+                                                description: e.target.value,
+                                            })
+                                        }}
                                     />
                                 </div>
                                 {/*footer*/}
@@ -204,7 +287,7 @@ export default function newOrderModal({ job, setJob }) {
                                     <button
                                         className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
-                                        onClick={() => setJob(false)}
+                                        onClick={() => creatOrderHandler()}
                                     >
                                         Send Order
                                     </button>

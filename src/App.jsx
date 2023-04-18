@@ -35,7 +35,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="/statusJob"
+                    path="/statusJob/:jobId"
                     element={
                         <DefaultLayout>
                             <ProtectedRoute>
