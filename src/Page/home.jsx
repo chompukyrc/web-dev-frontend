@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import { ToastContainer } from 'react-toastify'
 import NewJobModal from '../components/newJobModal'
 import JobCard from '../components/jobCard'
 import NewOrderModal from '../components/newOrderModal'
 
 function home() {
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
     const [profile, setProfile] = useState({})
     const [jobs, setJobs] = useState([])
     const [showModal, setShowModal] = useState(false)
@@ -58,7 +58,7 @@ function home() {
         jobs.forEach((e) => {
             if (e.owner === profile.id) {
                 console.log('Your r rider na!')
-                // return navigate('/statusJob')
+                return navigate('/statusJob/' + e.id) ////////////////////////////////////////////////////////////
             }
         })
     }, [profile, jobs])
@@ -73,14 +73,14 @@ function home() {
             <NewOrderModal job={job} setJob={setJob} />
             <button
                 onClick={() => setShowModal(true)}
-                className="bg-[#499D4D] hover:from-green-400 hover:to-green-700 rounded-full absolute right-0 bottom-0 text-white w-24 h-24 m-8"
+                className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-600 rounded-full absolute right-0 bottom-0 text-white w-24 h-24 m-8"
             >
                 <i className="mdi mdi-plus text-8xl"></i>
             </button>
             <NewJobModal showModal={showModal} setShowModal={setShowModal} />
 
             {/* Job Container */}
-            <div className=" grid grid-cols-3 gap-x-56 gap-y-16 ">
+            <div className=" grid grid-cols-3 gap-x-24 gap-y-16 ">
                 {jobs.map((e, idx) => (
                     <JobCard
                         key={idx}

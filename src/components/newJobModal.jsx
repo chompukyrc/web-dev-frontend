@@ -49,7 +49,8 @@ export default function newJobModal({ showModal, setShowModal }) {
                     Restaurants: creatJob.restaurant,
                     Time: now.getTime(),
                     Limit: parseInt(creatJob.limit),
-                    Description: creatJob.description,
+                    Description:
+                        creatJob.description == '' ? '-' : creatJob.description,
                 },
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +71,9 @@ export default function newJobModal({ showModal, setShowModal }) {
                 })
                 setTimeout(() => {
                     setIsLoading(false)
-                    return navigate('/statusJob')
+                    // return navigate('/statusJob')
+                    window.location.reload(false)
+                    // navigate('/', {})
                 }, 3000)
             }
         } catch (error) {
@@ -116,7 +119,7 @@ export default function newJobModal({ showModal, setShowModal }) {
                                             type="text"
                                             id="restaurant"
                                             className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                                            placeholder="eg. จะไปร้านก๋วยเตี๋ยวเท่านั้น"
+                                            placeholder="eg. ทุกร้านในโรงพระเทพ"
                                             value={creatJob.restaurant}
                                             onChange={(e) => {
                                                 setCreatJob({
@@ -133,7 +136,7 @@ export default function newJobModal({ showModal, setShowModal }) {
                                                     htmlFor="time"
                                                     className="font-normal text-lg mt-4 text-black"
                                                 >
-                                                    เวลา
+                                                    จะออกไปซื้อเวลา
                                                 </label>
                                                 <input
                                                     type="time"

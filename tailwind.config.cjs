@@ -3,6 +3,16 @@ module.exports = {
     content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
     theme: {
         extend: {
+            animation: {
+                fade: 'fadeOut 5s ease-in-out',
+            },
+
+            keyframes: (theme) => ({
+                fadeOut: {
+                    '0%': { backgroundColor: theme('colors.red.300') },
+                    '100%': { backgroundColor: theme('colors.transparent') },
+                },
+            }),
             borderRadius: {
                 primary: '5rem',
                 secondary: '10rem',

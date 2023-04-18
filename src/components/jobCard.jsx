@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import Avatar, { genConfig } from 'react-nice-avatar'
 
 export default function jobCard({
     id,
@@ -42,13 +43,15 @@ export default function jobCard({
         // return temp.toISOString()
     }
 
+    const config = genConfig(ownerData.firstname + ownerData.lastname)
+
     return (
         <div
             className="bg-red-300 cursor-pointer p-4 rounded-lg"
             onClick={onClick}
         >
             <div className=" flex items-center">
-                <i className="mdi mdi-account-circle text-3xl pr-1"></i>
+                <Avatar className="w-14 h-14 mr-2" {...config} />
                 {ownerData.firstname} {ownerData.lastname}
             </div>
             <div>
