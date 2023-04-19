@@ -23,7 +23,7 @@ export default function newOrderModal({ job, setJob }) {
     async function getProfileById(id) {
         try {
             const res = await axios({
-                url: 'https://localhost:7130/api/Users/ById?id=' + id,
+                url: import.meta.env.VITE_API + '/api/Users/ById?id=' + id,
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -73,7 +73,7 @@ export default function newOrderModal({ job, setJob }) {
 
         try {
             const res = await axios({
-                url: 'https://localhost:7130/api/Order',
+                url: import.meta.env.VITE_API + '/api/Order',
                 method: 'POST',
                 data: {
                     Job: job.id,

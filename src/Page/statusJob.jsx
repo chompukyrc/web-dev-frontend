@@ -14,7 +14,10 @@ export default function statusJob() {
         async function getOrderById() {
             try {
                 const res = await axios({
-                    url: 'https://localhost:7130/api/Order/List?jobId=' + jobId,
+                    url:
+                        import.meta.env.VITE_API +
+                        '/api/Order/List?jobId=' +
+                        jobId,
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -42,7 +45,7 @@ export default function statusJob() {
         async function getProfileById(id) {
             try {
                 const res = await axios({
-                    url: 'https://localhost:7130/api/Users/ById?id=' + id,
+                    url: import.meta.env.VITE_API + '/api/Users/ById?id=' + id,
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
