@@ -43,7 +43,7 @@ export default function newJobModal({ showModal, setShowModal }) {
 
         try {
             const res = await axios({
-                url: 'https://localhost:7130/api/Job',
+                url: import.meta.env.VITE_API + '/api/Job',
                 method: 'POST',
                 data: {
                     Restaurants: creatJob.restaurant,

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 
 function register() {
+    console.log(import.meta.env.VITE_API)
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [userRegister, setUserRegister] = useState({
@@ -46,7 +47,7 @@ function register() {
 
         try {
             const res = await axios({
-                url: 'https://localhost:7130/api/Users/Register',
+                url: import.meta.env.VITE_API + '/api/Users/Register',
                 method: 'POST',
                 data: {
                     Username: userRegister.username,

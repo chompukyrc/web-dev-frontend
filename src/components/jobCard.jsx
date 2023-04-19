@@ -23,7 +23,7 @@ export default function jobCard({
     async function getProfileById(id) {
         try {
             const res = await axios({
-                url: 'https://localhost:7130/api/Users/ById?id=' + id,
+                url: import.meta.env.VITE_API + '/api/Users/ById?id=' + id,
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -46,10 +46,7 @@ export default function jobCard({
     const config = genConfig(ownerData.firstname + ownerData.lastname)
 
     return (
-        <div
-            className="bg-red-300 cursor-pointer p-4 rounded-lg"
-            onClick={onClick}
-        >
+        <div className={'cursor-pointer p-4 rounded-lg'} onClick={onClick}>
             <div className=" flex items-center">
                 <Avatar className="w-14 h-14 mr-2" {...config} />
                 {ownerData.firstname} {ownerData.lastname}

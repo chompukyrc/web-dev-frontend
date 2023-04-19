@@ -7,6 +7,7 @@ import JobCard from '../components/jobCard'
 import NewOrderModal from '../components/newOrderModal'
 
 function home() {
+    const token = localStorage.getItem('token')
     const navigate = useNavigate()
     const [profile, setProfile] = useState({})
     const [jobs, setJobs] = useState([])
@@ -14,12 +15,11 @@ function home() {
     const [job, setJob] = useState(false)
 
     useEffect(() => {
-        const token = localStorage.getItem('token')
         // Fetch Profile
         const fetchProfile = async () => {
             try {
                 const res = await axios({
-                    url: 'https://localhost:7130/api/Users/Profile',
+                    url: import.meta.env.VITE_API + '/api/Users/Profile',
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ function home() {
         const fetchJob = async () => {
             try {
                 const res = await axios({
-                    url: 'https://localhost:7130/api/Job/List',
+                    url: import.meta.env.VITE_API + '/api/Job/List',
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -55,12 +55,15 @@ function home() {
 
     useEffect(() => {
         // console.log(profile, jobs)
-        jobs.forEach((e) => {
+        let tempJob = []
+        jobs.forEach(async (e) => {
             if (e.owner === profile.id) {
                 console.log('Your r rider na!')
                 return navigate('/statusJob/' + e.id) ////////////////////////////////////////////////////////////
             }
         })
+
+        console.log(tempJob)
     }, [profile, jobs])
 
     function showJobDetailHandle(job) {
