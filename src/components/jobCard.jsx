@@ -47,7 +47,7 @@ export default function jobCard({
 
     return (
         <div
-            className={'cursor-pointer p-4 rounded-lg bg-red-300'}
+            className={'cursor-pointer p-4 rounded-lg bg-white'}
             onClick={onClick}
         >
             <div className=" flex items-center">

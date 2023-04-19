@@ -105,7 +105,7 @@ export default function newOrderModal({ job, setJob }) {
                         count: 1,
                     })
                     return setJob(false)
-                }, 2000)
+                }, 1000)
             }
         } catch (error) {
             console.log(error)
