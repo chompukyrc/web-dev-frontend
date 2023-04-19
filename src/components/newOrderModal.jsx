@@ -42,14 +42,6 @@ export default function newOrderModal({ job, setJob }) {
             return
         }
         const token = localStorage.getItem('token')
-        // console.log({
-        //     Job: job.id,
-        //     Restaurant: '',
-        //     Destination: '',
-        //     Menu: '',
-        //     Description: '',
-        //     Count: 1,
-        // })
 
         if (
             creatOrder.restaurant == '' ||
