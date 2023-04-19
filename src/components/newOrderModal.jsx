@@ -42,14 +42,6 @@ export default function newOrderModal({ job, setJob }) {
             return
         }
         const token = localStorage.getItem('token')
-        // console.log({
-        //     Job: job.id,
-        //     Restaurant: '',
-        //     Destination: '',
-        //     Menu: '',
-        //     Description: '',
-        //     Count: 1,
-        // })
 
         if (
             creatOrder.restaurant == '' ||
@@ -143,7 +135,10 @@ export default function newOrderModal({ job, setJob }) {
                                 {/*header*/}
                                 <div className="flex flex-col items-center justify-center center pt-8 border-b border-solid">
                                     <div className=" text-xl font-semibold flex items-center">
-                                        <Avatar className="w-14 h-14 mr-2" {...config} />
+                                        <Avatar
+                                            className="w-14 h-14 mr-2"
+                                            {...config}
+                                        />
                                         {ownerData.firstname}{' '}
                                         {ownerData.lastname}
                                     </div>
