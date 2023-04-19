@@ -32,7 +32,7 @@ export default function orderStatusCard({
                     <div>หมายเหตุ: {description}</div>
                 </div>
                 <div>
-                    <div>เบอร์: ไว้ก่อน</div>
+                    <div>เบอร์: {owner.phone}</div>
                     <div>ส่งที่: {destination}</div>
                 </div>
                 <div className="flex justify-between items-center">
