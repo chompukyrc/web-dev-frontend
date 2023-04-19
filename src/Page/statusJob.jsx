@@ -58,18 +58,60 @@ export default function statusJob() {
         }
 
         getOrderById()
+        const interval = setInterval(() => {
+            getOrderById()
+        }, 2000)
+        return () => clearInterval(interval)
     }, [jobId])
 
     return (
-        <div className="p-8 flex flex-col items-center ">
-            <div className=" font-extrabold text-3xl m-4">Status For Job</div>
-            {/* {orders.map((e, idx) => (
-                <OrderStatusCard {...e} key={idx} />
-            ))} */}
-            <button onClick={() => setPage(0)}>Order ใหม่</button>
-            <button onClick={() => setPage(1)}>order ที่รับแล้ว</button>
-            {page === 0 && <div>Page 1</div>}
-            {page === 1 && <div>Page 2</div>}
+        <div className="flex flex-col items-center">
+            <div className="mt-8 text-2xl">Your Order</div>
+            <div className=" bg-gray-300 my-8 flex justify-around w-full border-b-2 border-black">
+                <button
+                    className="font-semibold text-2xl m-4 w-1/2 hover:underline  === value ? 'your-class' : 'or-default-to'"
+                    onClick={() => setPage(0)}
+                >
+                    New Order
+                </button>
+                <button
+                    className="font-semibold text-2xl m-4 w-1/2 hover:underline"
+                    onClick={() => setPage(1)}
+                >
+                    Accepted Order
+                </button>
+            </div>
+
+            {page === 0 && (
+                <div className="w-full flex flex-col items-center">
+                    {orders
+                        .filter((e) => e.status == 'waiting')
+                        .map((e, idx) => (
+                            <OrderStatusCard {...e} key={idx} />
+                        ))}
+                </div>
+            )}
+            {page === 1 && (
+                <div className="w-full flex justify-center flex-col ">
+                    <div className="w-full flex flex-col items-center">
+                        {orders
+                            .filter((e) => e.status == 'accept')
+                            .map((e, idx) => (
+                                <OrderStatusCard {...e} key={idx} />
+                            ))}
+                    </div>
+                    <div className="w-full flex justify-center items-center py-8">
+                        <div className="w-10/12 border-b-2 mb-4 border-black"></div>
+                    </div>
+                    <div className="w-full flex flex-col items-center">
+                        {orders
+                            .filter((e) => e.status == 'reject')
+                            .map((e, idx) => (
+                                <OrderStatusCard {...e} key={idx} />
+                            ))}
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
