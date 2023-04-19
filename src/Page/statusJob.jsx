@@ -6,6 +6,7 @@ import axios from 'axios'
 export default function statusJob() {
     const { jobId } = useParams()
     const [orders, setOrder] = useState([])
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         const token = localStorage.getItem('token')
@@ -62,9 +63,13 @@ export default function statusJob() {
     return (
         <div className="p-8 flex flex-col items-center ">
             <div className=" font-extrabold text-3xl m-4">Status For Job</div>
-            {orders.map((e, idx) => (
+            {/* {orders.map((e, idx) => (
                 <OrderStatusCard {...e} key={idx} />
-            ))}
+            ))} */}
+            <button onClick={() => setPage(0)}>Order ใหม่</button>
+            <button onClick={() => setPage(1)}>order ที่รับแล้ว</button>
+            {page === 0 && <div>Page 1</div>}
+            {page === 1 && <div>Page 2</div>}
         </div>
     )
 }
