@@ -83,17 +83,17 @@ export default function orderStatusCard({
                 </div>
                 <div className="basis-1/4 flex align-center justify-end">
                     <div className="flex flex-row justify-items-end items-center">
-                        <div className="basis-1/2 flex justify-end">
+                        <div class="basis-1/2 flex justify-end">
                             <button
-                                className="bg-[#1E8449] text-white py-2 mx-2 rounded-xl w-20 flex justify-center"
+                                className="bg-[#1E8449] hover:bg-[#196F3D] active:bg-[#145A32] text-white py-2 mx-2 rounded-xl w-20 flex justify-center"
                                 onClick={() => acceptHandler()}
                             >
                                 Accept
                             </button>
                         </div>
-                        <div className="basis-1/2">
+                        <div class="basis-1/2">
                             <button
-                                className="bg-white text-black py-2 mx-2 rounded-xl border-solid border-neutral-300 border-2 w-20 flex justify-center"
+                                className="bg-[#FDFEFE] hover:bg-[#E5E7E9] active:bg-[#D7DBDD] text-black py-2 mx-2 rounded-xl border-solid border-neutral-300 border-2 w-20 flex justify-center"
                                 onClick={() => rejectHandler()}
                             >
                                 Reject
