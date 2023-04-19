@@ -81,7 +81,7 @@ function login() {
                     {/* กล่องขวา */}
                     <div className="flex flex-col justify-center items-center w-1/2 bg-white rounded-r-primary">
                         <div className="pt-24 text-2xl">
-                            Hello ! Hungry guys.
+                            Hello ! Hungry guys
                         </div>
                         <div className="px-24 pt-12 ">
                             {/* username */}
