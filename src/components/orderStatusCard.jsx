@@ -50,7 +50,7 @@ export default function orderStatusCard({
                 <Avatar className="w-14 h-14 mr-2" {...config} />
                 {owner.firstname} {owner.lastname}
             </div>
-            <div className="flex row">
+            <div className="flex row justify-between">
                 <div className="basis-1/4 flex flex-col">
                     <div className=" flex">
                         <p className="w-12">ร้าน:</p>
@@ -81,26 +81,28 @@ export default function orderStatusCard({
                         <p className="font-bold">{destination}</p>
                     </div>
                 </div>
-                <div className="basis-1/4 flex align-center justify-end">
-                    <div className="flex flex-row justify-items-end items-center">
-                        <div class="basis-1/2 flex justify-end">
-                            <button
-                                className="bg-[#1E8449] hover:bg-[#196F3D] active:bg-[#145A32] text-white py-2 mx-2 rounded-xl w-20 flex justify-center"
-                                onClick={() => acceptHandler()}
-                            >
-                                Accept
-                            </button>
-                        </div>
-                        <div class="basis-1/2">
-                            <button
-                                className="bg-[#FDFEFE] hover:bg-[#E5E7E9] active:bg-[#D7DBDD] text-black py-2 mx-2 rounded-xl border-solid border-neutral-300 border-2 w-20 flex justify-center"
-                                onClick={() => rejectHandler()}
-                            >
-                                Reject
-                            </button>
+                {status == 'waiting' && (
+                    <div className="basis-1/4 flex align-center justify-end">
+                        <div className="flex flex-row justify-items-end items-center">
+                            <div class="basis-1/2 flex justify-end">
+                                <button
+                                    className="bg-[#1E8449] hover:bg-[#196F3D] active:bg-[#145A32] text-white py-2 mx-2 rounded-xl w-20 flex justify-center"
+                                    onClick={() => acceptHandler()}
+                                >
+                                    Accept
+                                </button>
+                            </div>
+                            <div class="basis-1/2">
+                                <button
+                                    className="bg-[#FDFEFE] hover:bg-[#E5E7E9] active:bg-[#D7DBDD] text-black py-2 mx-2 rounded-xl border-solid border-neutral-300 border-2 w-20 flex justify-center"
+                                    onClick={() => rejectHandler()}
+                                >
+                                    Reject
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                )}
             </div>
         </div>
     )

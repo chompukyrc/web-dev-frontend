@@ -66,16 +66,22 @@ export default function statusJob() {
 
     return (
         <div className="flex flex-col items-center">
-            <div className="mt-8 text-2xl">Your Order</div>
-            <div className=" bg-gray-300 my-8 flex justify-around w-full border-b-2 border-black">
+            <div className="my-8 text-2xl">Your Order</div>
+            <div className=" bg-gray-200 flex justify-around w-full border-b-2 border-black mb-8">
                 <button
-                    className="font-semibold text-2xl m-4 w-1/2 hover:underline  === value ? 'your-class' : 'or-default-to'"
+                    className={
+                        'font-semibold text-2xl w-1/2 h-16 hover:underline ' +
+                        (page === 0 ? '  bg-gray-300 underline' : ' ')
+                    }
                     onClick={() => setPage(0)}
                 >
                     New Order
                 </button>
                 <button
-                    className="font-semibold text-2xl m-4 w-1/2 hover:underline"
+                    className={
+                        'font-semibold text-2xl w-1/2 h-16 hover:underline' +
+                        (page === 1 ? '  bg-gray-300 underline' : ' ')
+                    }
                     onClick={() => setPage(1)}
                 >
                     Accepted Order
@@ -100,8 +106,9 @@ export default function statusJob() {
                                 <OrderStatusCard {...e} key={idx} />
                             ))}
                     </div>
-                    <div className="w-full flex justify-center items-center py-8">
-                        <div className="w-10/12 border-b-2 mb-4 border-black"></div>
+                    <div className="w-full flex justify-center items-center p-8 flex-col">
+                        <div className="w-9/12 border-b-2 mb-2 border-black"></div>
+                        reject
                     </div>
                     <div className="w-full flex flex-col items-center">
                         {orders
