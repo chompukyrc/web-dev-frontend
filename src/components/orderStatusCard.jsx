@@ -11,41 +11,58 @@ export default function orderStatusCard({
     menu,
     count,
     description,
-})
-
-{
+}) {
     const config = genConfig(owner.firstname + owner.lastname)
     return (
         <div className="bg-white w-8/12 px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4">
             <div className=" font-bold text-xl flex flex-row items-center pb-2">
-            <Avatar className="w-14 h-14 mr-2" {...config} />
+                <Avatar className="w-14 h-14 mr-2" {...config} />
                 {owner.firstname} {owner.lastname}
             </div>
-            <div className="flex justify-between">
-                <div>
+            <div className="flex row">
+                <div class="basis-1/4 flex flex-col">
                     <div className=" flex">
-                        <p className="w-12">ร้าน:</p>{' '}
+                        <p className="w-12">ร้าน:</p>
                         <p className=" font-bold">{restaurant}</p>
                     </div>
                     <div className=" flex">
-                        <p className="w-12">เมนู:</p> <p className="">{menu}</p>
+                        <p className="w-12">เมนู:</p>
+                        <p className="font-bold">{menu}</p>
                     </div>
                 </div>
-                <div>
-                    <div>จำนวน: {count}</div>
-                    <div>หมายเหตุ: {description}</div>
+                <div class="basis-1/4">
+                    <div className=" flex">
+                        <p className="w-24">จำนวน: </p>
+                        <p className="font-bold">{count}</p>
+                    </div>
+                    <div className=" flex">
+                        <p className="w-24">หมายเหตุ: </p>
+                        <p className="font-bold">{description}</p>
+                    </div>
                 </div>
-                <div>
-                    <div>เบอร์: ไว้ก่อน</div>
-                    <div>ส่งที่: {destination}</div>
+                <div class="basis-1/4">
+                    <div className=" flex">
+                        <p className="w-12">เบอร์:</p> 
+                        <p className="font-bold">ไว้ก่อน</p>
+                    </div>
+                    <div className=" flex">
+                        <p className="w-12">ส่งที่: </p>
+                        <p className="font-bold">{destination}</p>
+                    </div>
                 </div>
-                <div className="flex justify-between items-center">
-                    <button className="bg-gradient-to-b from-green-400 to-green-600 hover:from-green-500 hover:to-green-600 text-white py-2 mx-2 rounded-2xl w-20 flex justify-center">
-                        Accept
-                    </button>
-                    <button className="bg-gradient-to-b from-red-400 to-red-600 hover:from-red-500 hover:to-red-600 text-white py-2 mx-2 rounded-2xl w-20 flex justify-center">
-                        Reject
-                    </button>
+                <div class="basis-1/4 flex align-center justify-end">
+                    <div className="flex flex-row justify-items-end items-center">
+                        <div class="basis-1/2 flex justify-end">
+                            <button className="bg-[#1E8449] text-white py-2 mx-2 rounded-xl w-20 flex justify-center">
+                                Accept
+                            </button>
+                        </div>
+                        <div class="basis-1/2">
+                            <button className="bg-white text-black py-2 mx-2 rounded-xl border-solid border-neutral-300 border-2 w-20 flex justify-center">
+                                Reject
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

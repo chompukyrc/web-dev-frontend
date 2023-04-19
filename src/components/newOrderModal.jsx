@@ -109,7 +109,7 @@ export default function newOrderModal({ job, setJob }) {
                         restaurant: '',
                         destination: '',
                         menu: '',
-                        description: '-',
+                        description: '',
                         count: 1,
                     })
                     return setJob(false)
