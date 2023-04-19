@@ -43,7 +43,7 @@ export default function orderStatusCard({
                 <div class="basis-1/4">
                     <div className=" flex">
                         <p className="w-12">เบอร์:</p> 
-                        <p className="font-bold">ไว้ก่อน</p>
+                        <p className="font-bold">{owner.phone}</p>
                     </div>
                     <div className=" flex">
                         <p className="w-12">ส่งที่: </p>
