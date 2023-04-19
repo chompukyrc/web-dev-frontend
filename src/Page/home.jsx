@@ -59,7 +59,7 @@ function home() {
         jobs.forEach(async (e) => {
             if (e.owner === profile.id) {
                 console.log('Your r rider na!')
-                return navigate('/statusJob/' + e.id) ////////////////////////////////////////////////////////////
+                return navigate('/statusJob/' + e.id)
             }
         })
 

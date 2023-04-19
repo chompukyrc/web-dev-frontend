@@ -46,7 +46,10 @@ export default function jobCard({
     const config = genConfig(ownerData.firstname + ownerData.lastname)
 
     return (
-        <div className={'cursor-pointer p-4 rounded-lg'} onClick={onClick}>
+        <div
+            className={'cursor-pointer p-4 rounded-lg bg-red-300'}
+            onClick={onClick}
+        >
             <div className=" flex items-center">
                 <Avatar className="w-14 h-14 mr-2" {...config} />
                 {ownerData.firstname} {ownerData.lastname}
