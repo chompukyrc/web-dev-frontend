@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
                 className=" absolute bottom-0 left-0"
                 width={'500px'}
             /> */}
-            <div className="w-full bg-[#60B664] rounded-b-primary flex flex-col items-center pt-4">
+            <div className="w-full bg-[#60B664] flex flex-col items-center pt-4">
                 <img
                     src="/assets/logo.png"
                     className=" relative m-4"
