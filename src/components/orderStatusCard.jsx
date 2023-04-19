@@ -1,4 +1,5 @@
 import React from 'react'
+import Avatar, { genConfig } from 'react-nice-avatar'
 
 export default function orderStatusCard({
     id,
@@ -10,11 +11,14 @@ export default function orderStatusCard({
     menu,
     count,
     description,
-}) {
+})
+
+{
+    const config = genConfig(owner.firstname + owner.lastname)
     return (
-        <div className="bg-white w-8/12 px-16 py-4 rounded-3xl shadow-xl cursor-pointer">
+        <div className="bg-white w-8/12 px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4">
             <div className=" font-bold text-xl flex flex-row items-center pb-2">
-                <i className="mdi mdi-account-circle text-4xl pr-1"></i>
+            <Avatar className="w-14 h-14 mr-2" {...config} />
                 {owner.firstname} {owner.lastname}
             </div>
             <div className="flex justify-between">
