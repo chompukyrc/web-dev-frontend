@@ -1,19 +1,19 @@
-import React, { Fragment } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Menu, Transition } from '@headlessui/react'
+import Dialog from '../components/dialog'
 
 const Layout = ({ children }) => {
     const navigate = useNavigate()
+    const [open, setOpen] = useState(true)
 
-    function classNames(...classes) {
-        return classes.filter(Boolean).join(' ')
-    }
-
-    function logoutHandler() {
-        setTimeout(() => {
+    const handleConfirm = (result) => {
+        if (result) {
+            console.log('some action...')
             localStorage.clear()
             window.location.reload()
-        }, 5000)
+        }
+
+        setOpen(false)
     }
 
     return (
@@ -60,11 +60,16 @@ const Layout = ({ children }) => {
                     </div>
                     <div
                         className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white"
-                        onClick={() => logoutHandler()}
+                        onClick={() => setOpen(true)}
                     >
                         <i className="mdi mdi-logout p-1"></i>
-                        Loguot
+                        Logout
                     </div>
+                    <Dialog
+                        text={'Confirm Logout?'}
+                        open={open}
+                        handleConfirm={handleConfirm}
+                    />
                 </div>
             </div>
             <main>{children}</main>
