@@ -36,7 +36,7 @@ export default function statusJob() {
                     }),
                 )
 
-                setOrder(orders)
+                setOrder(orders.reverse())
             } catch (error) {
                 console.log(error)
             }

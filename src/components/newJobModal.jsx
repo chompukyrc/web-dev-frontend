@@ -74,7 +74,7 @@ export default function newJobModal({ showModal, setShowModal }) {
                     // return navigate('/statusJob')
                     window.location.reload(false)
                     // navigate('/', {})
-                }, 3000)
+                }, 1000)
             }
         } catch (error) {
             console.log(error)
