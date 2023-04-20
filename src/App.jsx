@@ -45,7 +45,7 @@ function App() {
                         </DefaultLayout>
                     }
                 />
-                <Route path="/aboutUs" element={<AboutUs />} />
+                <Route path="/aboutUs" element={<DefaultLayout><AboutUs /></DefaultLayout>} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/*" element={<NotFound />} />
