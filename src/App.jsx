@@ -45,6 +45,7 @@ function App() {
                         </DefaultLayout>
                     }
                 />
+                <Route path="/aboutUs" element={<DefaultLayout><AboutUs /></DefaultLayout>} />
                 <Route
                     path="/aboutUs"
                     element={
