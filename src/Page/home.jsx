@@ -74,12 +74,7 @@ function home() {
         <div className="px-64 py-12">
             <ToastContainer />
             <NewOrderModal job={job} setJob={setJob} />
-            <button
-                onClick={() => setShowModal(true)}
-                className="bg-green-600 hover:bg-green-700 rounded-full right-10 bottom-10 text-white w-16 m-8 fixed"
-            >
-                <i className="mdi mdi-plus text-6xl"></i>
-            </button>
+
             <NewJobModal showModal={showModal} setShowModal={setShowModal} />
 
             {/* Job Container */}
@@ -91,6 +86,17 @@ function home() {
                         onClick={() => showJobDetailHandle(e)}
                     />
                 ))}
+                <div
+                    className="cursor-pointer p-4 rounded-lg bg-gray-200 hover:bg-gray-100 h-40 flex items-center justify-center"
+                    onClick={() => setShowModal(true)}
+                >
+                    <button
+                        onClick={() => setShowModal(true)}
+                        className="bg-green-600 rounded-full text-white w-16"
+                    >
+                        <i className="mdi mdi-plus text-6xl"></i>
+                    </button>
+                </div>
             </div>
             <div>{JSON.stringify(profile)}</div>
         </div>
