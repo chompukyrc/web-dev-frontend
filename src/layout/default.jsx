@@ -9,6 +9,13 @@ const Layout = ({ children }) => {
         return classes.filter(Boolean).join(' ')
     }
 
+    function logoutHandler() {
+        setTimeout(() => {
+            localStorage.clear()
+            window.location.reload()
+        }, 5000)
+    }
+
     return (
         <div>
             <div className="bg-[#60B664] flex w-screen justify-around">
@@ -51,7 +58,10 @@ const Layout = ({ children }) => {
                         <i className="mdi mdi-developer-board p-1"></i>
                         About Us
                     </div>
-                    <div className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white">
+                    <div
+                        className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white"
+                        onClick={() => logoutHandler()}
+                    >
                         <i className="mdi mdi-logout p-1"></i>
                         Loguot
                     </div>
