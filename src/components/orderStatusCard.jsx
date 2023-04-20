@@ -30,7 +30,6 @@ export default function orderStatusCard({
         }
     }
     async function rejectHandler() {
-        console.log('eeeeee')
         try {
             const res = await axios({
                 url: import.meta.env.VITE_API + '/api/Order/Reject?id=' + id,
@@ -45,7 +44,12 @@ export default function orderStatusCard({
     }
 
     return (
-        <div className="bg-white w-8/12 px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4">
+        <div
+            className={
+                'bg-white w-8/12 px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4' +
+                (status === 'reject' ? '  bg-gray-300 ' : ' ')
+            }
+        >
             <div className=" font-bold text-xl flex flex-row items-center pb-2">
                 <Avatar className="w-14 h-14 mr-2" {...config} />
                 {owner.firstname} {owner.lastname}
