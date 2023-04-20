@@ -30,6 +30,7 @@ const Layout = ({ children }) => {
                             navigate('/')
                         }}
                     >
+                        <i className="mdi mdi-home p-1"></i>
                         Home
                     </div>
                     <div
@@ -38,6 +39,7 @@ const Layout = ({ children }) => {
                             navigate('/profile')
                         }}
                     >
+                        <i className="mdi mdi-account p-1"></i>
                         Profile
                     </div>
                     <div
@@ -46,9 +48,11 @@ const Layout = ({ children }) => {
                             navigate('/aboutUs')
                         }}
                     >
+                        <i className="mdi mdi-developer-board p-1"></i>
                         About Us
                     </div>
                     <div className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white">
+                        <i className="mdi mdi-logout p-1"></i>
                         Loguot
                     </div>
                 </div>
