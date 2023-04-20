@@ -7,6 +7,7 @@ import NotFound from './Page/notFound'
 import DefaultLayout from './layout/default'
 import Profile from './Page/profile'
 import StatusJob from './Page/statusJob'
+import AboutUs from './Page/aboutUs'
 
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -44,6 +45,7 @@ function App() {
                         </DefaultLayout>
                     }
                 />
+                <Route path="/aboutUs" element={<AboutUs />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/*" element={<NotFound />} />

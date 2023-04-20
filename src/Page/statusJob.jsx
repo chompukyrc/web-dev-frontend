@@ -65,13 +65,13 @@ export default function statusJob() {
     }, [jobId])
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center ">
             <div className="my-8 text-2xl">Your Order</div>
-            <div className=" bg-gray-200 flex justify-around w-full border-b-2 border-black mb-8">
+            <div className="bg-gray-200 flex justify-around w-5/6 rounded-t-3xl">
                 <button
                     className={
-                        'font-semibold text-2xl w-1/2 h-16 hover:underline ' +
-                        (page === 0 ? '  bg-gray-300 underline' : ' ')
+                        'font-medium text-xl w-1/2 h-12 hover:underline rounded-t-3xl' +
+                        (page === 0 ? '  bg-gray-300' : ' ')
                     }
                     onClick={() => setPage(0)}
                 >
@@ -79,8 +79,8 @@ export default function statusJob() {
                 </button>
                 <button
                     className={
-                        'font-semibold text-2xl w-1/2 h-16 hover:underline' +
-                        (page === 1 ? '  bg-gray-300 underline' : ' ')
+                        ' font-medium text-xl w-1/2 h-12 hover:underline rounded-t-3xl' +
+                        (page === 1 ? '  bg-gray-300' : ' ')
                     }
                     onClick={() => setPage(1)}
                 >
@@ -89,7 +89,7 @@ export default function statusJob() {
             </div>
 
             {page === 0 && (
-                <div className="w-full flex flex-col items-center">
+                <div className="flex justify-center items-center flex-col pt-8 bg-gray-300 w-5/6">
                     {orders
                         .filter((e) => e.status == 'waiting')
                         .map((e, idx) => (
@@ -98,14 +98,12 @@ export default function statusJob() {
                 </div>
             )}
             {page === 1 && (
-                <div className="w-full flex justify-center flex-col ">
-                    <div className="w-full flex flex-col items-center">
-                        {orders
-                            .filter((e) => e.status == 'accept')
-                            .map((e, idx) => (
-                                <OrderStatusCard {...e} key={idx} />
-                            ))}
-                    </div>
+                <div className="flex justify-center items-center flex-col pt-8 bg-gray-300 w-5/6">
+                    {orders
+                        .filter((e) => e.status == 'accept')
+                        .map((e, idx) => (
+                            <OrderStatusCard {...e} key={idx} />
+                        ))}
                     <div className="w-full flex justify-center items-center p-8 flex-col">
                         <div className="w-9/12 border-b-2 mb-2 border-black"></div>
                         reject
