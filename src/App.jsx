@@ -46,6 +46,14 @@ function App() {
                     }
                 />
                 <Route path="/aboutUs" element={<DefaultLayout><AboutUs /></DefaultLayout>} />
+                <Route
+                    path="/aboutUs"
+                    element={
+                        <DefaultLayout>
+                            <AboutUs />
+                        </DefaultLayout>
+                    }
+                />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/*" element={<NotFound />} />

@@ -42,12 +42,11 @@ export default function orderStatusCard({
             console.log(error)
         }
     }
-
     return (
         <div
             className={
-                'bg-white w-8/12 px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4' +
-                (status === 'reject' ? '  bg-gray-300 ' : ' ')
+                'w-8/12 px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4 ' +
+                (status === 'reject' ? 'bg-gray-300' : 'bg-white ')
             }
         >
             <div className=" font-bold text-xl flex flex-row items-center pb-2">

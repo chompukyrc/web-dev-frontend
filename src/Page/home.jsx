@@ -76,9 +76,9 @@ function home() {
             <NewOrderModal job={job} setJob={setJob} />
             <button
                 onClick={() => setShowModal(true)}
-                className="bg-green-600 hover:bg-green-700 rounded-full absolute right-0 bottom-0 text-white w-24 h-24 m-8"
+                className="bg-green-600 hover:bg-green-700 rounded-full absolute right-0 bottom-0 text-white w-16 h-16 m-8"
             >
-                <i className="mdi mdi-plus text-8xl"></i>
+                <i className="mdi mdi-plus text-6xl"></i>
             </button>
             <NewJobModal showModal={showModal} setShowModal={setShowModal} />
 
