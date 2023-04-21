@@ -6,7 +6,7 @@ import axios from 'axios'
 export default function statusJob() {
     const { jobId } = useParams()
     const [orders, setOrder] = useState([])
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(0)
 
     useEffect(() => {
         const token = localStorage.getItem('token')
