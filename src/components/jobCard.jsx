@@ -47,24 +47,27 @@ export default function jobCard({
 
     return (
         <div
-            className={
-                'cursor-pointer p-4 rounded-lg bg-white hover:bg-gray-100'
-            }
+        className={`cursor-pointer p-4 rounded-[30px] drop-shadow-xl text-white hover:bg-black
+        ${limit-count <= 0 ? 'bg-[#FF6B6B]' : 'bg-[#499D4D]'} 
+        `}
             onClick={onClick}
         >
-            <div className=" flex items-center">
+            <div className=" flex items-center text-xl">
                 <Avatar className="w-14 h-14 mr-2" {...config} />
                 {ownerData.firstname} {ownerData.lastname}
+                
             </div>
-            <div>
-                <p>ไปร้าน {restaurants}</p>
+            <div className='w-100 h-50 p-3 rounded-[20px] backdrop-opacity-10 backdrop-invert bg-white/30 text-center '>
+
+                <div>
+                    <p>จะไปร้าน <span className='underline decoration-green-200'>{restaurants}</span> เวลา </p> <p className='text-3xl font-bold'>{convertTimestampToTime(time)}</p>
+                </div>
+                <div>
+                    <p className='text-black pt-2' >ฝากได้อีก {limit - count} กล่อง</p>
+                </div>
+            
             </div>
-            <div>
-                <p>จะไปซื้อเวลา {convertTimestampToTime(time)}</p>
-            </div>
-            <div>
-                <p>ฝากได้อีก {limit - count} กล่อง</p>
-            </div>
+
         </div>
     )
 }
