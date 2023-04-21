@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+    
     theme: {
         extend: {
+            fontFamily: {
+                'Kanit': ['Kanit', 'sans-serif'],
+            },
             animation: {
                 fade: 'fadeOut 5s ease-in-out',
             },
