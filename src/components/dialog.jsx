@@ -6,21 +6,21 @@ export default function Dialog({ text, open, handleConfirm }) {
             <div className={open ? 'confirm show' : 'confirm'}>
                 <div className="confirm-content">
                     <div>
-                        <h2>{text}</h2>
+                        <h2 className=" font-normal mt-12 text-xl">{text}</h2>
                     </div>
                 </div>
-                <div className="confirm-btns">
-                    <button
-                        onClick={() => handleConfirm(true)}
-                        className=" rounded-bl-xl border-r-2"
-                    >
-                        YES
-                    </button>
+                <div className="flex justify-end h-16 items-center p-4 ">
                     <button
                         onClick={() => handleConfirm(false)}
-                        className=" rounded-br-xl"
+                        className="m-2 cursor-pointer hover:bg-[#d4d4d4] border-[#348c2f] border-2  w-24 h-8 align-baseline rounded-primary"
                     >
-                        NO
+                        CANCLE
+                    </button>
+                    <button
+                        onClick={() => handleConfirm(true)}
+                        className="m-2 cursor-pointer hover:bg-[#2b7428] text-white w-24 h-8 bg-[#348c2f] align-baseline rounded-primary"
+                    >
+                        CONFIRM
                     </button>
                 </div>
             </div>
