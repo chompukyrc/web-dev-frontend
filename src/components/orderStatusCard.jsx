@@ -45,7 +45,7 @@ export default function orderStatusCard({
     return (
         <div
             className={
-                'w-8/12 px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4 ' +
+                'w-8/12 px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4 hover:scale-105 ' +
                 (status === 'reject' ? 'bg-gray-300' : 'bg-white ')
             }
         >
