@@ -4,7 +4,7 @@ import Dialog from '../components/dialog'
 
 const Layout = ({ children }) => {
     const navigate = useNavigate()
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
 
     const handleConfirm = (result) => {
         if (result) {
@@ -19,14 +19,16 @@ const Layout = ({ children }) => {
     return (
         <div>
             <div className="bg-[#60B664] flex w-screen justify-around">
-                <div className="flex items-center text-white text-lg font-semibold">
+                <div
+                    className="flex items-center text-white text-lg font-semibold cursor-pointer"
+                    onClick={() => {
+                        navigate('/')
+                    }}
+                >
                     <img
                         src="/assets/logo.png"
                         className="relative m-4"
                         width={'60px'}
-                        onClick={() => {
-                            navigate('/')
-                        }}
                     />
                     Feed My Friend
                 </div>
@@ -66,7 +68,7 @@ const Layout = ({ children }) => {
                         Logout
                     </div>
                     <Dialog
-                        text={'Confirm Logout?'}
+                        text={'Are you sure to Logout?'}
                         open={open}
                         handleConfirm={handleConfirm}
                     />

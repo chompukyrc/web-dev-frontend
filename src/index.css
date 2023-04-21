@@ -24,8 +24,8 @@ body {
 
 /* CSS For confirm dialog */
 .confirm {
-    width: 360px;
-    height: 240px;
+    width: 500px;
+    height: 200px;
     background: #fff;
     transition: 0.6s;
     z-index: 100;
@@ -44,51 +44,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: var(--primary);
     padding: 1.5rem;
-}
-
-.confirm-content h4 {
-    font-size: 1.2rem;
-    font-weight: 800;
-    position: relative;
-}
-
-.confirm-content h4::after {
-    content: '';
-    width: 100%;
-    height: 2px;
-    background: var(--secondary);
-    position: absolute;
-    bottom: -7px;
-    left: 0;
-}
-
-.confirm-content h2 {
-    font-size: 2rem;
-    font-weight: 300;
-    margin-top: 3rem;
-}
-
-.confirm-content p {
-    font-size: 1.1rem;
-    color: var(--gray);
-    text-align: center;
-    margin-top: 0.5rem;
-}
-
-.confirm-btns {
-    height: 30%;
-}
-
-.confirm-btns button {
-    align-items: baseline;
-    width: 180px;
-    height: 70px;
-    background: #348c2f;
-    font-size: 16px;
-    color: #ffffff;
-    cursor: pointer;
 }
 
 .confirm-btns button:hover {
@@ -108,11 +64,4 @@ body {
 
 .confirm.show + .overlay {
     display: block;
-}
-
-@media screen and (max-width: 450px) {
-    .confirm {
-        width: 300px;
-        left: calc(50% - 150px);
-    }
 }
