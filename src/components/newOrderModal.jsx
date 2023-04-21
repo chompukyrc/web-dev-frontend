@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import Avatar, { genConfig } from 'react-nice-avatar'
 
 export default function newOrderModal({ job, setJob }) {
-    console.log('job', job)
     const [isLoading, setIsLoading] = useState(false)
     const [ownerData, setOwnerData] = useState({})
     const [creatOrder, setCreatOrder] = useState({

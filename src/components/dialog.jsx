@@ -12,7 +12,7 @@ export default function Dialog({ text, open, handleConfirm }) {
                 <div className="flex justify-end h-16 items-center p-4 ">
                     <button
                         onClick={() => handleConfirm(false)}
-                        className="m-2 cursor-pointer hover:bg-[#d4d4d4] border-[#348c2f] border-2  w-24 h-8 align-baseline rounded-primary"
+                        className="m-2 cursor-pointer hover:bg-[#d4d4d4] text-[#348c2f] font-semibold border-[#348c2f] border-2  w-24 h-8 align-baseline rounded-primary"
                     >
                         CANCLE
                     </button>
