@@ -1,5 +1,5 @@
 import React from 'react'
-import bambie  from '/assets/bambie.jpg'
+import bambie from '/assets/bambie.jpg'
 import morjor from '/assets/morjor.jpg'
 import jubjub from '/assets/jubjub.jpg'
 import nopapor from '/assets/nopapor.jpg'
@@ -60,13 +60,14 @@ export default function aboutUs() {
                             <div className="absolute top-[-140px] right-[-100px] rotate-[20deg] scale-[.35]">
                                 <img src={burger} />
                             </div>
-                            <img src={profile.img} className="mx-auto h-[200px] rounded-full shadow-2xl" />
+                            <img
+                                src={profile.img}
+                                className="mx-auto h-[200px] rounded-full shadow-2xl"
+                            />
                             <h1 className="mt-6 font-medium ">
                                 {profile.name}
                             </h1>
-                            <h1 className="font-medium">
-                                {profile.id}
-                            </h1>
+                            <h1 className="font-medium">{profile.id}</h1>
                             <h1 className="font-light text-green-700 ">
                                 {profile.job}
                             </h1>
@@ -79,7 +80,6 @@ export default function aboutUs() {
                     <img src={line} />
                 </div>
             </div>
-
         </div>
     )
 }
