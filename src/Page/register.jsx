@@ -73,7 +73,6 @@ function register() {
                 })
                 setTimeout(() => {
                     setIsLoading(false)
-                    localStorage.setItem('token', res.data)
                     return navigate('/login')
                 }, 3000)
             }

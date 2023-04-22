@@ -141,6 +141,7 @@ export default function newJobModal({ showModal, setShowModal }) {
                                                 <input
                                                     type="time"
                                                     id="time"
+                                                    min="12:34"
                                                     className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
                                                     value={creatJob.time}
                                                     onChange={(e) => {
