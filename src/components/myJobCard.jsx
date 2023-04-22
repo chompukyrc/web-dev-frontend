@@ -1,14 +1,37 @@
 import React from 'react'
 
-export default function myJobCard() {
+export default function myJobCard({
+    id,
+    description,
+    limit,
+    owner,
+    restaurants,
+    status,
+    time,
+    count,
+    left,
+}) {
     // const config = genConfig(owner.firstname + owner.lastname)
 
+    function convertTimestampToTime(timestamp) {
+        const temp = new Date(timestamp)
+        const H = ('00' + temp.getHours()).slice(-2)
+        const M = ('00' + temp.getMinutes()).slice(-2)
+        return `${H} : ${M}`
+        // return temp.toISOString()
+    }
+
     return (
-        <div className="w-8/12 flex flex-col items-center">
-            <div className="bg-[#499D4D] w-full px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4 hover:scale-105">
+        <div className="w-full flex flex-col items-center">
+            <div className="bg-[#499D4D] w-screen rounded-3xl shadow-xl cursor-pointer mb-4 hover:scale-105">
                 <div>รูป username</div>
                 <div className="flex">
-                    <div className="bg-red-300 w-1/2">ซ้าย</div>
+                    <div className="bg-red-300 w-1/2 flex flex-col">
+                        <div>ร้าน: {restaurants}</div>
+                        <div>หมายเหตุ: {description}</div>
+                        <div>เวลา: {convertTimestampToTime(time)}</div>
+                        <div>status: {status}</div>
+                    </div>
                     <div className="bg-blue-300 w-1/2">ขวา</div>
                 </div>
 

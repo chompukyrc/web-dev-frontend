@@ -270,7 +270,7 @@ function home() {
                     {' '}
                     {/* Job Container */}
                     {jobsCetagory.notMyOrder.map((e, idx) => (
-                        <JobCard
+                        <MyJobCard
                             key={idx}
                             {...e}
                             onClick={() => showJobDetailHandle(e)}
@@ -290,8 +290,16 @@ function home() {
                     </div>
                 </div>
             )}
+
             {page === 1 && (
                 <div className="flex justify-center items-center flex-col pt-8 ">
+                    {jobsCetagory.notMyOrder.map((e, idx) => (
+                        <MyJobCard
+                            key={idx}
+                            {...e}
+                            onClick={() => showJobDetailHandle(e)}
+                        />
+                    ))}
                     <MyJobCard />
                     <p className="font-bold text-4xl text-center">
                         myOrder_unfinish_accept
@@ -303,9 +311,9 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_unfinish_accept.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
                                 onClick={() => showJobDetailHandle(e)}
@@ -323,9 +331,9 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_unfinish_reject.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
                                 onClick={() => showJobDetailHandle(e)}
@@ -343,9 +351,9 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_finish_done.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
                                 onClick={() => showJobDetailHandle(e)}
@@ -363,9 +371,9 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_finish_reject.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
                                 onClick={() => showJobDetailHandle(e)}
@@ -383,9 +391,9 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_close_accept.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
                                 onClick={() => showJobDetailHandle(e)}
@@ -403,9 +411,9 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_close_reject.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
                                 onClick={() => showJobDetailHandle(e)}
