@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify'
 import NewJobModal from '../components/newJobModal'
 import JobCard from '../components/jobCard'
 import NewOrderModal from '../components/newOrderModal'
+import MyJobCard from '../components/myJobCard'
 
 function home() {
     const token = localStorage.getItem('token')
@@ -14,6 +15,7 @@ function home() {
     const [jobsDisplay, setJobsDisplay] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [job, setJob] = useState(false)
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         // Fetch Profile
@@ -91,35 +93,77 @@ function home() {
     }
 
     return (
-        <div className="px-64 py-12">
+        <div className="">
             <ToastContainer />
             <NewOrderModal job={job} setJob={setJob} />
 
             <NewJobModal showModal={showModal} setShowModal={setShowModal} />
 
-            {/* Job Container */}
-            <div className=" grid grid-cols-3 gap-x-24 gap-y-16 ">
-                {jobsDisplay.map((e, idx) => (
-                    <JobCard
-                        key={idx}
-                        {...e}
-                        onClick={() => showJobDetailHandle(e)}
-                    />
-                ))}
-                {/* add Job container */}
-                <div
-                    className="cursor-pointer p-4 rounded-lg bg-gray-200 hover:bg-gray-100 h-40 flex items-center justify-center"
-                    onClick={() => setShowModal(true)}
-                >
+            <nav className="shadow-xl text-center">
+                <div className="bg-white m-0 h-20  text-xl">
+                    <p className="p-6 text-2xl ">HOME</p>
+                </div>
+                <div className="flex justify-around h-16">
                     <button
-                        onClick={() => setShowModal(true)}
-                        className="bg-green-600 rounded-full text-white w-16"
+                        className={`font-bold text-lg w-1/2 ; ${
+                            page === 0
+                                ? 'border-b-4 border-green-600 '
+                                : 'bg-gray-300'
+                        }`}
+                        onClick={() => setPage(0)}
                     >
-                        <i className="mdi mdi-plus text-6xl"></i>
+                        ALL Jobs
+                    </button>
+                    <button
+                        className={`font-bold text-lg w-1/2 ; ${
+                            page === 1
+                                ? 'border-b-4 border-green-600 '
+                                : 'bg-gray-300'
+                        }`}
+                        onClick={() => setPage(1)}
+                    >
+                        My Jobs
                     </button>
                 </div>
-            </div>
-            <div>{JSON.stringify(profile)}</div>
+            </nav>
+
+            {page === 0 && (
+                <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    {' '}
+                    {/* Job Container */}
+                    {jobsDisplay.map((e, idx) => (
+                        <JobCard
+                            key={idx}
+                            {...e}
+                            onClick={() => showJobDetailHandle(e)}
+                        />
+                    ))}
+                    {/* add Job container */}
+                    <div
+                        className="cursor-pointer p-4 rounded-lg bg-gray-200 hover:bg-gray-100 h-56 flex items-center justify-center"
+                        onClick={() => setShowModal(true)}
+                    >
+                        <button
+                            onClick={() => setShowModal(true)}
+                            className="bg-green-600 rounded-full text-white w-16"
+                        >
+                            <i className="mdi mdi-plus text-6xl"></i>
+                        </button>
+                    </div>
+                </div>
+            )}
+            {page === 1 && (
+                <div className="flex justify-center items-center flex-col pt-8 ">
+                    <MyJobCard />
+                    {/* line */}
+                    <div className="w-full flex justify-center items-center p-8 flex-col">
+                        <div className="w-9/12 border-b-2 mb-2 border-black"></div>
+                        reject & done
+                    </div>
+                </div>
+            )}
+
+            {/* <div>{JSON.stringify(profile)}</div> */}
         </div>
     )
 }
