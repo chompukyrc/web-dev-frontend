@@ -41,7 +41,7 @@ export default function aboutUs() {
     ]
 
     return (
-        <div className=" flex flex-col items-center ">
+        <div className=" flex flex-col items-center "> 
             <div className="mt-8 mb-16 text-2xl font-Kanit">
                 โปรเจคนี้เป็นส่วนหนึ่งของวิชา WEB APPLICATION DEVELOPMENT
                 ซึ่งพัฒนาโดย
