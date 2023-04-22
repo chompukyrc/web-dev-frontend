@@ -65,58 +65,111 @@ export default function statusJob() {
     }, [jobId])
 
     return (
-        <div className="flex flex-col items-center ">
-            <div className="my-8 text-2xl">Your Order</div>
-            <div className="bg-gray-200 flex justify-around w-5/6 rounded-t-3xl">
-                <button
-                    className={
-                        'font-medium text-xl w-1/2 h-12 hover:underline rounded-t-3xl' +
-                        (page === 0 ? '  bg-gray-300' : ' ')
-                    }
-                    onClick={() => setPage(0)}
-                >
-                    New Order
+    
+    <div>
+        <nav class="shadow-xl text-center">
+            <div className= 'bg-white m-0 h-20  text-xl'>
+                <p className='p-6 text-2xl ' >Your Oder</p>
+            </div>
+            <div className="flex justify-around h-16">
+                
+                <button className={`font-bold text-lg w-1/2 ; ${page === 0 ? 'border-b-4 border-green-600 ': 'bg-gray-300'}`} onClick={() => setPage(0)} >
+                    New Oder
                 </button>
-                <button
-                    className={
-                        ' font-medium text-xl w-1/2 h-12 hover:underline rounded-t-3xl' +
-                        (page === 1 ? '  bg-gray-300' : ' ')
-                    }
-                    onClick={() => setPage(1)}
-                >
+                <button className={`font-bold text-lg w-1/2 ; ${page === 1 ? 'border-b-4 border-green-600 ': 'bg-gray-300'}`} onClick={() => setPage(1)}>
                     Accepted Order
                 </button>
             </div>
-
+        </nav>
             {page === 0 && (
-                <div className="flex justify-center items-center flex-col pt-8 bg-gray-300 w-5/6">
-                    {orders
-                        .filter((e) => e.status == 'waiting')
-                        .map((e, idx) => (
-                            <OrderStatusCard {...e} key={idx} />
-                        ))}
-                </div>
-            )}
-            {page === 1 && (
-                <div className="flex justify-center items-center flex-col pt-8 bg-gray-300 w-5/6">
-                    {orders
-                        .filter((e) => e.status == 'accept')
-                        .map((e, idx) => (
-                            <OrderStatusCard {...e} key={idx} />
-                        ))}
-                    <div className="w-full flex justify-center items-center p-8 flex-col">
-                        <div className="w-9/12 border-b-2 mb-2 border-black"></div>
-                        reject
-                    </div>
-                    <div className="w-full flex flex-col items-center">
+                    <div className="flex justify-center items-center flex-col pt-8 ">
                         {orders
-                            .filter((e) => e.status == 'reject')
+                            .filter((e) => e.status == 'waiting')
                             .map((e, idx) => (
                                 <OrderStatusCard {...e} key={idx} />
                             ))}
                     </div>
-                </div>
-            )}
-        </div>
+                )}
+                {page === 1 && (
+                    <div className="flex justify-center items-center flex-col pt-8 ">
+                        {orders
+                            .filter((e) => e.status == 'accept')
+                            .map((e, idx) => (
+                                <OrderStatusCard {...e} key={idx} />
+                            ))}
+                        <div className="w-full flex justify-center items-center p-8 flex-col">
+                            <div className="w-9/12 border-b-2 mb-2 border-black"></div>
+                            reject
+                        </div>
+                        <div className="w-full flex flex-col items-center">
+                            {orders
+                                .filter((e) => e.status == 'reject')
+                                .map((e, idx) => (
+                                    <OrderStatusCard {...e} key={idx} />
+                                ))}
+                        </div>
+                    </div>
+                )}
+                
+    </div>
+    
+
+    
+
+    
+
+        // <div className="flex flex-col items-center ">
+        //     <div className="my-8 text-2xl bg-white">Your Order</div>
+        //     <div className="bg-gray-200 flex justify-around w-5/6 rounded-t-3xl">
+        //         <button
+                //     className={
+                //         'font-medium text-xl w-1/2 h-12 hover:underline rounded-t-3xl' +
+                //         (page === 0 ? '  bg-gray-300' : ' ')
+                //     }
+                //     onClick={() => setPage(0)}
+                // >
+                //     New Order
+        //         </button>
+        //         <button
+        //             className={
+        //                 ' font-medium text-xl w-1/2 h-12 hover:underline rounded-t-3xl' +
+        //                 (page === 1 ? '  bg-gray-300' : ' ')
+        //             }
+        //             onClick={() => setPage(1)}
+        //         >
+        //             Accepted Order
+        //         </button>
+        //     </div>
+
+            // {page === 0 && (
+            //     <div className="flex justify-center items-center flex-col pt-8 bg-gray-300 w-5/6">
+            //         {orders
+            //             .filter((e) => e.status == 'waiting')
+            //             .map((e, idx) => (
+            //                 <OrderStatusCard {...e} key={idx} />
+            //             ))}
+            //     </div>
+            // )}
+            // {page === 1 && (
+            //     <div className="flex justify-center items-center flex-col pt-8 bg-gray-300 w-5/6">
+            //         {orders
+            //             .filter((e) => e.status == 'accept')
+            //             .map((e, idx) => (
+            //                 <OrderStatusCard {...e} key={idx} />
+            //             ))}
+            //         <div className="w-full flex justify-center items-center p-8 flex-col">
+            //             <div className="w-9/12 border-b-2 mb-2 border-black"></div>
+            //             reject
+            //         </div>
+            //         <div className="w-full flex flex-col items-center">
+            //             {orders
+            //                 .filter((e) => e.status == 'reject')
+            //                 .map((e, idx) => (
+            //                     <OrderStatusCard {...e} key={idx} />
+            //                 ))}
+            //         </div>
+            //     </div>
+            // )}
+        // </div>
     )
 }
