@@ -37,12 +37,12 @@ export default function profile() {
                         </div>
                     </div>
                     <div className="flex font-Kanit">
-                        <div class="basis-1/2 flex justify-end py-5 px-2">
+                        <div className="basis-1/2 flex justify-end py-5 px-2">
                             <button className="bg-[#FDFEFE] hover:bg-[#E5E7E9] active:bg-[#D7DBDD] text-black py-2 mx-4 rounded-xl border-neutral-300 border-2 w-[200px] flex justify-center">
                                 แก้ไขโปรไฟล์
                             </button>
                         </div>
-                        <div class="basis-1/2 py-5 px-1">
+                        <div className="basis-1/2 py-5 px-1">
                             <button className="bg-[#FDFEFE] hover:bg-[#E5E7E9] active:bg-[#D7DBDD] text-black py-2 mx-4 rounded-xl border-neutral-300 border-2 w-[200px] flex justify-center">
                                 แก้ไขรหัสผ่าน
                             </button>

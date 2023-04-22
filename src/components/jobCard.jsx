@@ -75,7 +75,7 @@ export default function jobCard({
                     <p className="text-3xl font-bold">
                         {convertTimestampToTime(time)}
                     </p>
-                    <p>{new Date(time).toUTCString()}</p>
+                    {/* <p>{new Date(time).toUTCString()}</p> */}
                 </div>
                 <div>
                     <p className="text-black pt-2">ฝากได้อีก {left} กล่อง</p>

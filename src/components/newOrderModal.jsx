@@ -16,7 +16,9 @@ export default function newOrderModal({ job, setJob }) {
     })
 
     useEffect(() => {
-        getProfileById(job.owner)
+        if (job.owner) {
+            getProfileById(job.owner)
+        }
     }, [job.owner])
 
     // Fetch Profile
