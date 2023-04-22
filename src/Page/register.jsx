@@ -92,14 +92,14 @@ function register() {
     }
 
     return (
-        <div className="bg-gradient-to-br from-[#4a9d51] to-[#66aac0] flex justify-center w-full h-screen items-center relative overflow-x-hidden pt-20">
+        <div className="font-Kanit text-xl bg-gradient-to-br from-[#4a9d51] to-[#66aac0] flex justify-center w-full h-screen items-center relative overflow-x-hidden pt-20">
             <ToastContainer />
             <div className="bg-white flex flex-col justify-center items-center rounded-primary max-w-3xl w-full my-20 shadow-2xl">
                 {/* decorate */}
                 <img
                     src="/assets/burgur-top.png"
                     width={'350px'}
-                    className=" absolute top-0 rotate-45 "
+                    className=" absolute top-0 rotate-12 "
                     style={{ left: '60%' }}
                 />
                 <img
@@ -108,29 +108,29 @@ function register() {
                     className="absolute -bottom-28 rotate-12"
                     style={{ right: '60%' }}
                 />
-                <div className=" text-green-600 font-bold text-4xl my-4">
-                    Create an account
+                <div className=" text-green-600 font-medium text-4xl my-4">
+                    สร้างบัญชี
                 </div>
                 <img
                     src="/assets/linegroup2.png"
                     className="absolute left-0 top-10"
                 />
                 <div className=" rounded-full bg-[#e3e3e3e3] absolute -right-16 -bottom-20 w-80 h-80"></div>
-                <div className="text-2xl mb-4">to get start now!</div>
+                <div className="text-2xl mb-4">เพื่อเริ่มต้นใช้งาน!</div>
                 <div className="flex flex-col w-2/3">
                     {/* Name */}
                     <label
                         htmlFor="name"
                         className="font-semibold text-lg mt-4"
                     >
-                        Name
+                        ชื่ออะไรเอ่ยย
                     </label>
                     <div className="flex">
                         <input
                             type="text"
                             id="firstname"
                             className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                            placeholder="Enter your first name"
+                            placeholder="ชื่อจริง"
                             value={userRegister.firstname}
                             onChange={(e) => {
                                 setUserRegister({
@@ -143,7 +143,7 @@ function register() {
                             type="text"
                             id="lastname"
                             className="w-full px-4 py-2 mb-4 shadow-lg"
-                            placeholder="Enter your last name"
+                            placeholder="นามสกุล"
                             value={userRegister.lastname}
                             onChange={(e) => {
                                 setUserRegister({
@@ -159,13 +159,13 @@ function register() {
                         htmlFor="username"
                         className="font-semibold text-lg mt-4"
                     >
-                        Username
+                        ชื่อผู้ใช้
                     </label>
                     <input
                         type="text"
                         id="username"
                         className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                        placeholder="Enter your username"
+                        placeholder="ชื่อผู้ใช้อะไรดีน้า"
                         value={userRegister.username}
                         onChange={(e) => {
                             setUserRegister({
@@ -179,13 +179,13 @@ function register() {
                         htmlFor="password"
                         className="font-semibold text-lg mt-4"
                     >
-                        Password
+                        รหัสผ่าน 
                     </label>
                     <input
                         type="password"
                         id="password"
                         className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                        placeholder="Enter your password"
+                        placeholder="รหัสผ่านของคุณ "
                         value={userRegister.password}
                         onChange={(e) => {
                             setUserRegister({
@@ -199,13 +199,13 @@ function register() {
                         htmlFor="confirmPassword"
                         className="font-semibold text-lg mt-4"
                     >
-                        Confirm password
+                        ยืนยันรหัสผ่าน 
                     </label>
                     <input
                         type="password"
                         id="confirmPassword"
                         className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                        placeholder="Confirm your password"
+                        placeholder="ยืนยันรหัสผ่านของคุณ"
                         value={userRegister.confirmpassword}
                         onChange={(e) => {
                             setUserRegister({
@@ -219,7 +219,7 @@ function register() {
                         htmlFor="phone"
                         className="font-semibold text-lg mt-4"
                     >
-                        Phone
+                        เบอร์โทรศัพท์
                     </label>
                     <input
                         type="tel"
@@ -242,19 +242,19 @@ function register() {
                             onClick={registerHandler}
                             disabled={isLoading}
                         >
-                            {isLoading === true ? 'Loading...' : 'Register'}
+                            {isLoading === true ? 'กำลังสมัคร...' : 'สมัครเลย'}
                         </button>
                     </div>
                     <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"></hr>
                     <div className="p-2 w-full flex justify-center">
-                        <div>Already have an account?</div>
+                        <div>อ่าว มีบัญชีอยู่แล้วงั้นหรอ?</div>
                         <div
                             className="pl-2 pb-4 font-semibold text-green-600 cursor-pointer hover:underline"
                             onClick={() => {
                                 navigate('/login')
                             }}
                         >
-                            Login
+                            เข้าสู่ระบบ
                         </div>
                     </div>
                 </div>
