@@ -69,6 +69,11 @@ export default function statusJob() {
             <nav className="shadow-xl text-center">
                 <div className="bg-white m-0 h-20  text-xl">
                     <p className="p-6 text-2xl ">Your Oder</p>
+                    <div className="flex justify-center ">
+                        <button className="bg-red-500 m-8 p-4 hover:scale-110">
+                            ปิดรับออเดอร์
+                        </button>
+                    </div>
                 </div>
                 <div className="flex justify-around h-16">
                     <button
@@ -122,11 +127,6 @@ export default function statusJob() {
                     </div>
                 </div>
             )}
-            <div className="flex justify-center ">
-                <button className="bg-red-500 bottom-0 fixed m-8 p-4 hover:scale-110">
-                    ปิดรับออเดอร์
-                </button>
-            </div>
         </div>
 
         // <div className="flex flex-col items-center ">
