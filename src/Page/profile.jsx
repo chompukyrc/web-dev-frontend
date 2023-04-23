@@ -1,44 +1,29 @@
 import React, { useState, useEffect } from 'react'
 import Avatar, { genConfig } from 'react-nice-avatar'
 import axios, { Axios } from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
 
 export default function profile() {
-    const config = genConfig()
     const token = localStorage.getItem('token')
     const [editProfile, setEditProfile] = useState(0) //0-common 1-editProfile 2-editPassword
-    const [password,setPassword] = useState({
-        oldpassword:"",
-        newpassword:"",
-        confirmpassword:""
+    const [password, setPassword] = useState({
+        oldpassword: '',
+        newpassword: '',
+        confirmpassword: '',
     })
-    const [userProfile,setUserProfile] = useState({})
-    const [updatedProfile,setUpdatedProfile] = useState({
-        username:"",
-        firstname:"",
-        lastname:"",
-        phone:""
+    const [userProfile, setUserProfile] = useState({})
+    const [updatedProfile, setUpdatedProfile] = useState({
+        username: '',
+        firstname: '',
+        lastname: '',
+        phone: '',
     })
 
-    useEffect(() =>{
-        const fetchProfile = async () => {
-            try {
-                const res = await axios({
-                    url: import.meta.env.VITE_API + '/api/Users/Profile',
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                })
-                setUserProfile(res.data)
-                setUpdatedProfile(res.data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
+    useEffect(() => {
         fetchProfile()
-    },[])
+    }, [])
 
-    async function fetchProfile(){
+    async function fetchProfile() {
         try {
             const res = await axios({
                 url: import.meta.env.VITE_API + '/api/Users/Profile',
@@ -53,7 +38,7 @@ export default function profile() {
             console.log(error)
         }
     }
-    
+
     async function profileHandler() {
         try {
             const res = await axios({
@@ -63,11 +48,21 @@ export default function profile() {
                     Username: updatedProfile.username,
                     Firstname: updatedProfile.firstname,
                     Lastname: updatedProfile.lastname,
-                    Phone: updatedProfile.phone
+                    Phone: updatedProfile.phone,
                 },
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`,
                 },
+            })
+            toast.success('🍔 แก้ไขโปรไฟล์สำเร็จ', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
             })
             fetchProfile()
             setEditProfile(0)
@@ -76,39 +71,69 @@ export default function profile() {
         }
     }
 
-    async function passwordHandler(){
-        if(password.newpassword!=password.confirmpassword){
-            console.log("Password Doesn't Match")
-        }
-        else{
+    async function passwordHandler() {
+        if (password.newpassword != password.confirmpassword) {
+            toast.error('🍔 การยืนยันรหัสผ่านไม่ถูกต้อง', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
+        } else {
             try {
                 const res = await axios({
-                    url: import.meta.env.VITE_API + '/api/Users/UpdateUserPassword',
+                    url:
+                        import.meta.env.VITE_API +
+                        '/api/Users/UpdateUserPassword',
                     method: 'POST',
                     data: {
-                        OldPassword:password.oldpassword,
-                        NewPassword:password.newpassword,
+                        OldPassword: password.oldpassword,
+                        NewPassword: password.newpassword,
                     },
                     headers: {
-                        Authorization: `Bearer ${token}`
+                        Authorization: `Bearer ${token}`,
                     },
                 })
-                console.log("Change Password Success!!")
+                toast.success('🍔 เปลี่ยนรหัสผ่านสำเร็จ', {
+                    position: 'top-center',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                })
                 fetchProfile()
                 setEditProfile(0)
-            }
-            catch (error) {
-                console.log("Password Incorrect")
+            } catch (error) {
+                toast.error('🍔 คุณป้อนรหัสผ่านเดิมไม่ถูกต้อง', {
+                    position: 'top-center',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                })
             }
         }
     }
 
+    const config = genConfig(userProfile.firstname + userProfile.lastname)
+
     return (
         <div>
+            <ToastContainer />
             <div className="flex absolute justify-center items-center w-full h-full z-0">
                 <div className="rounded-full bg-[#E67E22] h-secondary w-secondary"></div>
             </div>
-
+            {/* <pre>{JSON.stringify(userProfile)}</pre> */}
             <div className="flex flex-col justify-center items-center h-screen">
                 <img
                     src="/assets/burgur-top.png"
@@ -163,7 +188,7 @@ export default function profile() {
                                         </p>
                                         <input
                                             className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
-                                            placeholder={userProfile.username}
+                                            value={updatedProfile.username}
                                             onChange={(e) => {
                                                 setUpdatedProfile({
                                                     ...updatedProfile,
@@ -178,7 +203,7 @@ export default function profile() {
                                         </p>
                                         <input
                                             className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
-                                            placeholder={userProfile.firstname}
+                                            value={updatedProfile.firstname}
                                             onChange={(e) => {
                                                 setUpdatedProfile({
                                                     ...updatedProfile,
@@ -193,7 +218,7 @@ export default function profile() {
                                         </p>
                                         <input
                                             className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
-                                            placeholder={userProfile.lastname}
+                                            value={updatedProfile.lastname}
                                             onChange={(e) => {
                                                 setUpdatedProfile({
                                                     ...updatedProfile,
@@ -208,7 +233,7 @@ export default function profile() {
                                         </p>
                                         <input
                                             className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
-                                            placeholder={userProfile.phone}
+                                            value={updatedProfile.phone}
                                             onChange={(e) => {
                                                 setUpdatedProfile({
                                                     ...updatedProfile,
@@ -225,40 +250,44 @@ export default function profile() {
                                         <p className="text-right mr-2 my-2 w-32">
                                             รหัสผ่านเดิม :
                                         </p>
-                                        <input 
-                                        onChange={(e) => {
-                                            setPassword({
-                                                ...password,
-                                                oldpassword: e.target.value,
-                                            })
-                                        }}
-                                        className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56" />
+                                        <input
+                                            onChange={(e) => {
+                                                setPassword({
+                                                    ...password,
+                                                    oldpassword: e.target.value,
+                                                })
+                                            }}
+                                            className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
+                                        />
                                     </div>
                                     <div className="flex">
                                         <p className="text-right mr-2 my-2 w-32">
                                             รหัสผ่านใหม่ :
                                         </p>
-                                        <input 
-                                        onChange={(e) => {
-                                            setPassword({
-                                                ...password,
-                                                newpassword: e.target.value,
-                                            })
-                                        }}
-                                        className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56" />
+                                        <input
+                                            onChange={(e) => {
+                                                setPassword({
+                                                    ...password,
+                                                    newpassword: e.target.value,
+                                                })
+                                            }}
+                                            className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
+                                        />
                                     </div>
                                     <div className="flex">
                                         <p className="text-right mr-2 my-2 w-32">
                                             ยืนยันรหัสผ่านใหม่ :
                                         </p>
-                                        <input 
-                                        onChange={(e) => {
-                                            setPassword({
-                                                ...password,
-                                                confirmpassword: e.target.value,
-                                            })
-                                        }}
-                                        className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56" />
+                                        <input
+                                            onChange={(e) => {
+                                                setPassword({
+                                                    ...password,
+                                                    confirmpassword:
+                                                        e.target.value,
+                                                })
+                                            }}
+                                            className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
+                                        />
                                     </div>
                                 </div>
                             )}
