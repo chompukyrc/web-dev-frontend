@@ -68,7 +68,10 @@ export default function statusJob() {
     async function closeJobHandler() {
         try {
             const res = await axios({
-                url: import.meta.env.VITE_API + '/api/Job/UpdateStatusToClose',
+                url:
+                    import.meta.env.VITE_API +
+                    '/api/Job/UpdateStatusToClose?id=' +
+                    jobId,
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,

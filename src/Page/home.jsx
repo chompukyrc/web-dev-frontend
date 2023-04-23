@@ -110,7 +110,9 @@ function home() {
                 temp.sort((a, b) => (a.left === 0) - (b.left === 0))
 
                 // Check myOrder is undifined -> ยังไม่เคยสั่ง
-                temp = temp.filter((e) => e.myOrder === undefined)
+                temp = temp.filter(
+                    (e) => e.myOrder === undefined && e.status === 'unfinish',
+                )
                 const notMyOrder = [...temp]
 
                 // ============ Calculate myOrder_unfinish_accept ===============
