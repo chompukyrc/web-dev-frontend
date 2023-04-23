@@ -31,6 +31,12 @@ export default function myJobCard({
         getProfileById(owner)
     }, [owner])
 
+    useEffect(() => {
+        if (myOrder) {
+            getProfileById(myOrder)
+        }
+    }, [myOrder])
+
     async function getProfileById(id) {
         try {
             const res = await axios({
