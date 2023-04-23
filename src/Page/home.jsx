@@ -318,7 +318,7 @@ function home() {
             </nav>
 
             {page === 0 && (
-                <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 animate-in duration-500 slide-in-from-right">
                     {' '}
                     {/* Job Container */}
                     {jobsCetagory.notMyOrder.map((e, idx) => (
@@ -344,8 +344,8 @@ function home() {
             )}
 
             {page === 1 && (
-                <div className="flex justify-center items-center flex-col pt-8 ">
-                    {/* <MyJobCard /> */}
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-right">
+                    <MyJobCard />
                     <p className="font-bold text-4xl text-center">
                         myOrder_unfinish_accept
                     </p>
