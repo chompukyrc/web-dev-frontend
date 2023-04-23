@@ -94,7 +94,7 @@ export default function statusJob() {
                 </div>
             </nav>
             {page === 0 && (
-                <div className="flex justify-center items-center flex-col pt-8 ">
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-right">
                     {orders
                         .filter((e) => e.status == 'waiting')
                         .map((e, idx) => (
@@ -103,7 +103,7 @@ export default function statusJob() {
                 </div>
             )}
             {page === 1 && (
-                <div className="flex justify-center items-center flex-col pt-8 ">
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-left">
                     {orders
                         .filter((e) => e.status == 'accept')
                         .map((e, idx) => (
