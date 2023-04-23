@@ -179,7 +179,7 @@ function register() {
                         htmlFor="password"
                         className="font-semibold text-lg mt-4"
                     >
-                        รหัสผ่าน 
+                        รหัสผ่าน
                     </label>
                     <input
                         type="password"
@@ -199,7 +199,7 @@ function register() {
                         htmlFor="confirmPassword"
                         className="font-semibold text-lg mt-4"
                     >
-                        ยืนยันรหัสผ่าน 
+                        ยืนยันรหัสผ่าน
                     </label>
                     <input
                         type="password"
