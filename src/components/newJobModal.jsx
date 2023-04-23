@@ -15,7 +15,6 @@ export default function newJobModal({ showModal, setShowModal }) {
 
     async function creatJobHandler() {
         const token = localStorage.getItem('token')
-        console.log('clickyyyy')
 
         if (
             creatJob.restaurant == '' ||

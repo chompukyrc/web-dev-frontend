@@ -8,6 +8,7 @@ import JobCard from '../components/jobCard'
 import NewOrderModal from '../components/newOrderModal'
 import MyJobCard from '../components/myJobCard'
 import food from '/assets/coverfood.png'
+import InterestCardContainer from '../components/interestCardContainer'
 
 function home() {
     const token = localStorage.getItem('token')
@@ -94,8 +95,6 @@ function home() {
                         left: Math.max(e.limit - e.count, 0),
                     }
                 })
-
-                console.log('กูจะเอาแบบนี้', jobs)
 
                 // ============ Calculate notMyOrder ===============
                 // reverse array -> show latest job first
@@ -242,33 +241,6 @@ function home() {
         // console.log(tempJob)
     }, [profile, jobs])
 
-    const interestcards = [
-        {
-            key: 1,
-            name: 'เทคโน',
-        },
-        {
-            key: 2,
-            name: 'เทคโน',
-        },
-        {
-            key: 3,
-            name: 'เทคโน',
-        },
-        {
-            key: 4,
-            name: 'เทคโน',
-        },
-        {
-            key: 5,
-            name: 'เทคโน',
-        },
-        {
-            key: 6,
-            name: 'เทคโน',
-        },
-    ]
-
     function showJobDetailHandle(job) {
         setJob(job)
     }
@@ -285,27 +257,7 @@ function home() {
                     src={food}
                     className="rounded-b-[100px] w-screen opacity-80"
                 />
-                <div className="bg-white h-20  ">
-                    <p className="p-6 text-2xl text-left ml-40">
-                        ร้านที่คุณอาจสนใจ 🔍{' '}
-                    </p>
-                </div>
-                <div className="flex justify-center">
-                    <div className="flex flex-row flex-wrap h-20 w-3/4">
-                        {interestcards.map((interest, idx) => {
-                            return (
-                                <button
-                                    key={idx}
-                                    className="mx-5 bg-green-600 h-8 w-auto rounded-full text-center drop-shadow-sm hover:bg-green-800"
-                                >
-                                    <p className="px-6 text-white">
-                                        {interest.name}
-                                    </p>
-                                </button>
-                            )
-                        })}
-                    </div>
-                </div>
+                <InterestCardContainer />
             </div>
             <nav className="text-center text-2xl">
                 <div className="flex justify-start h-16 bg-white">
