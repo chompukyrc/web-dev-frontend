@@ -7,6 +7,7 @@ import NewJobModal from '../components/newJobModal'
 import JobCard from '../components/jobCard'
 import NewOrderModal from '../components/newOrderModal'
 import MyJobCard from '../components/myJobCard'
+import food from '/assets/coverfood.png'
 
 function home() {
     const token = localStorage.getItem('token')
@@ -226,43 +227,89 @@ function home() {
         // console.log(tempJob)
     }, [profile, jobs])
 
+    const interestcards = [
+        {
+            key: 1,
+            name: 'เทคโน',
+        },
+        {
+            key: 2,
+            name: 'เทคโน',
+        },
+        {
+            key: 3,
+            name: 'เทคโน',
+        },
+        {
+            key: 4,
+            name: 'เทคโน',
+        },
+        {
+            key: 5,
+            name: 'เทคโน',
+        },
+        {
+            key: 6,
+            name: 'เทคโน',
+        },
+        
+    ]
+
     function showJobDetailHandle(job) {
         setJob(job)
     }
 
     return (
-        <div className="">
+        <div className="font-Kanit">
             <ToastContainer />
             <NewOrderModal job={job} setJob={setJob} />
 
             <NewJobModal showModal={showModal} setShowModal={setShowModal} />
 
-            <nav className="shadow-xl text-center">
-                <div className="bg-white m-0 h-20  text-xl">
-                    <p className="p-6 text-2xl ">HOME</p>
+            <div className=' bg-white text-xl'  >
+                <img src={food}  className="rounded-b-[100px] w-screen opacity-80"/>
+                <div className="bg-white h-20  ">
+                    <p className="p-6 text-2xl text-left ml-40">ร้านที่คุณอาจสนใจ 🔍 </p>
                 </div>
-                <div className="flex justify-around h-16">
+                <div className='flex justify-center'>
+
+                    <div className='flex flex-row flex-wrap h-20 w-3/4'>
+                        {interestcards.map((interest) => { 
+                            return (
+                            <button className='mx-5 bg-green-600 h-8 w-auto rounded-full text-center drop-shadow-sm hover:bg-green-800'>
+                                <p className='px-6 text-white'>
+                                    {interest.name}
+                                </p>
+                            </button>
+                    )
+                    })}
+                    </div>
+                </div>
+            </div>
+            <nav className="text-center text-2xl"  >
+                <div className="flex justify-start h-16 bg-white">
                     <button
-                        className={`font-bold text-lg w-1/2 ; ${
+                        className={`w-1/3 ; ${
                             page === 0
-                                ? 'border-b-4 border-green-600 '
+                                ? 'border-b-4 border-green-600 bg-gray-200'
                                 : 'bg-gray-300'
                         }`}
                         onClick={() => setPage(0)}
                     >
-                        ALL Jobs
+                        ใครไปซื้อบ้างน้า
                     </button>
                     <button
-                        className={`font-bold text-lg w-1/2 ; ${
+                        className={`w-1/3 ; ${
                             page === 1
-                                ? 'border-b-4 border-green-600 '
+                                ? 'border-b-4 border-green-600 bg-gray-200'
                                 : 'bg-gray-300'
                         }`}
                         onClick={() => setPage(1)}
                     >
-                        My Jobs
+                        ดูที่สั่งไปแล้ว
                     </button>
                 </div>
+
             </nav>
 
             {page === 0 && (
