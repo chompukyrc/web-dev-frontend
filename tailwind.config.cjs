@@ -23,9 +23,11 @@ module.exports = {
             },
             width: {
                 primary: '84.75rem',
+                secondary: '32rem',
             },
             height: {
                 primary: '53.4375rem',
+                secondary: '32rem',
             },
             padding: {
                 primary: '28rem',
