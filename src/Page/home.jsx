@@ -17,6 +17,7 @@ function home() {
     const [jobs, setJobs] = useState([])
     const [jobsCetagory, setJobsCetagory] = useState({
         notMyOrder: [],
+        myOrder_unfinish_waiting: [],
         myOrder_unfinish_accept: [],
         myOrder_unfinish_reject: [],
         myOrder_close_accept: [],
@@ -124,6 +125,18 @@ function home() {
 
                 const myOrder_unfinish_accept = [...temp]
 
+                // ============ Calculate myOrder_unfinish_waiting ===============
+                temp = [...jobs]
+
+                temp = temp.filter(
+                    (e) =>
+                        e.myOrder !== undefined &&
+                        e.status === 'unfinish' &&
+                        e.myOrder.status === 'waiting',
+                )
+
+                const myOrder_unfinish_waiting = [...temp]
+
                 // ============ Calculate myOrder_unfinish_reject ===============
                 temp = [...jobs]
 
@@ -187,6 +200,7 @@ function home() {
                 setJobs(jobs)
                 setJobsCetagory({
                     notMyOrder: notMyOrder,
+                    myOrder_unfinish_waiting: myOrder_unfinish_waiting,
                     myOrder_unfinish_accept: myOrder_unfinish_accept,
                     myOrder_unfinish_reject: myOrder_unfinish_reject,
                     myOrder_close_accept: myOrder_close_accept,
@@ -197,6 +211,7 @@ function home() {
 
                 console.log({
                     notMyOrder: notMyOrder,
+                    myOrder_unfinish_waiting: myOrder_unfinish_waiting,
                     myOrder_unfinish_accept: myOrder_unfinish_accept,
                     myOrder_unfinish_reject: myOrder_unfinish_reject,
                     myOrder_close_accept: myOrder_close_accept,
@@ -309,6 +324,27 @@ function home() {
                     </pre>
                     <div>
                         {jobsCetagory.myOrder_unfinish_accept.map((e, idx) => (
+                            <MyJobCard
+                                key={idx}
+                                {...e}
+                                profile={profile}
+                                onClick={() => showJobDetailHandle(e)}
+                            />
+                        ))}
+                    </div>
+
+                    <p className="font-bold text-4xl text-center">
+                        myOrder_unfinish_waiting
+                    </p>
+                    <pre>
+                        {JSON.stringify(
+                            jobsCetagory.myOrder_unfinish_waiting,
+                            null,
+                            2,
+                        )}
+                    </pre>
+                    <div>
+                        {jobsCetagory.myOrder_unfinish_waiting.map((e, idx) => (
                             <MyJobCard
                                 key={idx}
                                 {...e}
