@@ -5,7 +5,6 @@ export default function profile() {
     return (
         <div className="md:1/3w">
             <div className="absolute justify-center rounded-full bg-[#E67E22] right-[460px] top-[180px] h-[600px] w-[600px] z-0"></div>
-
             <div className="flex justify-center aligin-center">
                 <img
                     src="/assets/burgur-top.png"
