@@ -4,13 +4,35 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 
 export default function statusJob() {
+    const token = localStorage.getItem('token')
     const { jobId } = useParams()
     const [orders, setOrder] = useState([])
+    const [job, setJob] = useState({})
     const [page, setPage] = useState(0)
 
     useEffect(() => {
-        const token = localStorage.getItem('token')
+        async function getJobById() {
+            try {
+                const res = await axios({
+                    url: import.meta.env.VITE_API + '/api/Job/ById?id=' + jobId,
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                const now = new Date().setDate(24)
+                if (now > res.data?.time) {
+                    console.log('show alert')
+                }
+                setJob(res.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
 
+        getJobById()
+    }, [])
+
+    useEffect(() => {
         //fetch order
         async function getOrderById() {
             try {
@@ -60,7 +82,7 @@ export default function statusJob() {
         getOrderById()
         const interval = setInterval(() => {
             getOrderById()
-        }, 2000)
+        }, 5000)
         return () => clearInterval(interval)
     }, [jobId])
 
@@ -87,8 +109,9 @@ export default function statusJob() {
             <nav className="shadow-xl text-center">
                 <div className="bg-white m-0 h-30 text-xl">
                     <p className="p-6 text-2xl ">Your Oder</p>
+                    <pre>{JSON.stringify(job, null, 2)}</pre>
                     <button
-                        className="bg-red-500 m-8 p-4 hover:scale-110"
+                        className="bg-red-300 m-8 p-4 hover:scale-110 rounded-primary"
                         onClick={() => closeJobHandler()}
                     >
                         ปิดรับออเดอร์
@@ -147,59 +170,5 @@ export default function statusJob() {
                 </div>
             )}
         </div>
-
-        // <div className="flex flex-col items-center ">
-        //     <div className="my-8 text-2xl bg-white">Your Order</div>
-        //     <div className="bg-gray-200 flex justify-around w-5/6 rounded-t-3xl">
-        //         <button
-        //     className={
-        //         'font-medium text-xl w-1/2 h-12 hover:underline rounded-t-3xl' +
-        //         (page === 0 ? '  bg-gray-300' : ' ')
-        //     }
-        //     onClick={() => setPage(0)}
-        // >
-        //     New Order
-        //         </button>
-        //         <button
-        //             className={
-        //                 ' font-medium text-xl w-1/2 h-12 hover:underline rounded-t-3xl' +
-        //                 (page === 1 ? '  bg-gray-300' : ' ')
-        //             }
-        //             onClick={() => setPage(1)}
-        //         >
-        //             Accepted Order
-        //         </button>
-        //     </div>
-
-        // {page === 0 && (
-        //     <div className="flex justify-center items-center flex-col pt-8 bg-gray-300 w-5/6">
-        //         {orders
-        //             .filter((e) => e.status == 'waiting')
-        //             .map((e, idx) => (
-        //                 <OrderStatusCard {...e} key={idx} />
-        //             ))}
-        //     </div>
-        // )}
-        // {page === 1 && (
-        //     <div className="flex justify-center items-center flex-col pt-8 bg-gray-300 w-5/6">
-        //         {orders
-        //             .filter((e) => e.status == 'accept')
-        //             .map((e, idx) => (
-        //                 <OrderStatusCard {...e} key={idx} />
-        //             ))}
-        //         <div className="w-full flex justify-center items-center p-8 flex-col">
-        //             <div className="w-9/12 border-b-2 mb-2 border-black"></div>
-        //             reject
-        //         </div>
-        //         <div className="w-full flex flex-col items-center">
-        //             {orders
-        //                 .filter((e) => e.status == 'reject')
-        //                 .map((e, idx) => (
-        //                     <OrderStatusCard {...e} key={idx} />
-        //                 ))}
-        //         </div>
-        //     </div>
-        // )}
-        // </div>
     )
 }
