@@ -57,4 +57,3 @@ const Tag = ({ interest, handleSelected }) => {
         </>
     )
 }
-

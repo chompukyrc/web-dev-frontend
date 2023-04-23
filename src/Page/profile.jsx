@@ -140,8 +140,8 @@ export default function profile() {
                     width={'300px'}
                     className="rotate-[6.10rad]"
                 />
-                <div className="bg-white flex flex-col justify-center items-center rounded-primary max-w-2xl w-full shadow-2xl z-10 my-10">
-                    <Avatar className="w-14 h-14 mr-2 my-8" {...config} />
+                <div className="bg-white flex flex-col justify-center items-center rounded-primary max-w-2xl w-full shadow-2xl z-10">
+                    <Avatar className="w-24 h-24 my-4" {...config} />
                     <div className="flex items-center justify-center font-Kanit mx-auto pb-2">
                         <div className=" text-left">
                             {editProfile === 0 && (
