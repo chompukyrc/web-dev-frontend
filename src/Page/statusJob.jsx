@@ -64,16 +64,32 @@ export default function statusJob() {
         return () => clearInterval(interval)
     }, [jobId])
 
+    //Update Status to "CLOSE"
+    async function closeJobHandler() {
+        try {
+            const res = await axios({
+                url: import.meta.env.VITE_API + '/api/Job/UpdateStatusToClose',
+                method: 'POST',
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div>
             <nav className="shadow-xl text-center">
-                <div className="bg-white m-0 h-20  text-xl">
+                <div className="bg-white m-0 h-30 text-xl">
                     <p className="p-6 text-2xl ">Your Oder</p>
-                    <div className="flex justify-center ">
-                        <button className="bg-red-500 m-8 p-4 hover:scale-110">
-                            ปิดรับออเดอร์
-                        </button>
-                    </div>
+                    <button
+                        className="bg-red-500 m-8 p-4 hover:scale-110"
+                        onClick={() => closeJobHandler()}
+                    >
+                        ปิดรับออเดอร์
+                    </button>
                 </div>
                 <div className="flex justify-around h-16">
                     <button
