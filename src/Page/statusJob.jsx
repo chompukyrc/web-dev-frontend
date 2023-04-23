@@ -69,6 +69,11 @@ export default function statusJob() {
             <nav className="shadow-xl text-center">
                 <div className="bg-white m-0 h-20  text-xl">
                     <p className="p-6 text-2xl ">Your Oder</p>
+                    <div className="flex justify-center ">
+                        <button className="bg-red-500 m-8 p-4 hover:scale-110">
+                            ปิดรับออเดอร์
+                        </button>
+                    </div>
                 </div>
                 <div className="flex justify-around h-16">
                     <button
@@ -94,7 +99,7 @@ export default function statusJob() {
                 </div>
             </nav>
             {page === 0 && (
-                <div className="flex justify-center items-center flex-col pt-8 ">
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-right">
                     {orders
                         .filter((e) => e.status == 'waiting')
                         .map((e, idx) => (
@@ -103,7 +108,7 @@ export default function statusJob() {
                 </div>
             )}
             {page === 1 && (
-                <div className="flex justify-center items-center flex-col pt-8 ">
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-left">
                     {orders
                         .filter((e) => e.status == 'accept')
                         .map((e, idx) => (
@@ -122,11 +127,6 @@ export default function statusJob() {
                     </div>
                 </div>
             )}
-            <div className="flex justify-center ">
-                <button className="bg-red-500 bottom-0 fixed m-8 p-4 hover:scale-110">
-                    ปิดรับออเดอร์
-                </button>
-            </div>
         </div>
 
         // <div className="flex flex-col items-center ">

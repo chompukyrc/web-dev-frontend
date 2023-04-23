@@ -45,16 +45,19 @@ export default function aboutUs() {
         },
     ]
     return (
-        <div className=" flex flex-col font-Kanit ">
+        <div className=" flex flex-col font-Kanit">
             <div className="mt-8 mb-3 text-2xl text-center">
                 โปรเจคนี้เป็นส่วนหนึ่งของวิชา WEB APPLICATION DEVELOPMENT
                 ซึ่งพัฒนาโดย
             </div>
-            <div className="justify-center flex flex-wrap mx-auto min-w-[768px] bg-white pt-20 rounded-[30px] shadow-xl">
+            <div
+                className="justify-center flex flex-wrap mx-auto min-w-[768px] bg-white pt-20 rounded-[30px] shadow-xl"
+                style={{ width: '1000px' }}
+            >
                 {profiles.map((profile) => {
                     return (
                         <div
-                            className="md:w-1/3 text-center mx-50 relative text-lg mb-4"
+                            className="md:w-1/3 text-center mx-50 relative text-lg mb-4 animate-in fade-in duration-1000"
                             key={profile.key}
                         >
                             <div className="absolute top-[-140px] right-[-100px] rotate-[20deg] scale-[.35]">
@@ -64,9 +67,7 @@ export default function aboutUs() {
                                 src={profile.img}
                                 className="mx-auto h-[200px] rounded-full shadow-2xl"
                             />
-                            <h1 className="mt-6 font-medium ">
-                                {profile.name}
-                            </h1>
+                            <h1 className="mt-6 font-medium">{profile.name}</h1>
                             <h1 className="font-medium">{profile.id}</h1>
                             <h1 className="font-light text-green-700 ">
                                 {profile.job}

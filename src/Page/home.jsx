@@ -7,6 +7,8 @@ import NewJobModal from '../components/newJobModal'
 import JobCard from '../components/jobCard'
 import NewOrderModal from '../components/newOrderModal'
 import MyJobCard from '../components/myJobCard'
+import food from '/assets/coverfood.png'
+import InterestCardContainer from '../components/interestCardContainer'
 
 function home() {
     const token = localStorage.getItem('token')
@@ -93,8 +95,6 @@ function home() {
                     }
                 })
 
-                console.log('กูจะเอาแบบนี้', jobs)
-
                 // ============ Calculate notMyOrder ===============
                 // reverse array -> show latest job first
                 let temp = [...jobs]
@@ -119,7 +119,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'unfinish' &&
-                        e.myOrder.orderStatus === 'accept',
+                        e.myOrder.status === 'accept',
                 )
 
                 const myOrder_unfinish_accept = [...temp]
@@ -131,7 +131,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'unfinish' &&
-                        e.myOrder.orderStatus === 'reject',
+                        e.myOrder.status === 'reject',
                 )
 
                 const myOrder_unfinish_reject = [...temp]
@@ -143,7 +143,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'close' &&
-                        e.myOrder.orderStatus === 'accept',
+                        e.myOrder.status === 'accept',
                 )
 
                 const myOrder_close_accept = [...temp]
@@ -155,7 +155,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'close' &&
-                        e.myOrder.orderStatus === 'reject',
+                        e.myOrder.status === 'reject',
                 )
 
                 const myOrder_close_reject = [...temp]
@@ -167,7 +167,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'finish' &&
-                        e.myOrder.orderStatus === 'done',
+                        e.myOrder.status === 'done',
                 )
 
                 const myOrder_finish_done = [...temp]
@@ -179,7 +179,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'finish' &&
-                        e.myOrder.orderStatus === 'reject',
+                        e.myOrder.status === 'reject',
                 )
 
                 const myOrder_finish_reject = [...temp]
@@ -231,42 +231,46 @@ function home() {
     }
 
     return (
-        <div className="">
+        <div className="font-Kanit">
             <ToastContainer />
             <NewOrderModal job={job} setJob={setJob} />
 
             <NewJobModal showModal={showModal} setShowModal={setShowModal} />
 
-            <nav className="shadow-xl text-center">
-                <div className="bg-white m-0 h-20  text-xl">
-                    <p className="p-6 text-2xl ">HOME</p>
-                </div>
-                <div className="flex justify-around h-16">
+            <div className=" bg-white text-xl">
+                <img
+                    src={food}
+                    className="rounded-b-[100px] w-screen opacity-80"
+                />
+                <InterestCardContainer />
+            </div>
+            <nav className="text-center text-2xl">
+                <div className="flex justify-start h-16 bg-white">
                     <button
-                        className={`font-bold text-lg w-1/2 ; ${
+                        className={`w-1/3 ; ${
                             page === 0
-                                ? 'border-b-4 border-green-600 '
+                                ? 'border-b-4 border-green-600 bg-gray-200'
                                 : 'bg-gray-300'
                         }`}
                         onClick={() => setPage(0)}
                     >
-                        ALL Jobs
+                        ใครไปซื้อบ้างน้า
                     </button>
                     <button
-                        className={`font-bold text-lg w-1/2 ; ${
+                        className={`w-1/3 ; ${
                             page === 1
-                                ? 'border-b-4 border-green-600 '
+                                ? 'border-b-4 border-green-600 bg-gray-200'
                                 : 'bg-gray-300'
                         }`}
                         onClick={() => setPage(1)}
                     >
-                        My Jobs
+                        ดูที่สั่งไปแล้ว
                     </button>
                 </div>
             </nav>
 
             {page === 0 && (
-                <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 animate-in duration-500 slide-in-from-right">
                     {' '}
                     {/* Job Container */}
                     {jobsCetagory.notMyOrder.map((e, idx) => (
@@ -290,9 +294,9 @@ function home() {
                     </div>
                 </div>
             )}
+
             {page === 1 && (
-                <div className="flex justify-center items-center flex-col pt-8 ">
-                    <MyJobCard />
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-left">
                     <p className="font-bold text-4xl text-center">
                         myOrder_unfinish_accept
                     </p>
@@ -303,11 +307,12 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_unfinish_accept.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
+                                profile={profile}
                                 onClick={() => showJobDetailHandle(e)}
                             />
                         ))}
@@ -323,11 +328,12 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_unfinish_reject.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
+                                profile={profile}
                                 onClick={() => showJobDetailHandle(e)}
                             />
                         ))}
@@ -343,11 +349,12 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_finish_done.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
+                                profile={profile}
                                 onClick={() => showJobDetailHandle(e)}
                             />
                         ))}
@@ -363,11 +370,12 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_finish_reject.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
+                                profile={profile}
                                 onClick={() => showJobDetailHandle(e)}
                             />
                         ))}
@@ -383,11 +391,12 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_close_accept.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
+                                profile={profile}
                                 onClick={() => showJobDetailHandle(e)}
                             />
                         ))}
@@ -403,11 +412,12 @@ function home() {
                             2,
                         )}
                     </pre>
-                    <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                    <div>
                         {jobsCetagory.myOrder_close_reject.map((e, idx) => (
-                            <JobCard
+                            <MyJobCard
                                 key={idx}
                                 {...e}
+                                profile={profile}
                                 onClick={() => showJobDetailHandle(e)}
                             />
                         ))}
@@ -420,7 +430,7 @@ function home() {
                 </div>
             )}
 
-            {/* <div>{JSON.stringify(profile)}</div> */}
+            <div>{JSON.stringify(profile)}</div>
         </div>
     )
 }

@@ -18,21 +18,22 @@ const Layout = ({ children }) => {
 
     return (
         <div>
-            <div className="bg-[#60B664] flex w-screen justify-around">
+            <div className="bg-[#60B664] flex w-screen justify-between font-Kanit text-[20px]">
                 <div
-                    className="flex items-center text-white text-lg font-semibold cursor-pointer"
+                    className="flex items-center text-white cursor-pointer ml-40"
                     onClick={() => {
                         navigate('/')
                     }}
                 >
-                    <img
+                    {/* <img
                         src="/assets/logo.png"
                         className="relative m-4"
                         width={'60px'}
-                    />
-                    Feed My Friend
+                    /> */}
+                    🍔&nbsp;&nbsp; Feed
+                    <p className="text-amber-300">&nbsp; My &nbsp;</p> Friend
                 </div>
-                <div className="flex items-center">
+                <div className="flex items-center mr-20">
                     <div
                         className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white"
                         onClick={() => {
@@ -40,7 +41,7 @@ const Layout = ({ children }) => {
                         }}
                     >
                         <i className="mdi mdi-home p-1"></i>
-                        Home
+                        หน้าหลัก
                     </div>
                     <div
                         className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white"
@@ -49,7 +50,7 @@ const Layout = ({ children }) => {
                         }}
                     >
                         <i className="mdi mdi-account p-1"></i>
-                        Profile
+                        โปรไฟล์
                     </div>
                     <div
                         className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white"
@@ -58,14 +59,14 @@ const Layout = ({ children }) => {
                         }}
                     >
                         <i className="mdi mdi-developer-board p-1"></i>
-                        About Us
+                        เกี่ยวกับเรา
                     </div>
                     <div
                         className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white"
                         onClick={() => setOpen(true)}
                     >
                         <i className="mdi mdi-logout p-1"></i>
-                        Logout
+                        ออกจากระบบ
                     </div>
                     <Dialog
                         text={'Are you sure to Logout?'}
