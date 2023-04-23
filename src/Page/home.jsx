@@ -119,7 +119,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'unfinish' &&
-                        e.myOrder.orderStatus === 'accept',
+                        e.myOrder.status === 'accept',
                 )
 
                 const myOrder_unfinish_accept = [...temp]
@@ -131,7 +131,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'unfinish' &&
-                        e.myOrder.orderStatus === 'reject',
+                        e.myOrder.status === 'reject',
                 )
 
                 const myOrder_unfinish_reject = [...temp]
@@ -143,7 +143,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'close' &&
-                        e.myOrder.orderStatus === 'accept',
+                        e.myOrder.status === 'accept',
                 )
 
                 const myOrder_close_accept = [...temp]
@@ -155,7 +155,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'close' &&
-                        e.myOrder.orderStatus === 'reject',
+                        e.myOrder.status === 'reject',
                 )
 
                 const myOrder_close_reject = [...temp]
@@ -167,7 +167,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'finish' &&
-                        e.myOrder.orderStatus === 'done',
+                        e.myOrder.status === 'done',
                 )
 
                 const myOrder_finish_done = [...temp]
@@ -179,7 +179,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'finish' &&
-                        e.myOrder.orderStatus === 'reject',
+                        e.myOrder.status === 'reject',
                 )
 
                 const myOrder_finish_reject = [...temp]
@@ -293,14 +293,7 @@ function home() {
 
             {page === 1 && (
                 <div className="flex justify-center items-center flex-col pt-8 ">
-                    {jobsCetagory.notMyOrder.map((e, idx) => (
-                        <MyJobCard
-                            key={idx}
-                            {...e}
-                            onClick={() => showJobDetailHandle(e)}
-                        />
-                    ))}
-                    <MyJobCard />
+                    {/* <MyJobCard /> */}
                     <p className="font-bold text-4xl text-center">
                         myOrder_unfinish_accept
                     </p>
