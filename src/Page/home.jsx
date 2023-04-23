@@ -252,7 +252,6 @@ function home() {
             key: 6,
             name: 'เทคโน',
         },
-        
     ]
 
     function showJobDetailHandle(job) {
@@ -266,27 +265,31 @@ function home() {
 
             <NewJobModal showModal={showModal} setShowModal={setShowModal} />
 
-            <div className=' bg-white text-xl'  >
-                <img src={food}  className="rounded-b-[100px] w-screen opacity-80"/>
+            <div className=" bg-white text-xl">
+                <img
+                    src={food}
+                    className="rounded-b-[100px] w-screen opacity-80"
+                />
                 <div className="bg-white h-20  ">
-                    <p className="p-6 text-2xl text-left ml-40">ร้านที่คุณอาจสนใจ 🔍 </p>
+                    <p className="p-6 text-2xl text-left ml-40">
+                        ร้านที่คุณอาจสนใจ 🔍{' '}
+                    </p>
                 </div>
-                <div className='flex justify-center'>
-
-                    <div className='flex flex-row flex-wrap h-20 w-3/4'>
-                        {interestcards.map((interest) => { 
+                <div className="flex justify-center">
+                    <div className="flex flex-row flex-wrap h-20 w-3/4">
+                        {interestcards.map((interest) => {
                             return (
-                            <button className='mx-5 bg-green-600 h-8 w-auto rounded-full text-center drop-shadow-sm hover:bg-green-800'>
-                                <p className='px-6 text-white'>
-                                    {interest.name}
-                                </p>
-                            </button>
-                    )
-                    })}
+                                <button className="mx-5 bg-green-600 h-8 w-auto rounded-full text-center drop-shadow-sm hover:bg-green-800">
+                                    <p className="px-6 text-white">
+                                        {interest.name}
+                                    </p>
+                                </button>
+                            )
+                        })}
                     </div>
                 </div>
             </div>
-            <nav className="text-center text-2xl"  >
+            <nav className="text-center text-2xl">
                 <div className="flex justify-start h-16 bg-white">
                     <button
                         className={`w-1/3 ; ${
@@ -309,11 +312,10 @@ function home() {
                         ดูที่สั่งไปแล้ว
                     </button>
                 </div>
-
             </nav>
 
             {page === 0 && (
-                <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 ">
+                <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 animate-in duration-500 slide-in-from-right">
                     {' '}
                     {/* Job Container */}
                     {jobsCetagory.notMyOrder.map((e, idx) => (
@@ -338,7 +340,7 @@ function home() {
                 </div>
             )}
             {page === 1 && (
-                <div className="flex justify-center items-center flex-col pt-8 ">
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-left">
                     <MyJobCard />
                     <p className="font-bold text-4xl text-center">
                         myOrder_unfinish_accept
