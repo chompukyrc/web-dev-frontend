@@ -53,10 +53,10 @@ export default function myJobCard({
             <div className="bg-[#499D4D] w-screen rounded-3xl shadow-xl cursor-pointer mb-4 hover:scale-105">
                 <div>
                     <Avatar className="w-14 h-14 mr-2" {...config} />
-                    <div>{ownerData.username}</div>
+                    <div>{ownerData?.username}</div>
                     <div>
                         {'@'}
-                        {ownerData.firstname} {ownerData.lastname}
+                        {ownerData?.firstname} {ownerData?.lastname}
                     </div>
                 </div>
                 <div className="flex">
@@ -67,13 +67,13 @@ export default function myJobCard({
                         <div>status: {status}</div>
                     </div>
                     <div className="bg-blue-300 w-1/2">
-                        <div>ร้าน: {myOrder.restaurant}</div>
-                        <div>เมนู: {myOrder.menu}</div>
-                        <div>จำนวน: {myOrder.count}</div>
-                        <div>หมายเหตุ: {myOrder.description}</div>
+                        <div>ร้าน: {myOrder?.restaurant}</div>
+                        <div>เมนู: {myOrder?.menu}</div>
+                        <div>จำนวน: {myOrder?.count}</div>
+                        <div>หมายเหตุ: {myOrder?.description}</div>
                         <div>เบอร์: {profile?.phone}</div>
-                        <div>ส่งที่: {myOrder.destination}</div>
-                        <div>status: {myOrder.status}</div>
+                        <div>ส่งที่: {myOrder?.destination}</div>
+                        <div>status: {myOrder?.status}</div>
                     </div>
                 </div>
 

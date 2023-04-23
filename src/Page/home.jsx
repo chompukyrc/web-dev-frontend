@@ -344,7 +344,7 @@ function home() {
             )}
 
             {page === 1 && (
-                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-right">
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-left">
                     <MyJobCard />
                     <p className="font-bold text-4xl text-center">
                         myOrder_unfinish_accept

@@ -30,8 +30,8 @@ const Layout = ({ children }) => {
                         className="relative m-4"
                         width={'60px'}
                     /> */}
-                    🍔&nbsp;&nbsp; Feed 
-                    <p className='text-amber-300'>&nbsp; My &nbsp;</p> Friend 
+                    🍔&nbsp;&nbsp; Feed
+                    <p className="text-amber-300">&nbsp; My &nbsp;</p> Friend
                 </div>
                 <div className="flex items-center mr-20">
                     <div
