@@ -8,6 +8,7 @@ import JobCard from '../components/jobCard'
 import NewOrderModal from '../components/newOrderModal'
 import MyJobCard from '../components/myJobCard'
 import food from '/assets/coverfood.png'
+import cover from '/assets/cover2.png'
 import InterestCardContainer from '../components/interestCardContainer'
 
 function home() {
@@ -28,6 +29,16 @@ function home() {
     const [showModal, setShowModal] = useState(false)
     const [job, setJob] = useState(false)
     const [page, setPage] = useState(1)
+    const [selected, setSelected] = useState([])
+
+    function handleSelected(item, state) {
+        if (state) {
+            const temp = selected.filter((e) => !(e.name === item.name))
+            setSelected(temp)
+        } else {
+            setSelected([...selected, item])
+        }
+    }
 
     useEffect(() => {
         // Fetch Profile
@@ -259,7 +270,10 @@ function home() {
                     src={food}
                     className="rounded-b-[100px] w-screen opacity-80"
                 />
-                <InterestCardContainer />
+                <InterestCardContainer
+                    selected={selected}
+                    handleSelected={handleSelected}
+                />
             </div>
             <nav className="text-center text-2xl">
                 <div className="flex justify-start h-16 bg-white">
@@ -283,6 +297,9 @@ function home() {
                     >
                         ดูที่สั่งไปแล้ว
                     </button>
+                    <div className="w-1/3 ">
+                        <img src={cover} className="h-16 w-screen" />
+                    </div>
                 </div>
             </nav>
 
@@ -290,13 +307,21 @@ function home() {
                 <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 animate-in duration-500 slide-in-from-right">
                     {' '}
                     {/* Job Container */}
-                    {jobsCetagory.notMyOrder.map((e, idx) => (
-                        <JobCard
-                            key={idx}
-                            {...e}
-                            onClick={() => showJobDetailHandle(e)}
-                        />
-                    ))}
+                    {jobsCetagory.notMyOrder
+                        .filter((e) =>
+                            selected.length > 0
+                                ? selected
+                                    .map((s) => s.name)
+                                    .includes(e.restaurants)
+                                : true,
+                        )
+                        .map((e, idx) => (
+                            <JobCard
+                                key={idx}
+                                {...e}
+                                onClick={() => showJobDetailHandle(e)}
+                            />
+                        ))}
                     {/* add Job container */}
                     <div
                         className="cursor-pointer p-4 rounded-lg bg-gray-200 hover:bg-gray-100 h-56 flex items-center justify-center"

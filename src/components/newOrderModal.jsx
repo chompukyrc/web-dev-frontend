@@ -3,6 +3,7 @@ import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import Avatar, { genConfig } from 'react-nice-avatar'
+import restaurant from './data/restaurant.json'
 
 export default function newOrderModal({ job, setJob }) {
     const [isLoading, setIsLoading] = useState(false)
@@ -164,19 +165,19 @@ export default function newOrderModal({ job, setJob }) {
                                     </button>
                                 </div>
                                 {/*body*/}
+                                {/* <div>
+                                    <pre>{JSON.stringify(creatOrder)}</pre>
+                                </div> */}
                                 <div className="relative p-6 flex-auto">
                                     {/* ชื่อร้าน */}
                                     <label
                                         htmlFor="restaurant"
                                         className="font-normal text-lg mt-4 text-black"
                                     >
-                                        ชื่อร้าน
+                                        ร้านไหนดีเอ่ย ?
                                     </label>
-                                    <input
-                                        type="text"
-                                        id="restaurant"
-                                        className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                                        placeholder="eg. เทคเตออินโน"
+                                    <select
+                                        class="block  w-full bg-white border border-green-500 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                         value={creatOrder.restaurant}
                                         onChange={(e) => {
                                             setCreatOrder({
@@ -184,7 +185,18 @@ export default function newOrderModal({ job, setJob }) {
                                                 restaurant: e.target.value,
                                             })
                                         }}
-                                    />
+                                    >
+                                        <option>จิ้มๆ เลือกร้านเลย</option>
+
+                                        {restaurant.map((restaurants) => {
+                                            return (
+                                                <option>
+                                                    {restaurants.name}
+                                                </option>
+                                            )
+                                        })}
+                                    </select>
+
                                     <div className="flex justify-between">
                                         <div className="w-full">
                                             {/* เมนู */}
