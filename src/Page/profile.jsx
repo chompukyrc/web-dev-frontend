@@ -1,9 +1,107 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Avatar, { genConfig } from 'react-nice-avatar'
+import axios, { Axios } from 'axios'
 
 export default function profile() {
     const config = genConfig()
+    const token = localStorage.getItem('token')
     const [editProfile, setEditProfile] = useState(0) //0-common 1-editProfile 2-editPassword
+    const [password,setPassword] = useState({
+        oldpassword:"",
+        newpassword:"",
+        confirmpassword:""
+    })
+    const [userProfile,setUserProfile] = useState({})
+    const [updatedProfile,setUpdatedProfile] = useState({
+        username:"",
+        firstname:"",
+        lastname:"",
+        phone:""
+    })
+
+    useEffect(() =>{
+        const fetchProfile = async () => {
+            try {
+                const res = await axios({
+                    url: import.meta.env.VITE_API + '/api/Users/Profile',
+                    method: 'GET',
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                setUserProfile(res.data)
+                setUpdatedProfile(res.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchProfile()
+    },[])
+
+    async function fetchProfile(){
+        try {
+            const res = await axios({
+                url: import.meta.env.VITE_API + '/api/Users/Profile',
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            setUserProfile(res.data)
+            setUpdatedProfile(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
+    async function profileHandler() {
+        try {
+            const res = await axios({
+                url: import.meta.env.VITE_API + '/api/Users/UpdateUserProfile',
+                method: 'POST',
+                data: {
+                    Username: updatedProfile.username,
+                    Firstname: updatedProfile.firstname,
+                    Lastname: updatedProfile.lastname,
+                    Phone: updatedProfile.phone
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            })
+            fetchProfile()
+            setEditProfile(0)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async function passwordHandler(){
+        if(password.newpassword!=password.confirmpassword){
+            console.log("Password Doesn't Match")
+        }
+        else{
+            try {
+                const res = await axios({
+                    url: import.meta.env.VITE_API + '/api/Users/UpdateUserPassword',
+                    method: 'POST',
+                    data: {
+                        OldPassword:password.oldpassword,
+                        NewPassword:password.newpassword,
+                    },
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    },
+                })
+                console.log("Change Password Success!!")
+                fetchProfile()
+                setEditProfile(0)
+            }
+            catch (error) {
+                console.log("Password Incorrect")
+            }
+        }
+    }
 
     return (
         <div>
@@ -28,7 +126,7 @@ export default function profile() {
                                             ชื่อผู้ใช้ :
                                         </p>
                                         <p className="ml-2 my-2 text-left w-40">
-                                            Pornahee
+                                            {userProfile.username}
                                         </p>
                                     </div>
                                     <div className="flex">
@@ -36,7 +134,7 @@ export default function profile() {
                                             ชื่อจริง :
                                         </p>
                                         <p className="ml-2 my-2 text-left w-40">
-                                            Noparut
+                                            {userProfile.firstname}
                                         </p>
                                     </div>
                                     <div className="flex">
@@ -44,7 +142,7 @@ export default function profile() {
                                             นามสกุล :
                                         </p>
                                         <p className="ml-2 my-2 text-left w-40">
-                                            Pornahee
+                                            {userProfile.lastname}
                                         </p>
                                     </div>
                                     <div className="flex">
@@ -52,7 +150,7 @@ export default function profile() {
                                             เบอร์โทรศัพท์ :
                                         </p>
                                         <p className="ml-2 my-2 text-left w-40">
-                                            0980980998
+                                            {userProfile.phone}
                                         </p>
                                     </div>
                                 </div>
@@ -65,7 +163,13 @@ export default function profile() {
                                         </p>
                                         <input
                                             className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
-                                            placeholder="pornahee"
+                                            placeholder={userProfile.username}
+                                            onChange={(e) => {
+                                                setUpdatedProfile({
+                                                    ...updatedProfile,
+                                                    username: e.target.value,
+                                                })
+                                            }}
                                         />
                                     </div>
                                     <div className="flex">
@@ -74,7 +178,13 @@ export default function profile() {
                                         </p>
                                         <input
                                             className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
-                                            placeholder="Noparut"
+                                            placeholder={userProfile.firstname}
+                                            onChange={(e) => {
+                                                setUpdatedProfile({
+                                                    ...updatedProfile,
+                                                    firstname: e.target.value,
+                                                })
+                                            }}
                                         />
                                     </div>
                                     <div className="flex">
@@ -83,7 +193,13 @@ export default function profile() {
                                         </p>
                                         <input
                                             className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
-                                            placeholder="Chantan"
+                                            placeholder={userProfile.lastname}
+                                            onChange={(e) => {
+                                                setUpdatedProfile({
+                                                    ...updatedProfile,
+                                                    lastname: e.target.value,
+                                                })
+                                            }}
                                         />
                                     </div>
                                     <div className="flex">
@@ -92,7 +208,13 @@ export default function profile() {
                                         </p>
                                         <input
                                             className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56"
-                                            placeholder="09009009099"
+                                            placeholder={userProfile.phone}
+                                            onChange={(e) => {
+                                                setUpdatedProfile({
+                                                    ...updatedProfile,
+                                                    phone: e.target.value,
+                                                })
+                                            }}
                                         />
                                     </div>
                                 </div>
@@ -103,19 +225,40 @@ export default function profile() {
                                         <p className="text-right mr-2 my-2 w-32">
                                             รหัสผ่านเดิม :
                                         </p>
-                                        <input className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56" />
+                                        <input 
+                                        onChange={(e) => {
+                                            setPassword({
+                                                ...password,
+                                                oldpassword: e.target.value,
+                                            })
+                                        }}
+                                        className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56" />
                                     </div>
                                     <div className="flex">
                                         <p className="text-right mr-2 my-2 w-32">
                                             รหัสผ่านใหม่ :
                                         </p>
-                                        <input className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56" />
+                                        <input 
+                                        onChange={(e) => {
+                                            setPassword({
+                                                ...password,
+                                                newpassword: e.target.value,
+                                            })
+                                        }}
+                                        className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56" />
                                     </div>
                                     <div className="flex">
                                         <p className="text-right mr-2 my-2 w-32">
                                             ยืนยันรหัสผ่านใหม่ :
                                         </p>
-                                        <input className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56" />
+                                        <input 
+                                        onChange={(e) => {
+                                            setPassword({
+                                                ...password,
+                                                confirmpassword: e.target.value,
+                                            })
+                                        }}
+                                        className="border-2 border-gray rounded-lg flex flex-col my-1 pl-2 w-56" />
                                     </div>
                                 </div>
                             )}
@@ -150,7 +293,7 @@ export default function profile() {
                                     </button>
                                     <button
                                         className="hover:bg-green-700 text-white bg-green-600 py-2 mx-4 rounded-primary w-40 flex justify-center"
-                                        onClick={() => setEditProfile(0)}
+                                        onClick={profileHandler}
                                     >
                                         ยืนยันการแก้ไข
                                     </button>
@@ -166,7 +309,7 @@ export default function profile() {
                                     </button>
                                     <button
                                         className="hover:bg-green-700 text-white bg-green-600 py-2 mx-4 rounded-primary w-40 flex justify-center"
-                                        onClick={() => setEditProfile(0)}
+                                        onClick={passwordHandler}
                                     >
                                         ยืนยันการแก้ไข
                                     </button>
