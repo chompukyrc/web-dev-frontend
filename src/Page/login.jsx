@@ -80,15 +80,13 @@ function login() {
                     </div>
                     {/* กล่องขวา */}
                     <div className="flex flex-col justify-center items-center w-1/2 bg-white rounded-r-primary text-xl">
-                        <div className='flex flex-row text-3xl pt-24'>
-                            <div className="text-green-500">
-                            สวัสดีน้าา !  
-                            </div>
+                        <div className="flex flex-row text-3xl pt-24">
+                            <div className="text-green-500">สวัสดีน้าา !</div>
                             <div className="text-3xl">
-                            &nbsp;&nbsp;เหล่าผู้หิวโหย 🤤
+                                &nbsp;&nbsp;เหล่าผู้หิวโหย 🤤
                             </div>
                         </div>
-                        
+
                         <div className="px-24 pt-12 ">
                             {/* username */}
                             <label
