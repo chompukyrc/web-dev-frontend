@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
 import Avatar, { genConfig } from 'react-nice-avatar'
 import restaurant from './data/restaurant.json'
 

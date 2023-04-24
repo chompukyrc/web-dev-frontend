@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { toast, ToastContainer } from 'react-toastify'
 import NewJobModal from '../components/newJobModal'
 import JobCard from '../components/jobCard'
 import NewOrderModal from '../components/newOrderModal'
@@ -261,7 +260,6 @@ function home() {
 
     return (
         <div className="font-Kanit">
-            <ToastContainer />
             <NewOrderModal job={job} setJob={setJob} />
 
             <NewJobModal showModal={showModal} setShowModal={setShowModal} />
