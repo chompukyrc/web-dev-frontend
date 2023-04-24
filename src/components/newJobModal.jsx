@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import axios from 'axios'
+import restaurant from './data/restaurant.json'
 
 export default function newJobModal({ showModal, setShowModal }) {
     const navigate = useNavigate()
@@ -85,6 +86,7 @@ export default function newJobModal({ showModal, setShowModal }) {
         <div>
             {showModal ? (
                 <>
+                    <ToastContainer />
                     <div className=" justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
                         <div className="relative w-auto my-6 mx-auto max-w-3xl">
                             {/*content*/}
@@ -114,7 +116,29 @@ export default function newJobModal({ showModal, setShowModal }) {
                                         >
                                             ร้านที่ไปได้
                                         </label>
-                                        <input
+                                        <select
+                                            className="block  w-full bg-white border border-green-500 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                            value={creatJob.restaurant}
+                                            onChange={(e) => {
+                                                setCreatJob({
+                                                    ...creatJob,
+                                                    restaurant: e.target.value,
+                                                })
+                                            }}
+                                        >
+                                            <option>จิ้มๆ เลือกร้านเลย</option>
+
+                                            {restaurant.map(
+                                                (restaurants, idx) => {
+                                                    return (
+                                                        <option key={idx}>
+                                                            {restaurants.name}
+                                                        </option>
+                                                    )
+                                                },
+                                            )}
+                                        </select>
+                                        {/* <input
                                             type="text"
                                             id="restaurant"
                                             className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
@@ -126,7 +150,7 @@ export default function newJobModal({ showModal, setShowModal }) {
                                                     restaurant: e.target.value,
                                                 })
                                             }}
-                                        />
+                                        /> */}
 
                                         <div className="flex justify-between">
                                             {/* เวลา */}
