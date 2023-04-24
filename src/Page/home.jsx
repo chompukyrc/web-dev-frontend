@@ -310,8 +310,8 @@ function home() {
                         .filter((e) =>
                             selected.length > 0
                                 ? selected
-                                      .map((s) => s.name)
-                                      .includes(e.restaurants)
+                                    .map((s) => s.name)
+                                    .includes(e.restaurants)
                                 : true,
                         )
                         .map((e, idx) => (
