@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import Dialog from '../components/dialog'
 
 export default function statusJob() {
     const navigate = useNavigate()
@@ -12,6 +13,7 @@ export default function statusJob() {
     const [orders, setOrder] = useState([])
     const [job, setJob] = useState({})
     const [page, setPage] = useState(0)
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         async function getJobById() {
@@ -22,9 +24,11 @@ export default function statusJob() {
                         Authorization: `Bearer ${token}`,
                     },
                 })
-                const now = new Date().setDate(24)
-                if (now > res.data?.time) {
+                const now = new Date().getTime()
+                console.log(now, res.data?.time, res.data.status)
+                if (now > res.data?.time && res.data.status === 'unfinish') {
                     console.log('show alert')
+                    setOpen(true)
                 }
                 setJob(res.data)
             } catch (error) {
@@ -90,33 +94,40 @@ export default function statusJob() {
     }, [jobId])
 
     //Update Status to "CLOSE"
-    async function closeJobHandler() {
-        try {
-            const res = await axios({
-                url:
-                    import.meta.env.VITE_API +
-                    '/api/Job/UpdateStatusToClose?id=' +
-                    jobId,
-                method: 'POST',
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                },
-            })
-            toast.success('🍔 คุณได้ปิดรับออเดอร์เพิ่มเติมแล้ว', {
-                position: 'top-center',
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: 'light',
-            })
-            setTimeout(() => {
-                return location.reload()
-            }, 2000)
-        } catch (error) {
-            console.log(error)
+    async function closeJobHandler(state) {
+        if (state) {
+            try {
+                const res = await axios({
+                    url:
+                        import.meta.env.VITE_API +
+                        '/api/Job/UpdateStatusToClose?id=' +
+                        jobId,
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            'token',
+                        )}`,
+                    },
+                })
+                toast.success('🍔 คุณได้ปิดรับออเดอร์เพิ่มเติมแล้ว', {
+                    position: 'top-center',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                })
+                setOpen(false)
+                setTimeout(() => {
+                    return location.reload()
+                }, 2000)
+            } catch (error) {
+                console.log(error)
+            }
+        } else {
+            setOpen(false)
         }
     }
 
@@ -162,6 +173,13 @@ export default function statusJob() {
 
     return (
         <div>
+            {/* dialog */}
+            <Dialog
+                text={'เกินเวลา'}
+                open={open}
+                handleConfirm={closeJobHandler}
+                textConfirm={'closeJob'}
+            />
             <ToastContainer />
             <nav className="shadow-xl text-center">
                 <div className="bg-white m-0 h-30 text-xl">
@@ -172,7 +190,9 @@ export default function statusJob() {
                             จะออกไปซื้อเวลา: {convertTimestampToTime(job.time)}{' '}
                             น.
                         </p>
-                        <p>รับฝากสูงสุด: {job.limit} กล่อง </p>
+                        <p>
+                            รับฝากแล้ว: {job.count} / {job.limit} กล่อง{' '}
+                        </p>
                         <p>หมายเหตุ: {job.description}</p>
                         <p>
                             สถานะ:{' '}

@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
 
     const handleConfirm = (result) => {
         if (result) {
-            console.log('some action...')
+            // console.log('some action...')
             localStorage.clear()
             window.location.reload()
         }
@@ -92,6 +92,7 @@ const Layout = ({ children }) => {
                         text={'Are you sure to Logout?'}
                         open={open}
                         handleConfirm={handleConfirm}
+                        textConfirm={'LOGOUT'}
                     />
                 </div>
             </div>
