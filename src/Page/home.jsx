@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import NewJobModal from '../components/newJobModal'
 import JobCard from '../components/jobCard'
 import NewOrderModal from '../components/newOrderModal'
@@ -28,7 +28,7 @@ function home() {
     })
     const [showModal, setShowModal] = useState(false)
     const [job, setJob] = useState(false)
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(0)
     const [selected, setSelected] = useState([])
 
     function handleSelected(item, state) {
@@ -222,16 +222,16 @@ function home() {
                     myOrder_finish_reject: myOrder_finish_reject,
                 })
 
-                console.log({
-                    notMyOrder: notMyOrder,
-                    myOrder_unfinish_waiting: myOrder_unfinish_waiting,
-                    myOrder_unfinish_accept: myOrder_unfinish_accept,
-                    myOrder_unfinish_reject: myOrder_unfinish_reject,
-                    myOrder_close_accept: myOrder_close_accept,
-                    myOrder_close_reject: myOrder_close_reject,
-                    myOrder_finish_done: myOrder_finish_done,
-                    myOrder_finish_reject: myOrder_finish_reject,
-                })
+                // console.log({
+                //     notMyOrder: notMyOrder,
+                //     myOrder_unfinish_waiting: myOrder_unfinish_waiting,
+                //     myOrder_unfinish_accept: myOrder_unfinish_accept,
+                //     myOrder_unfinish_reject: myOrder_unfinish_reject,
+                //     myOrder_close_accept: myOrder_close_accept,
+                //     myOrder_close_reject: myOrder_close_reject,
+                //     myOrder_finish_done: myOrder_finish_done,
+                //     myOrder_finish_reject: myOrder_finish_reject,
+                // })
             } catch (error) {
                 console.log(error)
             }
@@ -245,8 +245,9 @@ function home() {
         // console.log(profile, jobs)
         let tempJob = []
         jobs.forEach(async (e) => {
-            if (e.owner === profile.id) {
-                console.log('Your r rider na!')
+            if (e.owner === profile.id) console.log(e)
+            if (e.owner === profile.id && e.status !== 'finish') {
+                console.log('You r rider na!')
                 return navigate('/statusJob/' + e.id)
             }
         })
