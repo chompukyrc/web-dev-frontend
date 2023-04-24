@@ -31,11 +31,11 @@ export default function myJobCard({
         getProfileById(owner)
     }, [owner])
 
-    useEffect(() => {
-        if (myOrder) {
-            getProfileById(myOrder)
-        }
-    }, [myOrder])
+    // useEffect(() => {
+    //     if (myOrder) {
+    //         getProfileById(myOrder)
+    //     }
+    // }, [myOrder])
 
     async function getProfileById(id) {
         try {
@@ -82,39 +82,6 @@ export default function myJobCard({
                         <div>status: {myOrder?.status}</div>
                     </div>
                 </div>
-
-                {/* <div className="flex row justify-between">
-                    <div className="basis-1/4 flex flex-col">
-                        <div className=" flex">
-                            <p className="w-12">ร้าน:</p>
-                            <p className=" font-bold">ไว้ก่อน</p>
-                        </div>
-                        <div className=" flex">
-                            <p className="w-12">เมนู:</p>
-                            <p className="font-bold">ไว้ก่อน</p>
-                        </div>
-                    </div>
-                    <div className="basis-1/4">
-                        <div className=" flex">
-                            <p className="w-24">จำนวน: </p>
-                            <p className="font-bold">ไว้ก่อน</p>
-                        </div>
-                        <div className=" flex">
-                            <p className="w-24">หมายเหตุ: </p>
-                            <p className="font-bold">ไว้ก่อน</p>
-                        </div>
-                    </div>
-                    <div className="basis-1/4">
-                        <div className=" flex">
-                            <p className="w-12">เบอร์:</p>
-                            <p className="font-bold">ไว้ก่อน</p>
-                        </div>
-                        <div className=" flex">
-                            <p className="w-12">ส่งที่: </p>
-                            <p className="font-bold">ไว้ก่อน</p>
-                        </div>
-                    </div>
-                </div> */}
             </div>
         </div>
     )
