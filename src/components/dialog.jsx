@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Dialog({ text, open, handleConfirm }) {
+export default function Dialog({ text, open, handleConfirm, textConfirm }) {
     return (
         <>
             <div className={open ? 'confirm show' : 'confirm'}>
@@ -20,7 +20,7 @@ export default function Dialog({ text, open, handleConfirm }) {
                         onClick={() => handleConfirm(true)}
                         className="m-2 cursor-pointer hover:bg-[#2b7428] text-white w-24 h-8 bg-[#348c2f] align-baseline rounded-primary"
                     >
-                        CONFIRM
+                        {textConfirm}
                     </button>
                 </div>
             </div>

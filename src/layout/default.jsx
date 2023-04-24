@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
 
     const handleConfirm = (result) => {
         if (result) {
-            console.log('some action...')
+            // console.log('some action...')
             localStorage.clear()
             window.location.reload()
         }
@@ -54,7 +54,7 @@ const Layout = ({ children }) => {
                 </div>
                 <div className="flex items-center mr-20">
                     <div
-                        className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white"
+                        className="hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center w-40 py-4"
                         onClick={() => {
                             navigate('/')
                         }}
@@ -62,17 +62,9 @@ const Layout = ({ children }) => {
                         <i className="mdi mdi-home p-1"></i>
                         หน้าหลัก
                     </div>
+
                     <div
-                        className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white flex"
-                        onClick={() => {
-                            navigate('/profile')
-                        }}
-                    >
-                        <Avatar className="mx-2 w-8 h-8" {...config} />
-                        {profile.username}
-                    </div>
-                    <div
-                        className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white"
+                        className="hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center w-40 py-4"
                         onClick={() => {
                             navigate('/aboutUs')
                         }}
@@ -81,7 +73,16 @@ const Layout = ({ children }) => {
                         เกี่ยวกับเรา
                     </div>
                     <div
-                        className="p-4 bg-[#60B664] hover:bg-[#4da452] cursor-pointer text-white"
+                        className="hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center w-40 py-4"
+                        onClick={() => {
+                            navigate('/profile')
+                        }}
+                    >
+                        <Avatar className="mx-2 w-8 h-8" {...config} />
+                        {profile.username}
+                    </div>
+                    <div
+                        className="hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center w-40 py-4"
                         onClick={() => setOpen(true)}
                     >
                         <i className="mdi mdi-logout p-1"></i>
@@ -91,6 +92,7 @@ const Layout = ({ children }) => {
                         text={'Are you sure to Logout?'}
                         open={open}
                         handleConfirm={handleConfirm}
+                        textConfirm={'LOGOUT'}
                     />
                 </div>
             </div>

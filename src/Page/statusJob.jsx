@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react'
 import OrderStatusCard from '../components/orderStatusCard'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { toast, ToastContainer } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import Dialog from '../components/dialog'
 
 export default function statusJob() {
+    const navigate = useNavigate()
     const token = localStorage.getItem('token')
     const { jobId } = useParams()
     const [orders, setOrder] = useState([])
     const [job, setJob] = useState({})
     const [page, setPage] = useState(0)
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         async function getJobById() {
@@ -19,9 +24,11 @@ export default function statusJob() {
                         Authorization: `Bearer ${token}`,
                     },
                 })
-                const now = new Date().setDate(24)
-                if (now > res.data?.time) {
+                const now = new Date().getTime()
+                console.log(now, res.data?.time, res.data.status)
+                if (now > res.data?.time && res.data.status === 'unfinish') {
                     console.log('show alert')
+                    setOpen(true)
                 }
                 setJob(res.data)
             } catch (error) {
@@ -87,35 +94,134 @@ export default function statusJob() {
     }, [jobId])
 
     //Update Status to "CLOSE"
-    async function closeJobHandler() {
+    async function closeJobHandler(state) {
+        if (state) {
+            try {
+                const res = await axios({
+                    url:
+                        import.meta.env.VITE_API +
+                        '/api/Job/UpdateStatusToClose?id=' +
+                        jobId,
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            'token',
+                        )}`,
+                    },
+                })
+                toast.success('🍔 คุณได้ปิดรับออเดอร์เพิ่มเติมแล้ว', {
+                    position: 'top-center',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'light',
+                })
+                setOpen(false)
+                setTimeout(() => {
+                    return location.reload()
+                }, 2000)
+            } catch (error) {
+                console.log(error)
+            }
+        } else {
+            setOpen(false)
+        }
+    }
+
+    //Update Status to "FINISH"
+    async function finishJobHandler() {
+        console.log('click')
         try {
             const res = await axios({
                 url:
                     import.meta.env.VITE_API +
-                    '/api/Job/UpdateStatusToClose?id=' +
+                    '/api/Job/UpdateStatusToFinish?id=' +
                     jobId,
                 method: 'POST',
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             })
+            toast.success('🍔 คุณได้ปิดจ๊อบนี้แล้ว', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
+            setTimeout(() => {
+                return navigate('/')
+            }, 2000)
         } catch (error) {
             console.log(error)
         }
     }
 
+    function convertTimestampToTime(timestamp) {
+        const temp = new Date(timestamp)
+        const H = ('00' + temp.getHours()).slice(-2)
+        const M = ('00' + temp.getMinutes()).slice(-2)
+        return `${H} : ${M}`
+        // return temp.toISOString()
+    }
+
     return (
         <div>
+            {/* dialog */}
+            <Dialog
+                text={'เกินเวลา'}
+                open={open}
+                handleConfirm={closeJobHandler}
+                textConfirm={'closeJob'}
+            />
+            <ToastContainer />
             <nav className="shadow-xl text-center">
                 <div className="bg-white m-0 h-30 text-xl">
-                    <p className="p-6 text-2xl ">Your Oder</p>
-                    <pre>{JSON.stringify(job, null, 2)}</pre>
-                    <button
-                        className="bg-red-300 m-8 p-4 hover:scale-110 rounded-primary"
-                        onClick={() => closeJobHandler()}
-                    >
-                        ปิดรับออเดอร์
-                    </button>
+                    {/* <p className="p-6 text-2xl ">Your Oder</p> */}
+                    <div className="bg-red-300">
+                        <p>ร้านที่คุณจะไป: {job.restaurants}</p>
+                        <p>
+                            จะออกไปซื้อเวลา: {convertTimestampToTime(job.time)}{' '}
+                            น.
+                        </p>
+                        <p>
+                            รับฝากแล้ว: {job.count} / {job.limit} กล่อง{' '}
+                        </p>
+                        <p>หมายเหตุ: {job.description}</p>
+                        <p>
+                            สถานะ:{' '}
+                            {job.status === 'unfinish'
+                                ? 'คุณกำลังเปิดรับออเดอร์อยู่'
+                                : job.status === 'close'
+                                ? 'คุณปิดรับออเดอร์แล้ว'
+                                : job.status === 'finish'
+                                ? 'คุณสิ้นสุดภารกิจนี้แล้ว'
+                                : 'error'}
+                        </p>
+                        {/* <pre>{JSON.stringify(job, null, 2)}</pre> */}
+                    </div>
+                    {job.status === 'unfinish' && (
+                        <button
+                            className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
+                            onClick={() => closeJobHandler()}
+                        >
+                            ปิดรับออเดอร์เพิ่ม
+                        </button>
+                    )}
+                    {job.status === 'close' && (
+                        <button
+                            className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
+                            onClick={() => finishJobHandler()}
+                        >
+                            สิ้นสุดการฝากซื้อครั้งนี้
+                        </button>
+                    )}
                 </div>
                 <div className="flex justify-around h-16">
                     <button

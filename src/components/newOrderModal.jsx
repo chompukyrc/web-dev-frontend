@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
 import Avatar, { genConfig } from 'react-nice-avatar'
 import restaurant from './data/restaurant.json'
 
@@ -177,7 +176,7 @@ export default function newOrderModal({ job, setJob }) {
                                         ร้านไหนดีเอ่ย ?
                                     </label>
                                     <select
-                                        class="block  w-full bg-white border border-green-500 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                        className="block  w-full bg-white border border-green-500 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                                         value={creatOrder.restaurant}
                                         onChange={(e) => {
                                             setCreatOrder({
@@ -188,9 +187,9 @@ export default function newOrderModal({ job, setJob }) {
                                     >
                                         <option>จิ้มๆ เลือกร้านเลย</option>
 
-                                        {restaurant.map((restaurants) => {
+                                        {restaurant.map((restaurants, idx) => {
                                             return (
-                                                <option>
+                                                <option key={idx}>
                                                     {restaurants.name}
                                                 </option>
                                             )
