@@ -45,65 +45,71 @@ export default function orderStatusCard({
     return (
         <div
             className={
-                'w-8/12 px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4 hover:scale-105 ' +
-                (status === 'reject' ? 'bg-gray-300' : 'bg-white ')
+                'px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4 bg-white ' +
+                (status === 'reject' ? ' bg-gray-500 text-white w-2/5' : status === 'waiting' ? ' w-3/5':' w-2/5') 
             }
         >
-            <div className=" font-bold text-xl flex flex-row items-center pb-2">
-                <Avatar className="w-14 h-14 mr-2" {...config} />
-                {owner.firstname} {owner.lastname}
-            </div>
-            <div className="flex row justify-between">
-                <div className="basis-1/4 flex flex-col">
-                    <div className=" flex">
-                        <p className="w-12">ร้าน:</p>
-                        <p className=" font-bold">{restaurant}</p>
+            <div className="font-Kanit flex flex-row text-xl">
+                <div className="flex flex-col w-4/5">
+                    <div className="flex flex-row ">
+                        <div className=" font-medium text-xl flex flex-row items-center pb-2 w-1/3 ">
+                            <Avatar className="w-14 h-14 mr-2" {...config} />
+                            &nbsp;&nbsp;{owner.firstname} {owner.lastname}
+                        </div>
+                        <div className="text-sm w-1/2 text-center items-center py-6">
+                            <p>โทร&nbsp;:&nbsp;&nbsp;{owner.phone}</p>
+                        </div>
                     </div>
-                    <div className=" flex">
-                        <p className="w-12">เมนู:</p>
-                        <p className="font-bold">{menu}</p>
-                    </div>
-                </div>
-                <div className="basis-1/4">
-                    <div className=" flex">
-                        <p className="w-24">จำนวน: </p>
-                        <p className="font-bold">{count}</p>
-                    </div>
-                    <div className=" flex">
-                        <p className="w-24">หมายเหตุ: </p>
-                        <p className="font-bold">{description}</p>
-                    </div>
-                </div>
-                <div className="basis-1/4">
-                    <div className=" flex">
-                        <p className="w-12">เบอร์:</p>
-                        <p className="font-bold">{owner.phone}</p>
-                    </div>
-                    <div className=" flex">
-                        <p className="w-12">ส่งที่: </p>
-                        <p className="font-bold">{destination}</p>
+
+                    <div className="flex row justify-end  ">
+                        <div className="w-[50%]  items-start flex flex-col ">
+                            <div className=" flex">
+                                <p>ร้าน&nbsp;:&nbsp;&nbsp;</p>
+                                <p className=" font-medium">{restaurant}</p>
+                            </div>
+                            <div className=" flex">
+                                <p>เมนู&nbsp;:&nbsp;&nbsp;</p>
+                                <p className="font-medium">{menu}</p>
+                            </div>
+                            <div className=" flex">
+                                <p>หมายเหตุ&nbsp;:&nbsp;&nbsp;</p>
+                                <p className="font-medium">{description}</p>
+                            </div>
+                            <div className=" flex">
+                                
+                            </div>
+                        </div>
+                        <div className="w-[40%]">
+                            <div className=" flex items-center">
+                                <p className="w-24">จำนวน: </p>
+                                <p className="font-medium">{count}</p>
+                            </div>
+                            <div className=" flex items-center">
+                                <p>ส่งที่&nbsp;:&nbsp;&nbsp;</p>
+                                <p className="font-medium">{destination}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {status == 'waiting' && (
-                    <div className="basis-1/4 flex align-center justify-end">
-                        <div className="flex flex-row justify-items-end items-center">
-                            <div className="basis-1/2 flex justify-end">
+                    <div className="basis-1/3 flex justify-center">
+                            <div className="basis-3/4 flex items-center justify-center">
                                 <button
-                                    className="bg-[#1E8449] hover:bg-[#196F3D] active:bg-[#145A32] text-white py-2 mx-2 rounded-xl w-20 flex justify-center"
+                                    className="bg-[#1E8449] hover:bg-[#196F3D] active:bg-[#145A32] text-white h-2/5  rounded-xl w-20 "
                                     onClick={() => acceptHandler()}
                                 >
-                                    Accept
+                                    ยืนยัน
                                 </button>
                             </div>
-                            <div className="basis-1/2">
+                            <div className="basis-3/4 flex items-center justify-center">
                                 <button
-                                    className="bg-[#FDFEFE] hover:bg-[#E5E7E9] active:bg-[#D7DBDD] text-black py-2 mx-2 rounded-xl border-solid border-neutral-300 border-2 w-20 flex justify-center"
+                                    className="bg-[#FDFEFE] hover:bg-[#E5E7E9] active:bg-[#D7DBDD] text-black h-2/5 rounded-xl border-solid border-neutral-300 border-2 w-20  "
                                     onClick={() => rejectHandler()}
                                 >
-                                    Reject
+                                    ปฏิเสธ
                                 </button>
                             </div>
-                        </div>
+
                     </div>
                 )}
             </div>
