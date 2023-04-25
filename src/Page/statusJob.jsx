@@ -5,6 +5,8 @@ import axios from 'axios'
 import { toast, ToastContainer } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import Dialog from '../components/dialog'
+import food from '/assets/bgOder.png'
+import burgur from '/assets/burgur-top.png'
 
 export default function statusJob() {
     const navigate = useNavigate()
@@ -181,73 +183,90 @@ export default function statusJob() {
                 textConfirm={'closeJob'}
             />
             <ToastContainer />
-            <nav className="shadow-xl text-center">
-                <div className="bg-white m-0 h-30 text-xl">
-                    {/* <p className="p-6 text-2xl ">Your Oder</p> */}
-                    <div className="bg-red-300">
-                        <p>ร้านที่คุณจะไป: {job.restaurants}</p>
-                        <p>
-                            จะออกไปซื้อเวลา: {convertTimestampToTime(job.time)}{' '}
-                            น.
-                        </p>
-                        <p>
-                            รับฝากแล้ว: {job.count} / {job.limit} กล่อง{' '}
-                        </p>
-                        <p>หมายเหตุ: {job.description}</p>
-                        <p>
-                            สถานะ:{' '}
-                            {job.status === 'unfinish'
-                                ? 'คุณกำลังเปิดรับออเดอร์อยู่'
-                                : job.status === 'close'
-                                ? 'คุณปิดรับออเดอร์แล้ว'
-                                : job.status === 'finish'
-                                ? 'คุณสิ้นสุดภารกิจนี้แล้ว'
-                                : 'error'}
-                        </p>
-                        {/* <pre>{JSON.stringify(job, null, 2)}</pre> */}
+            <nav className="shadow-xl text-center font-Kanit text-2xl">
+                <div className="bg-white text-xl flex justify-center relative" >
+                    <img src={food} className="opacity-25 w-[100%] "
+                    />
+                    <div className='flex justify-center absolute top-0 left-0 w-[100%]'>
+                        <div className="bg-white rounded-3xl w-1/4 border-4 border-green-800 m-[3%]">
+                            <div className='mt-10' >
+                                <p className={`mb-3 ${
+                                    job.status === 'unfinish'
+                                    ? 'text-green-500'
+                                    : job.status === 'close'
+                                    ? 'text-red-500'
+                                    : job.status === 'finish'
+                                    ? 'text-gray-700'
+                                    : ''
+                                    }`} >
+                                        
+                                    สถานะ :{' '}
+                                    {job.status === 'unfinish'
+                                        ? 'คุณกำลังเปิดรับออเดอร์อยู่'
+                                        : job.status === 'close'
+                                        ? 'คุณปิดรับออเดอร์แล้ว'
+                                        : job.status === 'finish'
+                                        ? 'คุณสิ้นสุดภารกิจนี้แล้ว'
+                                        : 'error'}
+                                </p>
+                                <p>ร้านที่คุณจะไป {job.restaurants}</p>
+                                <p className='text-3xl my-3' >
+                                    {convertTimestampToTime(job.time)}{' '}
+                                    น.
+                                </p>
+                                <p>
+                                    รับฝากแล้ว: {job.count} / {job.limit} กล่อง{' '}
+                                </p>
+                                <p>หมายเหตุ: {job.description}</p>
+                            </div>
+                            
+                            <div>
+                                {job.status === 'unfinish' && (
+                                    <button
+                                    className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
+                                    onClick={() => closeJobHandler()}
+                                    >
+                                        ปิดการรับฝาก
+                                    </button>
+                                )}
+                                {job.status === 'close' && (
+                                    <button
+                                    className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
+                                    onClick={() => finishJobHandler()}
+                                    >
+                                        สิ้นสุดการฝากซื้อครั้งนี้
+                                    </button>
+                                )}
+                            </div>
+                        </div>
                     </div>
-                    {job.status === 'unfinish' && (
-                        <button
-                            className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
-                            onClick={() => closeJobHandler()}
-                        >
-                            ปิดรับออเดอร์เพิ่ม
-                        </button>
-                    )}
-                    {job.status === 'close' && (
-                        <button
-                            className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
-                            onClick={() => finishJobHandler()}
-                        >
-                            สิ้นสุดการฝากซื้อครั้งนี้
-                        </button>
-                    )}
+                    <img src={burgur} className="absolute right-[25%] rotate-[0.5rad] top-[-20%] scale-[40%]"/>
                 </div>
                 <div className="flex justify-around h-16">
                     <button
-                        className={`font-bold text-lg w-1/2 ; ${
+                        className={`w-1/2 ; ${
                             page === 0
                                 ? 'border-b-4 border-green-600 '
                                 : 'bg-gray-300'
                         }`}
                         onClick={() => setPage(0)}
                     >
-                        New Oder
+                        ใหม่
                     </button>
                     <button
-                        className={`font-bold text-lg w-1/2 ; ${
+                        className={`w-1/2 ; ${
                             page === 1
                                 ? 'border-b-4 border-green-600 '
                                 : 'bg-gray-300'
                         }`}
                         onClick={() => setPage(1)}
                     >
-                        Accepted Order
+                        ตอบรับแล้ว
                     </button>
                 </div>
             </nav>
             {page === 0 && (
-                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-right">
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-left">
                     {orders
                         .filter((e) => e.status == 'waiting')
                         .map((e, idx) => (
@@ -256,7 +275,7 @@ export default function statusJob() {
                 </div>
             )}
             {page === 1 && (
-                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-left">
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-right">
                     {orders
                         .filter((e) => e.status == 'accept')
                         .map((e, idx) => (

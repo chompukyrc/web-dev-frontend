@@ -128,10 +128,13 @@ export default function profile() {
     const config = genConfig(userProfile.firstname + userProfile.lastname)
 
     return (
-        <div className="md:1/3w">
-            <div className="absolute justify-center rounded-full bg-[#E67E22] right-[460px] top-[180px] h-[600px] w-[600px] z-0"></div>
-
-            <div className="flex justify-center aligin-center">
+        <div>
+            <ToastContainer />
+            <div className="flex absolute justify-center items-center w-full h-full z-0">
+                <div className="rounded-full bg-[#E67E22] h-secondary w-secondary"></div>
+            </div>
+            {/* <pre>{JSON.stringify(userProfile)}</pre> */}
+            <div className="flex flex-col justify-center items-center h-screen">
                 <img
                     src="/assets/burgur-top.png"
                     width={'300px'}
