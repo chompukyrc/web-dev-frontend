@@ -14,7 +14,7 @@ export default function statusJob() {
     const { jobId } = useParams()
     const [orders, setOrder] = useState([])
     const [job, setJob] = useState({})
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(1)
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
@@ -40,6 +40,8 @@ export default function statusJob() {
 
         getJobById()
     }, [])
+
+    console.log(job)
 
     useEffect(() => {
         //fetch order
@@ -222,15 +224,15 @@ export default function statusJob() {
                             <div>
                                 {job.status === 'unfinish' && (
                                     <button
-                                        className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
-                                        onClick={() => closeJobHandler()}
+                                        className="bg-red-400 m-2 p-4 hover:scale-110 rounded-xl"
+                                        onClick={() => closeJobHandler(true)}
                                     >
                                         ปิดการรับฝาก
                                     </button>
                                 )}
                                 {job.status === 'close' && (
                                     <button
-                                        className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
+                                        className="bg-red-400 m-2 p-4 hover:scale-110 rounded-xl"
                                         onClick={() => finishJobHandler()}
                                     >
                                         สิ้นสุดการฝากซื้อครั้งนี้
