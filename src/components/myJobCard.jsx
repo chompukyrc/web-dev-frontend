@@ -31,12 +31,6 @@ export default function myJobCard({
         getProfileById(owner)
     }, [owner])
 
-    // useEffect(() => {
-    //     if (myOrder) {
-    //         getProfileById(myOrder)
-    //     }
-    // }, [myOrder])
-
     async function getProfileById(id) {
         try {
             const res = await axios({
@@ -80,22 +74,32 @@ export default function myJobCard({
 
                 <div className="flex pl-2.5 pt-2 pb-2">
                     <div className="bg-[#c3c3c3] bg-opacity-40 w-3/5 flex flex-col rounded-3xl ml-4 mr-2 items-center font-Kanit">
-                        <div className="mb-4">เมนูที่คุณฝาก</div>
+                        <div className="mb-4">เมนูที่คุณฝากซื้อ</div>
                         <div className="text-4xl text-[#FFFFFF]">
                             {myOrder?.menu}
                         </div>
-                        <div className="mb-4">{myOrder?.count} กล่อง ร้าน</div>
+                        <div className="mb-4">
+                            {myOrder?.count} กล่อง ร้าน{myOrder?.restaurant}
+                        </div>
                         <div className="flex w-full justify-around mb-2">
                             <div>ส่งที่: {myOrder?.destination}</div>
                             <div>หมายเหตุ: {myOrder?.description}</div>
                         </div>
                     </div>
-                    <div className="bg-[#d9d9d9] bg-opacity-[0.23] w-2/5 rounded-3xl ml-2 mr-4 flex flex-col items-center">
-                        <div className="mb-4">สถานะของคนใจดี</div>
-                        <div className="">ออกไปเวลา</div>
-                        <div className="text-4xl mb-4">12:00</div>
+                    <div className="bg-[#d9d9d9] bg-opacity-[0.23] w-2/5 rounded-3xl ml-2 mr-4 flex flex-col items-center justify-center">
+                        <div className="">เพื่อนของคุณจะออกไปเมื่อถึงเวลา</div>
+                        <div className="text-4xl mb-4">
+                            {convertTimestampToTime(time)} น.
+                        </div>
                         <div className="text-[#FFFFFF] mb-2">
-                            ตอนนี้กำลัง เตรียมตัวไป
+                            ตอนนี้กำลัง{' '}
+                            {status === 'unfinish'
+                                ? 'กำลังเปิดรับออเดอร์อยู่'
+                                : status === 'close'
+                                ? 'ปิดรับออเดอร์แล้ว กำลังออกไปซื้อ'
+                                : status === 'finish'
+                                ? 'ส่งออเดอร์ครบแล้ว ปิดจ๊อบ'
+                                : 'error'}
                         </div>
                     </div>
                 </div>
