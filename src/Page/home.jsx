@@ -297,13 +297,13 @@ function home() {
                         ดูที่สั่งไปแล้ว
                     </button>
                     <div className="w-1/3 ">
-                        <img src={cover} className="h-16 w-screen" />
+                        <img src={cover} className="h-16 w-screen opacity-75" />
                     </div>
                 </div>
             </nav>
 
             {page === 0 && (
-                <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 animate-in duration-500 slide-in-from-right">
+                <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 animate-in duration-500 slide-in-from-left">
                     {' '}
                     {/* Job Container */}
                     {jobsCetagory.notMyOrder
@@ -337,7 +337,7 @@ function home() {
             )}
 
             {page === 1 && (
-                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-left">
+                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-right">
                     <p className="font-bold text-4xl text-center">
                         myOrder_unfinish_accept
                     </p>
