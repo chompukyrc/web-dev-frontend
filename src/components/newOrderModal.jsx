@@ -45,7 +45,7 @@ export default function newOrderModal({ job, setJob }) {
         const token = localStorage.getItem('token')
 
         if (
-            creatOrder.restaurant == '' ||
+            // creatOrder.restaurant == '' ||
             creatOrder.menu == '' ||
             creatOrder.count == '' ||
             creatOrder.destination == ''
@@ -71,7 +71,10 @@ export default function newOrderModal({ job, setJob }) {
                 method: 'POST',
                 data: {
                     Job: job.id,
-                    Restaurant: creatOrder.restaurant,
+                    Restaurant:
+                        creatOrder.restaurant == ''
+                            ? job.restaurants
+                            : creatOrder.restaurant,
                     Destination: creatOrder.destination,
                     Menu: creatOrder.menu,
                     Description:
@@ -185,7 +188,7 @@ export default function newOrderModal({ job, setJob }) {
                                             })
                                         }}
                                     >
-                                        <option>จิ้มๆ เลือกร้านเลย</option>
+                                        <option>{job.restaurants}</option>
 
                                         {restaurant.map((restaurants, idx) => {
                                             return (

@@ -55,8 +55,8 @@ export default function myJobCard({
     const config = genConfig(ownerData.firstname + ownerData.lastname)
 
     return (
-        <div className="w-full flex justify-center mx-10">
-            <div className="bg-[#FFC979] rounded-3xl w-full shadow-xl cursor-pointer mb-1.5 hover:scale-105 justify-center p-3">
+        <div className="flex justify-center mx-10">
+            <div className="bg-[#FFC979] w-5/6 rounded-3xl shadow-xl cursor-pointer mb-1.5 hover:scale-105 justify-center p-3">
                 <div className="flex">
                     <Avatar className="w-14 h-14 absolute " {...config} />
                     <div className="flex font-Kanit w-3/5 justify-between px-3.5">
@@ -92,7 +92,7 @@ export default function myJobCard({
                     </div>
                     <div className="bg-[#d9d9d9] bg-opacity-[0.23] w-2/5 rounded-3xl ml-2 mr-4 flex flex-col items-center">
                         <div className="mb-4">สถานะของคนใจดี</div>
-                        <div classname="">ออกไปเวลา</div>
+                        <div className="">ออกไปเวลา</div>
                         <div className="text-4xl mb-4">12:00</div>
                         <div className="text-[#FFFFFF] mb-2">
                             ตอนนี้กำลัง เตรียมตัวไป

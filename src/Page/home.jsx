@@ -8,6 +8,7 @@ import NewOrderModal from '../components/newOrderModal'
 import MyJobCard from '../components/myJobCard'
 import food from '/assets/coverfood.png'
 import cover from '/assets/cover2.png'
+import { isRider } from '../utils/roleChecker'
 import InterestCardContainer from '../components/interestCardContainer'
 
 function home() {
@@ -27,7 +28,8 @@ function home() {
     })
     const [showModal, setShowModal] = useState(false)
     const [job, setJob] = useState(false)
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(1)
+    const [tab, setTab] = useState(0)
     const [selected, setSelected] = useState([])
 
     function handleSelected(item, state) {
@@ -322,176 +324,310 @@ function home() {
                             />
                         ))}
                     {/* add Job container */}
-                    <div
-                        className="cursor-pointer p-4 rounded-lg bg-gray-200 hover:bg-gray-100 h-56 flex items-center justify-center"
-                        onClick={() => setShowModal(true)}
-                    >
-                        <button
+                    {isRider([
+                        ...jobsCetagory.myOrder_close_accept,
+                        ...jobsCetagory.myOrder_close_reject,
+                        ...jobsCetagory.myOrder_unfinish_accept,
+                        ...jobsCetagory.myOrder_unfinish_reject,
+                        ...jobsCetagory.myOrder_unfinish_waiting,
+                    ]) == false && (
+                        <div
+                            className="cursor-pointer p-4 rounded-lg bg-gray-200 hover:bg-gray-100 h-56 flex items-center justify-center"
                             onClick={() => setShowModal(true)}
-                            className="bg-green-600 rounded-full text-white w-16"
                         >
-                            <i className="mdi mdi-plus text-6xl"></i>
-                        </button>
-                    </div>
+                            <button
+                                onClick={() => setShowModal(true)}
+                                className="bg-green-600 rounded-full text-white w-16"
+                            >
+                                <i className="mdi mdi-plus text-6xl"></i>
+                            </button>
+                        </div>
+                    )}
                 </div>
             )}
 
             {page === 1 && (
-                <div className="flex justify-center items-center flex-col pt-8 animate-in duration-500 slide-in-from-right">
-                    <p className="font-bold text-4xl text-center">
-                        myOrder_unfinish_accept
-                    </p>
-                    <pre>
-                        {JSON.stringify(
-                            jobsCetagory.myOrder_unfinish_accept,
-                            null,
-                            2,
-                        )}
-                    </pre>
-                    <div>
-                        {jobsCetagory.myOrder_unfinish_accept.map((e, idx) => (
-                            <MyJobCard
-                                key={idx}
-                                {...e}
-                                profile={profile}
-                                onClick={() => showJobDetailHandle(e)}
-                            />
-                        ))}
+                <div className="flex animate-in duration-500 slide-in-from-right">
+                    {/* Side Bar */}
+                    <div className="bg-red-500 w-1/6 h-screen left-0 flex flex-col">
+                        <button onClick={() => setTab(0)}>00000</button>
+                        <button onClick={() => setTab(1)}>11111</button>
+                        <button onClick={() => setTab(2)}>22222</button>
+                        <button onClick={() => setTab(3)}>33333</button>
+                        <button onClick={() => setTab(4)}>44444</button>
                     </div>
 
-                    <p className="font-bold text-4xl text-center">
-                        myOrder_unfinish_waiting
-                    </p>
-                    <pre>
-                        {JSON.stringify(
-                            jobsCetagory.myOrder_unfinish_waiting,
-                            null,
-                            2,
-                        )}
-                    </pre>
-                    <div>
-                        {jobsCetagory.myOrder_unfinish_waiting.map((e, idx) => (
-                            <MyJobCard
-                                key={idx}
-                                {...e}
-                                profile={profile}
-                                onClick={() => showJobDetailHandle(e)}
-                            />
-                        ))}
-                    </div>
+                    {/* ALL */}
+                    {tab === 0 && (
+                        <div className="flex flex-col bg-yellow-300 w-full">
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_unfinish_accept
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_unfinish_accept.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_unfinish_waiting
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_unfinish_waiting.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_unfinish_reject
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_unfinish_reject.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_finish_done
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_finish_done.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_finish_reject
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_finish_reject.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_close_accept
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_close_accept.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_close_reject
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_close_reject.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                            {/* line */}
+                            <div className="w-full flex justify-center items-center p-8 flex-col">
+                                <div className="w-9/12 border-b-2 mb-2 border-black"></div>
+                                reject & done
+                            </div>
+                        </div>
+                    )}
 
-                    <p className="font-bold text-4xl text-center">
-                        myOrder_unfinish_reject
-                    </p>
-                    <pre>
-                        {JSON.stringify(
-                            jobsCetagory.myOrder_unfinish_reject,
-                            null,
-                            2,
-                        )}
-                    </pre>
-                    <div>
-                        {jobsCetagory.myOrder_unfinish_reject.map((e, idx) => (
-                            <MyJobCard
-                                key={idx}
-                                {...e}
-                                profile={profile}
-                                onClick={() => showJobDetailHandle(e)}
-                            />
-                        ))}
-                    </div>
+                    {/* WAITING */}
+                    {tab === 1 && (
+                        <div className="flex flex-col bg-yellow-300 w-full">
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_unfinish_waiting
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_unfinish_waiting.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                        </div>
+                    )}
 
-                    <p className="font-bold text-4xl text-center">
-                        myOrder_finish_done
-                    </p>
-                    <pre>
-                        {JSON.stringify(
-                            jobsCetagory.myOrder_finish_done,
-                            null,
-                            2,
-                        )}
-                    </pre>
-                    <div>
-                        {jobsCetagory.myOrder_finish_done.map((e, idx) => (
-                            <MyJobCard
-                                key={idx}
-                                {...e}
-                                profile={profile}
-                                onClick={() => showJobDetailHandle(e)}
-                            />
-                        ))}
-                    </div>
+                    {tab === 2 && (
+                        <div className="flex flex-col bg-yellow-300 w-full">
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_unfinish_accept
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_unfinish_accept.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_close_accept
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_close_accept.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                        </div>
+                    )}
 
-                    <p className="font-bold text-4xl text-center">
-                        myOrder_finish_reject
-                    </p>
-                    <pre>
-                        {JSON.stringify(
-                            jobsCetagory.myOrder_finish_reject,
-                            null,
-                            2,
-                        )}
-                    </pre>
-                    <div>
-                        {jobsCetagory.myOrder_finish_reject.map((e, idx) => (
-                            <MyJobCard
-                                key={idx}
-                                {...e}
-                                profile={profile}
-                                onClick={() => showJobDetailHandle(e)}
-                            />
-                        ))}
-                    </div>
+                    {tab === 3 && (
+                        <div className="flex flex-col bg-yellow-300 w-full">
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_finish_done
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_finish_done.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                        </div>
+                    )}
 
-                    <p className="font-bold text-4xl text-center">
-                        myOrder_close_accept
-                    </p>
-                    <pre>
-                        {JSON.stringify(
-                            jobsCetagory.myOrder_close_accept,
-                            null,
-                            2,
-                        )}
-                    </pre>
-                    <div>
-                        {jobsCetagory.myOrder_close_accept.map((e, idx) => (
-                            <MyJobCard
-                                key={idx}
-                                {...e}
-                                profile={profile}
-                                onClick={() => showJobDetailHandle(e)}
-                            />
-                        ))}
-                    </div>
-
-                    <p className="font-bold text-4xl text-center">
-                        myOrder_close_reject
-                    </p>
-                    <pre>
-                        {JSON.stringify(
-                            jobsCetagory.myOrder_close_reject,
-                            null,
-                            2,
-                        )}
-                    </pre>
-                    <div>
-                        {jobsCetagory.myOrder_close_reject.map((e, idx) => (
-                            <MyJobCard
-                                key={idx}
-                                {...e}
-                                profile={profile}
-                                onClick={() => showJobDetailHandle(e)}
-                            />
-                        ))}
-                    </div>
-                    {/* line */}
-                    <div className="w-full flex justify-center items-center p-8 flex-col">
-                        <div className="w-9/12 border-b-2 mb-2 border-black"></div>
-                        reject & done
-                    </div>
+                    {tab === 4 && (
+                        <div className="flex flex-col bg-yellow-300 w-full">
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_unfinish_reject
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_unfinish_reject.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_finish_reject
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_finish_reject.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                            <p className="font-bold text-4xl text-center">
+                                myOrder_close_reject
+                            </p>
+                            <div>
+                                {jobsCetagory.myOrder_close_reject.map(
+                                    (e, idx) => (
+                                        <MyJobCard
+                                            key={idx}
+                                            {...e}
+                                            profile={profile}
+                                            onClick={() =>
+                                                showJobDetailHandle(e)
+                                            }
+                                        />
+                                    ),
+                                )}
+                            </div>
+                        </div>
+                    )}
                 </div>
             )}
-
             {/* <div>{JSON.stringify(profile)}</div> */}
         </div>
     )
