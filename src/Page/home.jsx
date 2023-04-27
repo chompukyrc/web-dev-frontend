@@ -349,12 +349,37 @@ function home() {
             {page === 1 && (
                 <div className="flex animate-in duration-500 slide-in-from-right">
                     {/* Side Bar */}
-                    <div className="bg-red-500 w-1/6 h-screen left-0 flex flex-col">
-                        <button onClick={() => setTab(0)}>00000</button>
-                        <button onClick={() => setTab(1)}>11111</button>
-                        <button onClick={() => setTab(2)}>22222</button>
-                        <button onClick={() => setTab(3)}>33333</button>
-                        <button onClick={() => setTab(4)}>44444</button>
+                    <div className="bg-red-200 w-1/6 h-screen left-0 flex flex-col">
+                        <button
+                            className="py-8 bg-red-400 hover:bg-red-900"
+                            onClick={() => setTab(0)}
+                        >
+                            ทั้งหมด
+                        </button>
+                        <button
+                            className="py-8 bg-red-400 hover:bg-red-900"
+                            onClick={() => setTab(1)}
+                        >
+                            รอการยืนยัน
+                        </button>
+                        <button
+                            className="py-8 bg-red-400 hover:bg-red-900"
+                            onClick={() => setTab(2)}
+                        >
+                            ดำเนินการอยู่
+                        </button>
+                        <button
+                            className="py-8 bg-red-400 hover:bg-red-900"
+                            onClick={() => setTab(3)}
+                        >
+                            เสร็จสิ้นแล้ว
+                        </button>
+                        <button
+                            className="py-8 bg-red-400 hover:bg-red-900"
+                            onClick={() => setTab(4)}
+                        >
+                            ถูกปฏิเสธ
+                        </button>
                     </div>
 
                     {/* ALL */}
