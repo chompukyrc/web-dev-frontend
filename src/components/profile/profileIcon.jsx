@@ -49,17 +49,18 @@ export default function ProfileIcon() {
                 handleConfirm={handleLogout}
                 textConfirm={'LOGOUT'}
             />
-            <div className="relative">
+            <div className="relative md:w-1/4 w-auto mx-[2%]">
                 <div
                     className={
-                        'hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center w-44 py-2 px-2'
+                        'flex justify-center items-center hover:bg-[#4da452] md:flex cursor-pointer text-white  py-4 mx-[2%'
                     }
                     onClick={() => {
                         setOpen(!open)
                     }}
                 >
-                    <Avatar className="mx-2 w-8 h-8" {...config} />
-                    {profile.username}
+                    <Avatar className="mr-4 w-8 h-8 " {...config} />
+                    <p className='hidden md:block '>{profile.username}</p>
+                    
                 </div>
 
                 {open && (

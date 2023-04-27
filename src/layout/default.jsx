@@ -9,7 +9,7 @@ import ProfileIcon from '../components/profile/profileIcon'
 const Layout = ({ children }) => {
     const navigate = useNavigate()
     const token = localStorage.getItem('token')
-    // const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false)
     const [profile, setProfile] = useState({})
 
     useEffect(() => {
@@ -34,56 +34,83 @@ const Layout = ({ children }) => {
 
     return (
         <div>
-            <div className="bg-[#60B664] flex w-screen justify-between font-Kanit text-[20px] py-1">
+            <div className="bg-[#60B664] h-[60px] md:h-auto flex w-[100%] justify-between items-center font-Kanit text-[20px]">
                 <div
-                    className="flex items-center text-white cursor-pointer ml-40"
+                    className="md:order-1 order-2 flex flex-row items-center text-white cursor-pointer md:ml-10% ml-[5%] md:text-[20px] text-[12px]"
                     onClick={() => {
                         navigate('/')
                     }}
                 >
-                    🍔&nbsp;&nbsp; Feed
-                    <p className="text-amber-300">&nbsp; My &nbsp;</p> Friend
+                    <div className="flex flex-col items-center md:ml-0 ml-[40%]">
+                        <p className="md:hidden h-5 text-lg ">🍔</p>
+                        <div className="flex ">
+                            <p className="md:block hidden mr-[4%] ">🍔</p>
+                            <p className="mr-[2%]">Feed</p>
+                            <p className="text-amber-300 mr-[2%]">My</p>
+                            <p>Friend</p>
+                        </div>
+                    </div>
                 </div>
-                <div className="flex items-center mr-20 space-x-1">
-                    <div
-                        className="hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center w-40 py-2"
-                        onClick={() => {
-                            navigate('/')
-                        }}
-                    >
-                        <i className="mdi mdi-home px-1"></i>
-                        หน้าหลัก
+                <div className="md:block order-2 hidden mr-[5%] w-[40%]">
+                    <div className="flex items-center ">
+                        <div
+                            className=" flex justify-center hover:bg-[#4da452] cursor-pointer text-white w-1/4 py-4 mx-[2%]"
+                            onClick={() => {
+                                navigate('/')
+                            }}
+                        >
+                            <i className="mdi mdi-home mr-1"></i>
+                            หน้าหลัก
+                        </div>
+                        <div
+                            className="flex justify-center hover:bg-[#4da452] cursor-pointer text-white  w-1/4 py-4 mx-[2%]"
+                            onClick={() => {
+                                navigate('/aboutUs')
+                            }}
+                        >
+                            <i className="mdi mdi-developer-board mr-1"></i>
+                            เกี่ยวกับเรา
+                        </div>
+                        <NotificationIcon />
+                        <ProfileIcon />
                     </div>
-
-                    <div
-                        className="hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center w-40 py-2"
-                        onClick={() => {
-                            navigate('/aboutUs')
-                        }}
-                    >
-                        <i className="mdi mdi-developer-board px-2"></i>
-                        เกี่ยวกับเรา
-                    </div>
-                    {/* <div
-                        className="hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center w-40 py-4"
-                        onClick={() => {
-                            navigate('/profile')
-                        }}
-                    >
-                        <Avatar className="mx-2 w-8 h-8" {...config} />
-                        {profile.username}
-                    </div> */}
-                    {/* <div className="hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center w-20 py-4"> */}
+                </div>
+                <div className="order-3 md:hidden flex w-1/4">
                     <NotificationIcon />
                     <ProfileIcon />
-                    {/* </div> */}
-                    {/* <div
-                        className="hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center w-40 py-2"
-                        onClick={() => setOpen(true)}
+                </div>
+                <div class="block md:hidden ml-[4%] order-1">
+                    <button
+                        class="flex items-center  rounded text-white "
+                        onClick={() => {
+                            setOpen(!open)
+                        }}
                     >
-                        <i className="mdi mdi-logout p-1"></i>
-                        ออกจากระบบ
-                    </div> */}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="14"
+                            viewBox="0 0 20 14"
+                            id="menu"
+                        >
+                            <g
+                                fill="none"
+                                fill-rule="evenodd"
+                                stroke="#FFF"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                transform="translate(1 1)"
+                            >
+                                <path d="M0 6h18M0 0h18M0 12h18"></path>
+                            </g>
+                        </svg>
+                    </button>
+                    {/* ไว้ก่อนเดะมาต่ออ */}
+                    {/* {open && (
+                        <div className="">
+                        </div>
+                    )} */}
                 </div>
             </div>
             <main>{children}</main>
