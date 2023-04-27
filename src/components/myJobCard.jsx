@@ -66,7 +66,9 @@ export default function myJobCard({
                         </div>
                     </div>
                     <div className="flex items-center bg-white bg-opacity-60 rounded-xl px-2 mx-8">
-                        {myOrder?.status === 'accept'
+                        {myOrder?.status === 'waiting'
+                            ? 'รอการยืนยันออเดอร์'
+                            : myOrder?.status === 'accept'
                             ? 'ออเดอร์ของคุณได้รับการยืนยันแล้ว'
                             : myOrder?.status === 'reject'
                             ? 'ออเดอร์ของคุณถูกปฏิเสธแล้ว'
@@ -111,15 +113,3 @@ export default function myJobCard({
         </div>
     )
 }
-// ส่งที่: {myOrder?.destination}หมายเหตุ:
-// <div>ร้าน: {restaurants}</div>
-// <div>หมายเหตุ: {description}</div>
-// <div>เวลา: {convertTimestampToTime(time)}</div>
-// <div>status: {status}</div>
-// <div>ร้าน: {myOrder?.restaurant}</div>
-// <div>เมนู: {myOrder?.menu}</div>
-// <div>จำนวน: {myOrder?.count}</div>
-// <div>หมายเหตุ: {myOrder?.description}</div>
-// <div>เบอร์: {profile?.phone}</div>
-// <div>ส่งที่: {myOrder?.destination}</div>
-// <div>status: {myOrder?.status}</div>

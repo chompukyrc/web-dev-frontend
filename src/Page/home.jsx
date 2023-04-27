@@ -366,17 +366,23 @@ function home() {
                             className="py-8 bg-green-600 hover:bg-green-800"
                             onClick={() => setTab(2)}
                         >
-                            ดำเนินการอยู่
+                            ยืนยันแล้ว
                         </button>
                         <button
                             className="py-8 bg-green-600 hover:bg-green-800"
                             onClick={() => setTab(3)}
                         >
-                            เสร็จสิ้นแล้ว
+                            ดำเนินการอยู่
                         </button>
                         <button
                             className="py-8 bg-green-600 hover:bg-green-800"
                             onClick={() => setTab(4)}
+                        >
+                            เสร็จสิ้นแล้ว
+                        </button>
+                        <button
+                            className="py-8 bg-green-600 hover:bg-green-800"
+                            onClick={() => setTab(5)}
                         >
                             ถูกปฏิเสธ
                         </button>
@@ -384,130 +390,168 @@ function home() {
 
                     {/* ALL */}
                     {tab === 0 && (
-                        <div className="flex flex-col   w-full">
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_unfinish_accept
+                        <div className="flex flex-col w-full">
+                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                ออเดอร์ที่รอการยืนยัน
                             </p>
-                            <div>
-                                {jobsCetagory.myOrder_unfinish_accept.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_unfinish_waiting
+                            {jobsCetagory.myOrder_unfinish_waiting.length >
+                            0 ? (
+                                <div>
+                                    {jobsCetagory.myOrder_unfinish_waiting.map(
+                                        (e, idx) => (
+                                            <MyJobCard
+                                                key={idx}
+                                                {...e}
+                                                profile={profile}
+                                                onClick={() =>
+                                                    showJobDetailHandle(e)
+                                                }
+                                            />
+                                        ),
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex justify-center items-center text-gray-400">
+                                    ไม่มีออเดอร์ที่รอการยืนยัน
+                                </div>
+                            )}
+                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                ออเดอร์ที่ได้รับการยืนยันแล้ว
                             </p>
-                            <div>
-                                {jobsCetagory.myOrder_unfinish_waiting.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_unfinish_reject
+                            {jobsCetagory.myOrder_unfinish_accept.length > 0 ? (
+                                <div>
+                                    {jobsCetagory.myOrder_unfinish_accept.map(
+                                        (e, idx) => (
+                                            <MyJobCard
+                                                key={idx}
+                                                {...e}
+                                                profile={profile}
+                                                onClick={() =>
+                                                    showJobDetailHandle(e)
+                                                }
+                                            />
+                                        ),
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex justify-center items-center text-gray-400">
+                                    ไม่มีออเดอร์ที่ได้รับการยืนยันแล้ว
+                                </div>
+                            )}
+                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                ออเดอร์ที่กำลังดำเนินการ
                             </p>
-                            <div>
-                                {jobsCetagory.myOrder_unfinish_reject.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_finish_done
-                            </p>
-                            <div>
-                                {jobsCetagory.myOrder_finish_done.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_finish_reject
-                            </p>
-                            <div>
-                                {jobsCetagory.myOrder_finish_reject.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_close_accept
-                            </p>
-                            <div>
-                                {jobsCetagory.myOrder_close_accept.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_close_reject
-                            </p>
-                            <div>
-                                {jobsCetagory.myOrder_close_reject.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
+                            {jobsCetagory.myOrder_close_accept.length > 0 ? (
+                                <div>
+                                    {jobsCetagory.myOrder_close_accept.map(
+                                        (e, idx) => (
+                                            <MyJobCard
+                                                key={idx}
+                                                {...e}
+                                                profile={profile}
+                                                onClick={() =>
+                                                    showJobDetailHandle(e)
+                                                }
+                                            />
+                                        ),
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex justify-center items-center text-gray-400">
+                                    ไม่มีออเดอร์ที่กำลังดำเนินการ
+                                </div>
+                            )}
+
                             {/* line */}
                             <div className="w-full flex justify-center items-center p-8 flex-col">
-                                <div className="w-9/12 border-b-2 mb-2 border-black"></div>
-                                reject & done
+                                <div className="w-9/12 border-b-2 mb-2 border-black">
+                                    reject & done
+                                </div>
+                                <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                    ออเดอร์ที่เสร็จสิ้นแล้ว
+                                </p>
+                                {jobsCetagory.myOrder_finish_done.length > 0 ? (
+                                    <div>
+                                        {jobsCetagory.myOrder_finish_done.map(
+                                            (e, idx) => (
+                                                <MyJobCard
+                                                    key={idx}
+                                                    {...e}
+                                                    profile={profile}
+                                                    onClick={() =>
+                                                        showJobDetailHandle(e)
+                                                    }
+                                                />
+                                            ),
+                                        )}
+                                    </div>
+                                ) : (
+                                    <div className="flex justify-center items-center text-gray-400">
+                                        ไม่มีออเดอร์ที่เสร็จสิ้นแล้ว
+                                    </div>
+                                )}
+                                <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                    ออเดอร์ที่ถูกปฏิเสธ
+                                </p>
+                                {jobsCetagory.myOrder_unfinish_reject.length +
+                                    jobsCetagory.myOrder_close_reject.length +
+                                    jobsCetagory.myOrder_finish_reject.length >
+                                0 ? (
+                                    <div>
+                                        <div>
+                                            {jobsCetagory.myOrder_unfinish_reject.map(
+                                                (e, idx) => (
+                                                    <MyJobCard
+                                                        key={idx}
+                                                        {...e}
+                                                        profile={profile}
+                                                        onClick={() =>
+                                                            showJobDetailHandle(
+                                                                e,
+                                                            )
+                                                        }
+                                                    />
+                                                ),
+                                            )}
+                                        </div>
+                                        <div>
+                                            {jobsCetagory.myOrder_close_reject.map(
+                                                (e, idx) => (
+                                                    <MyJobCard
+                                                        key={idx}
+                                                        {...e}
+                                                        profile={profile}
+                                                        onClick={() =>
+                                                            showJobDetailHandle(
+                                                                e,
+                                                            )
+                                                        }
+                                                    />
+                                                ),
+                                            )}
+                                        </div>
+                                        <div>
+                                            {jobsCetagory.myOrder_finish_reject.map(
+                                                (e, idx) => (
+                                                    <MyJobCard
+                                                        key={idx}
+                                                        {...e}
+                                                        profile={profile}
+                                                        onClick={() =>
+                                                            showJobDetailHandle(
+                                                                e,
+                                                            )
+                                                        }
+                                                    />
+                                                ),
+                                            )}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className="flex justify-center items-center text-gray-400">
+                                        ไม่มีออเดอร์ที่ถูกปฏิเสธ
+                                    </div>
+                                )}
                             </div>
                         </div>
                     )}
@@ -515,140 +559,178 @@ function home() {
                     {/* WAITING */}
                     {tab === 1 && (
                         <div className="flex flex-col w-full">
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_unfinish_waiting
+                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                ออเดอร์ที่รอการยืนยัน
                             </p>
-                            <div>
-                                {jobsCetagory.myOrder_unfinish_waiting.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
+                            {jobsCetagory.myOrder_unfinish_waiting.length >
+                            0 ? (
+                                <div>
+                                    {jobsCetagory.myOrder_unfinish_waiting.map(
+                                        (e, idx) => (
+                                            <MyJobCard
+                                                key={idx}
+                                                {...e}
+                                                profile={profile}
+                                                onClick={() =>
+                                                    showJobDetailHandle(e)
+                                                }
+                                            />
+                                        ),
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex justify-center items-center text-gray-400">
+                                    ไม่มีออเดอร์ที่รอการยืนยัน
+                                </div>
+                            )}
                         </div>
                     )}
 
                     {tab === 2 && (
                         <div className="flex flex-col w-full">
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_unfinish_accept
+                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                ออเดอร์ที่ได้รับการยืนยันแล้ว
                             </p>
-                            <div>
-                                {jobsCetagory.myOrder_unfinish_accept.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_close_accept
-                            </p>
-                            <div>
-                                {jobsCetagory.myOrder_close_accept.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
+                            {/* myOrder_unfinish_accept */}
+                            {jobsCetagory.myOrder_unfinish_accept.length > 0 ? (
+                                <div>
+                                    {jobsCetagory.myOrder_unfinish_accept.map(
+                                        (e, idx) => (
+                                            <MyJobCard
+                                                key={idx}
+                                                {...e}
+                                                profile={profile}
+                                                onClick={() =>
+                                                    showJobDetailHandle(e)
+                                                }
+                                            />
+                                        ),
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex justify-center items-center text-gray-400">
+                                    ไม่มีออเดอร์ที่ได้รับการยืนยันแล้ว
+                                </div>
+                            )}
                         </div>
                     )}
 
                     {tab === 3 && (
                         <div className="flex flex-col w-full">
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_finish_done
+                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                ออเดอร์ที่กำลังดำเนินการอยู่
                             </p>
-                            <div>
-                                {jobsCetagory.myOrder_finish_done.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
+                            {/* myOrder_close_accept */}
+                            {jobsCetagory.myOrder_close_accept.length > 0 ? (
+                                <div>
+                                    {jobsCetagory.myOrder_close_accept.map(
+                                        (e, idx) => (
+                                            <MyJobCard
+                                                key={idx}
+                                                {...e}
+                                                profile={profile}
+                                                onClick={() =>
+                                                    showJobDetailHandle(e)
+                                                }
+                                            />
+                                        ),
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex justify-center items-center text-gray-400">
+                                    ไม่มีออเดอร์ที่กำลังดำเนินการอยู่
+                                </div>
+                            )}
                         </div>
                     )}
 
                     {tab === 4 && (
                         <div className="flex flex-col w-full">
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_unfinish_reject
+                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                ออเดอร์ที่เสร็จสิ้นแล้ว
                             </p>
-                            <div>
-                                {jobsCetagory.myOrder_unfinish_reject.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_finish_reject
+                            {/* myOrder_finish_done */}
+                            {jobsCetagory.myOrder_finish_done.length > 0 ? (
+                                <div>
+                                    {jobsCetagory.myOrder_finish_done.map(
+                                        (e, idx) => (
+                                            <MyJobCard
+                                                key={idx}
+                                                {...e}
+                                                profile={profile}
+                                                onClick={() =>
+                                                    showJobDetailHandle(e)
+                                                }
+                                            />
+                                        ),
+                                    )}
+                                </div>
+                            ) : (
+                                <div className="flex justify-center items-center text-gray-400">
+                                    ไม่มีออเดอร์ที่เสร็จสิ้นแล้ว
+                                </div>
+                            )}
+                        </div>
+                    )}
+
+                    {tab === 5 && (
+                        <div className="flex flex-col w-full">
+                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                ออเดอร์ที่ถูกปฏิเสธ
                             </p>
-                            <div>
-                                {jobsCetagory.myOrder_finish_reject.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
-                            <p className="font-bold text-4xl text-center">
-                                myOrder_close_reject
-                            </p>
-                            <div>
-                                {jobsCetagory.myOrder_close_reject.map(
-                                    (e, idx) => (
-                                        <MyJobCard
-                                            key={idx}
-                                            {...e}
-                                            profile={profile}
-                                            onClick={() =>
-                                                showJobDetailHandle(e)
-                                            }
-                                        />
-                                    ),
-                                )}
-                            </div>
+                            {jobsCetagory.myOrder_unfinish_reject.length +
+                                jobsCetagory.myOrder_close_reject.length +
+                                jobsCetagory.myOrder_finish_reject.length >
+                            0 ? (
+                                <div>
+                                    <div>
+                                        {jobsCetagory.myOrder_unfinish_reject.map(
+                                            (e, idx) => (
+                                                <MyJobCard
+                                                    key={idx}
+                                                    {...e}
+                                                    profile={profile}
+                                                    onClick={() =>
+                                                        showJobDetailHandle(e)
+                                                    }
+                                                />
+                                            ),
+                                        )}
+                                    </div>
+                                    <div>
+                                        {jobsCetagory.myOrder_close_reject.map(
+                                            (e, idx) => (
+                                                <MyJobCard
+                                                    key={idx}
+                                                    {...e}
+                                                    profile={profile}
+                                                    onClick={() =>
+                                                        showJobDetailHandle(e)
+                                                    }
+                                                />
+                                            ),
+                                        )}
+                                    </div>
+                                    <div>
+                                        {jobsCetagory.myOrder_finish_reject.map(
+                                            (e, idx) => (
+                                                <MyJobCard
+                                                    key={idx}
+                                                    {...e}
+                                                    profile={profile}
+                                                    onClick={() =>
+                                                        showJobDetailHandle(e)
+                                                    }
+                                                />
+                                            ),
+                                        )}
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="flex justify-center items-center text-gray-400">
+                                    ไม่มีออเดอร์ที่ถูกปฏิเสธ
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>
