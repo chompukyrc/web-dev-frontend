@@ -51,30 +51,34 @@ export default function myJobCard({
     return (
         <div className="flex justify-center mx-10">
             <div className="bg-[#FFC979] w-5/6 rounded-3xl shadow-xl cursor-pointer mb-1.5 hover:scale-105 justify-center p-3">
-                <div className="flex">
+                <div className="flex justify-between">
                     <Avatar className="w-14 h-14 absolute " {...config} />
-                    <div className="flex font-Kanit w-3/5 justify-between px-3.5">
-                        <div className="flex py-2.5 ml-12">
+                    <div className="flex font-Kanit w-3/5 px-3.5">
+                        <div className="flex py-2.5 ml-12 text-xl">
                             {ownerData?.username}
                         </div>
-                        <div className="flex py-2.5 ">
+                        <div className="py-2.5 opacity-50 ml-2">
                             {'@'}
                             {ownerData?.firstname} {ownerData?.lastname}
                         </div>
-                        <div className="flex pl-2.5 py-2.5">
-                            {profile?.phone}
+                        <div className="pl-2.5 py-2.5">
+                            เบอร์ติดต่อ {profile?.phone}
                         </div>
                     </div>
-                    <div className="flex items-center justify-center w-2/5 rounded-3xl">
-                        <div className="bg-white px-2.5 py-2.5 rounded-3xl">
-                            {myOrder?.status}
-                        </div>
+                    <div className="flex items-center bg-white bg-opacity-60 rounded-xl px-2 mx-8">
+                        {myOrder?.status === 'accept'
+                            ? 'ออเดอร์ของคุณได้รับการยืนยันแล้ว'
+                            : myOrder?.status === 'reject'
+                            ? 'ออเดอร์ของคุณถูกปฏิเสธแล้ว'
+                            : myOrder?.status === 'done'
+                            ? 'ออเดอร์ของคุณถูกจัดส่งสำเร็จแล้ว'
+                            : 'error'}
                     </div>
                 </div>
 
                 <div className="flex pl-2.5 pt-2 pb-2">
                     <div className="bg-[#c3c3c3] bg-opacity-40 w-3/5 flex flex-col rounded-3xl ml-4 mr-2 items-center font-Kanit">
-                        <div className="mb-4">เมนูที่คุณฝากซื้อ</div>
+                        <div className="my-4">เมนูที่คุณฝากซื้อ</div>
                         <div className="text-4xl text-[#FFFFFF]">
                             {myOrder?.menu}
                         </div>

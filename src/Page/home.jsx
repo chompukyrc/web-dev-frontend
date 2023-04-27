@@ -349,33 +349,33 @@ function home() {
             {page === 1 && (
                 <div className="flex animate-in duration-500 slide-in-from-right">
                     {/* Side Bar */}
-                    <div className="bg-red-200 w-1/6 h-screen left-0 flex flex-col">
+                    <div className="bg-green-500 w-1/6 h-screen left-0 flex flex-col">
                         <button
-                            className="py-8 bg-red-400 hover:bg-red-900"
+                            className="py-8 bg-green-600 hover:bg-green-800"
                             onClick={() => setTab(0)}
                         >
                             ทั้งหมด
                         </button>
                         <button
-                            className="py-8 bg-red-400 hover:bg-red-900"
+                            className="py-8 bg-green-600 hover:bg-green-800"
                             onClick={() => setTab(1)}
                         >
                             รอการยืนยัน
                         </button>
                         <button
-                            className="py-8 bg-red-400 hover:bg-red-900"
+                            className="py-8 bg-green-600 hover:bg-green-800"
                             onClick={() => setTab(2)}
                         >
                             ดำเนินการอยู่
                         </button>
                         <button
-                            className="py-8 bg-red-400 hover:bg-red-900"
+                            className="py-8 bg-green-600 hover:bg-green-800"
                             onClick={() => setTab(3)}
                         >
                             เสร็จสิ้นแล้ว
                         </button>
                         <button
-                            className="py-8 bg-red-400 hover:bg-red-900"
+                            className="py-8 bg-green-600 hover:bg-green-800"
                             onClick={() => setTab(4)}
                         >
                             ถูกปฏิเสธ
@@ -384,7 +384,7 @@ function home() {
 
                     {/* ALL */}
                     {tab === 0 && (
-                        <div className="flex flex-col bg-yellow-300 w-full">
+                        <div className="flex flex-col   w-full">
                             <p className="font-bold text-4xl text-center">
                                 myOrder_unfinish_accept
                             </p>
@@ -514,7 +514,7 @@ function home() {
 
                     {/* WAITING */}
                     {tab === 1 && (
-                        <div className="flex flex-col bg-yellow-300 w-full">
+                        <div className="flex flex-col w-full">
                             <p className="font-bold text-4xl text-center">
                                 myOrder_unfinish_waiting
                             </p>
@@ -536,7 +536,7 @@ function home() {
                     )}
 
                     {tab === 2 && (
-                        <div className="flex flex-col bg-yellow-300 w-full">
+                        <div className="flex flex-col w-full">
                             <p className="font-bold text-4xl text-center">
                                 myOrder_unfinish_accept
                             </p>
@@ -575,7 +575,7 @@ function home() {
                     )}
 
                     {tab === 3 && (
-                        <div className="flex flex-col bg-yellow-300 w-full">
+                        <div className="flex flex-col w-full">
                             <p className="font-bold text-4xl text-center">
                                 myOrder_finish_done
                             </p>
@@ -597,7 +597,7 @@ function home() {
                     )}
 
                     {tab === 4 && (
-                        <div className="flex flex-col bg-yellow-300 w-full">
+                        <div className="flex flex-col w-full">
                             <p className="font-bold text-4xl text-center">
                                 myOrder_unfinish_reject
                             </p>
