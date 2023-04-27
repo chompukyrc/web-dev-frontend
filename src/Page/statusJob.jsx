@@ -184,22 +184,22 @@ export default function statusJob() {
             />
             <ToastContainer />
             <nav className="shadow-xl text-center font-Kanit text-2xl">
-                <div className="bg-white text-xl flex justify-center relative" >
-                    <img src={food} className="opacity-25 w-[100%] "
-                    />
-                    <div className='flex justify-center absolute top-0 left-0 w-[100%]'>
+                <div className="bg-white text-xl flex justify-center relative">
+                    <img src={food} className="opacity-25 w-[100%] " />
+                    <div className="flex justify-center absolute top-0 left-0 w-[100%]">
                         <div className="bg-white rounded-3xl w-1/4 border-4 border-green-800 m-[3%]">
-                            <div className='mt-10' >
-                                <p className={`mb-3 ${
-                                    job.status === 'unfinish'
-                                    ? 'text-green-500'
-                                    : job.status === 'close'
-                                    ? 'text-red-500'
-                                    : job.status === 'finish'
-                                    ? 'text-gray-700'
-                                    : ''
-                                    }`} >
-                                        
+                            <div className="mt-10">
+                                <p
+                                    className={`mb-3 ${
+                                        job.status === 'unfinish'
+                                            ? 'text-green-500'
+                                            : job.status === 'close'
+                                            ? 'text-red-500'
+                                            : job.status === 'finish'
+                                            ? 'text-gray-700'
+                                            : ''
+                                    }`}
+                                >
                                     สถานะ :{' '}
                                     {job.status === 'unfinish'
                                         ? 'คุณกำลังเปิดรับออเดอร์อยู่'
@@ -210,29 +210,28 @@ export default function statusJob() {
                                         : 'error'}
                                 </p>
                                 <p>ร้านที่คุณจะไป {job.restaurants}</p>
-                                <p className='text-3xl my-3' >
-                                    {convertTimestampToTime(job.time)}{' '}
-                                    น.
+                                <p className="text-3xl my-3">
+                                    {convertTimestampToTime(job.time)} น.
                                 </p>
                                 <p>
                                     รับฝากแล้ว: {job.count} / {job.limit} กล่อง{' '}
                                 </p>
                                 <p>หมายเหตุ: {job.description}</p>
                             </div>
-                            
+
                             <div>
                                 {job.status === 'unfinish' && (
                                     <button
-                                    className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
-                                    onClick={() => closeJobHandler()}
+                                        className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
+                                        onClick={() => closeJobHandler()}
                                     >
                                         ปิดการรับฝาก
                                     </button>
                                 )}
                                 {job.status === 'close' && (
                                     <button
-                                    className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
-                                    onClick={() => finishJobHandler()}
+                                        className="bg-red-400 m-8 p-4 hover:scale-110 rounded-xl"
+                                        onClick={() => finishJobHandler()}
                                     >
                                         สิ้นสุดการฝากซื้อครั้งนี้
                                     </button>
@@ -240,7 +239,10 @@ export default function statusJob() {
                             </div>
                         </div>
                     </div>
-                    <img src={burgur} className="absolute right-[25%] rotate-[0.5rad] top-[-20%] scale-[40%]"/>
+                    <img
+                        src={burgur}
+                        className="absolute right-[25%] rotate-[0.5rad] top-[-20%] scale-[40%]"
+                    />
                 </div>
                 <div className="flex justify-around h-16">
                     <button
