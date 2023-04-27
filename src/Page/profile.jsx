@@ -131,7 +131,7 @@ export default function profile() {
         <div>
             <ToastContainer />
             <div className="flex absolute justify-center items-center w-full h-full z-0">
-                <div className="rounded-full bg-[#60B664] h-secondary w-secondary"></div>
+                <div className="rounded-full bg-[#E67E22] h-secondary w-secondary"></div>
             </div>
             {/* <pre>{JSON.stringify(userProfile)}</pre> */}
             <div className="flex flex-col justify-center items-center h-screen">

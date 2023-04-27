@@ -46,7 +46,11 @@ export default function orderStatusCard({
         <div
             className={
                 'px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4 bg-white ' +
-                (status === 'reject' ? ' bg-gray-500 text-white w-2/5' : status === 'waiting' ? ' w-3/5':' w-2/5') 
+                (status === 'reject'
+                    ? ' bg-gray-500 text-white w-2/5'
+                    : status === 'waiting'
+                    ? ' w-3/5'
+                    : ' w-2/5')
             }
         >
             <div className="font-Kanit flex flex-row text-xl">
@@ -75,9 +79,7 @@ export default function orderStatusCard({
                                 <p>หมายเหตุ&nbsp;:&nbsp;&nbsp;</p>
                                 <p className="font-medium">{description}</p>
                             </div>
-                            <div className=" flex">
-                                
-                            </div>
+                            <div className=" flex"></div>
                         </div>
                         <div className="w-[40%]">
                             <div className=" flex items-center">
@@ -93,23 +95,22 @@ export default function orderStatusCard({
                 </div>
                 {status == 'waiting' && (
                     <div className="basis-1/3 flex justify-center">
-                            <div className="basis-3/4 flex items-center justify-center">
-                                <button
-                                    className="bg-[#1E8449] hover:bg-[#196F3D] active:bg-[#145A32] text-white h-2/5  rounded-xl w-20 "
-                                    onClick={() => acceptHandler()}
-                                >
-                                    ยืนยัน
-                                </button>
-                            </div>
-                            <div className="basis-3/4 flex items-center justify-center">
-                                <button
-                                    className="bg-[#FDFEFE] hover:bg-[#E5E7E9] active:bg-[#D7DBDD] text-black h-2/5 rounded-xl border-solid border-neutral-300 border-2 w-20  "
-                                    onClick={() => rejectHandler()}
-                                >
-                                    ปฏิเสธ
-                                </button>
-                            </div>
-
+                        <div className="basis-3/4 flex items-center justify-center">
+                            <button
+                                className="bg-[#1E8449] hover:bg-[#196F3D] active:bg-[#145A32] text-white h-2/5  rounded-xl w-20 "
+                                onClick={() => acceptHandler()}
+                            >
+                                ยืนยัน
+                            </button>
+                        </div>
+                        <div className="basis-3/4 flex items-center justify-center">
+                            <button
+                                className="bg-[#FDFEFE] hover:bg-[#E5E7E9] active:bg-[#D7DBDD] text-black h-2/5 rounded-xl border-solid border-neutral-300 border-2 w-20  "
+                                onClick={() => rejectHandler()}
+                            >
+                                ปฏิเสธ
+                            </button>
+                        </div>
                     </div>
                 )}
             </div>
