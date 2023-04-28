@@ -45,31 +45,31 @@ export default function aboutUs() {
         },
     ]
     return (
-        <div className=" flex flex-col font-Kanit">
-            <div className="mt-8 mb-3 text-2xl text-center">
-                โปรเจคนี้เป็นส่วนหนึ่งของวิชา WEB APPLICATION DEVELOPMENT
-                ซึ่งพัฒนาโดย
+        <div className=" flex flex-col items-center font-Kanit">
+            <div className="mt-8 mb-3 md:text-2xl md:w-screen w-5/6 text-base text-center">
+                <p>โปรเจคนี้เป็นส่วนหนึ่งของวิชา</p> 
+                <p>WEB APPLICATION DEVELOPMENT</p>
+                <p>ซึ่งพัฒนาโดย</p>
             </div>
             <div
-                className="justify-center flex flex-wrap mx-auto min-w-[768px] bg-white pt-20 rounded-[30px] shadow-xl"
-                style={{ width: '1000px' }}
+                className="z-20 justify-center flex flex-wrap mx-auto md:w-[80%] w-[70%] bg-white md:pt-20 pt-10 rounded-[30px] shadow-xl"
             >
                 {profiles.map((profile) => {
                     return (
                         <div
-                            className="md:w-1/3 text-center mx-50 relative text-lg mb-4 animate-in fade-in duration-1000"
+                            className="md:w-1/3 text-center mx-50 relative md:text-lg text-sm mb-4 animate-in fade-in duration-1000"
                             key={profile.key}
                         >
-                            <div className="absolute top-[-140px] right-[-100px] rotate-[20deg] scale-[.35]">
+                            <div className="absolute md:top-[-140px] top-[-30%] right-[-100px] rotate-[20deg] scale-[.35]">
                                 <img src={burger} />
                             </div>
                             <img
                                 src={profile.img}
-                                className="mx-auto h-[200px] rounded-full shadow-2xl"
+                                className="mx-auto md:h-[200px] h-[150px] rounded-full shadow-2xl"
                             />
                             <h1 className="mt-6 font-medium">{profile.name}</h1>
                             <h1 className="font-medium">{profile.id}</h1>
-                            <h1 className="font-light text-green-700 ">
+                            <h1 className="font-light text-green-700 md:mb-auto mb-2">
                                 {profile.job}
                             </h1>
                         </div>
@@ -77,7 +77,7 @@ export default function aboutUs() {
                 })}
             </div>
             <div>
-                <div className="absolute top-[600px]">
+                <div className="hidden md:block absolute top-[90%] right-0 z-10">
                     <img src={line} />
                 </div>
             </div>

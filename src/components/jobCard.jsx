@@ -48,7 +48,7 @@ export default function jobCard({
 
     return (
         <div
-            className={`cursor-pointer p-4 rounded-[30px] drop-shadow-xl text-white hover:bg-slate-800 ;
+            className={`cursor-pointer p-4 rounded-[30px] drop-shadow-xl text-white hover:bg-slate-800 w-[100%]  ;
         ${limit - count <= 0 ? 'bg-[#FF6B6B]' : 'bg-[#499D4D]'} 
         `}
             onClick={onClick}
@@ -75,7 +75,6 @@ export default function jobCard({
                     <p className="text-3xl font-bold">
                         {convertTimestampToTime(time)}
                     </p>
-                    {/* <p>{new Date(time).toUTCString()}</p> */}
                 </div>
                 <div>
                     <p className="text-black pt-2">ฝากได้อีก {left} กล่อง</p>

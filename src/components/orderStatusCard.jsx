@@ -55,6 +55,7 @@ export default function orderStatusCard({
                     : '')
             }
         >
+        
             <div className="font-Kanit flex flex-row text-xl justify-around">
                 <div className="flex flex-col w-4/5">
                     <div className="flex flex-row ">
@@ -67,7 +68,7 @@ export default function orderStatusCard({
                         </div>
                     </div>
 
-                    <div className="flex row justify-end  ">
+                    <div className="flex row  justify-end  ">
                         <div className="w-[50%]  items-start flex flex-col ">
                             <div className=" flex">
                                 <p>ร้าน&nbsp;:&nbsp;&nbsp;</p>

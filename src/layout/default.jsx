@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
 
     return (
         <div>
-            <div className="bg-[#60B664] h-[60px] md:h-auto flex w-[100%] justify-between items-center font-Kanit text-[20px]">
+            <div className="bg-[#60B664] h-[60px] md:h-auto flex w-[100%] justify-between items-center font-Kanit text-[20px] ">
                 <div
                     className="md:order-1 order-2 flex flex-row items-center text-white cursor-pointer md:ml-10% ml-[5%] md:text-[20px] text-[12px]"
                     onClick={() => {
@@ -106,13 +106,43 @@ const Layout = ({ children }) => {
                             </g>
                         </svg>
                     </button>
-                    {/* ไว้ก่อนเดะมาต่ออ */}
-                    {/* {open && (
-                        <div className="">
+                    {open && (
+                        <div>
+                            <div className="top-[60px] text-lg absolute left-0 z-40 w-1/2 flex flex-col   bg-white  h-screen slide-in-from-left-full animate-in duration-1000 ">
+                                <div
+                                    className="flex justify-start cursor-pointer text-black py-4  hover:bg-slate-200"
+                                    onClick={() => {
+                                        navigate('/')
+                                        setOpen(!open)
+                                    }}
+                                >
+                                    <i className="mdi mdi-home mr-1 ml-[6%]"></i>
+                                    หน้าหลัก
+                                </div>
+                                <div
+                                    className="flex justify-start cursor-pointer text-black py-4  hover:bg-slate-200"
+                                    onClick={() => {
+                                        navigate('/aboutUs')
+                                        setOpen(!open)
+                                    }}
+                                >
+                                    <i className="mdi mdi-developer-board mr-1 ml-[6%]"></i>
+                                    เกี่ยวกับเรา
+                                </div>
+                            </div>
+                            <div 
+                            className="top-[60px] text-lg absolute right-0 z-30 w-screen bg-black bg-opacity-20  h-screen "
+                            onClick={() => {
+                                setOpen(!open)
+                            }}
+                            >
+
+                            </div>
                         </div>
-                    )} */}
+                    )}
                 </div>
             </div>
+
             <main>{children}</main>
         </div>
     )

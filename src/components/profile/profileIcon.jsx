@@ -44,12 +44,12 @@ export default function ProfileIcon() {
     return (
         <>
             <Dialog
-                text={'Are you sure to Logout?'}
+                text={'คุณยืนยันที่จะออกจากระบบ ?'}
                 open={showLogout}
                 handleConfirm={handleLogout}
-                textConfirm={'LOGOUT'}
+                textConfirm={'ออกจากระบบ'}
             />
-            <div className="relative md:w-1/4 w-auto mx-[2%]">
+            <div className="relative md:w-1/4 w-auto mx-[2%] text-lg">
                 <div
                     className={
                         'flex justify-center items-center hover:bg-[#4da452] md:flex cursor-pointer text-white  py-4 mx-[2%'
@@ -64,11 +64,11 @@ export default function ProfileIcon() {
 
                 {open && (
                     <div
-                        className=" absolute right-0 z-20 w-64 rounded-xl flex flex-col space-y-2 bg-gray-600 bg-opacity-70 p-2"
+                        className=" absolute right-0 z-30 w-64 rounded-xl flex flex-col space-y-2 bg-gray-600 md:bg-opacity-70 p-2"
                         style={{ top: '3.8rem' }}
                     >
                         <div
-                            className=" p-4 text-center text-white cursor-pointer text-md hover:bg-opacity-30 hover:bg-gray-300 rounded-xl"
+                            className=" p-4 text-center text-white cursor-pointer hover:bg-opacity-30 hover:bg-gray-300 rounded-xl"
                             onClick={() => {
                                 setOpen(!open)
                                 navigate('/profile')
