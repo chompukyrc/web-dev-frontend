@@ -194,7 +194,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'finish' &&
-                        e.myOrder.status === 'done',
+                        e.myOrder.status === 'Done',
                 )
 
                 const myOrder_finish_done = [...temp]
