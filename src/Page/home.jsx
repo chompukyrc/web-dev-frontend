@@ -28,8 +28,8 @@ function home() {
     })
     const [showModal, setShowModal] = useState(false)
     const [job, setJob] = useState(false)
-    const [page, setPage] = useState(1)
-    const [tab, setTab] = useState(0)
+    const [page, setPage] = useState(0)
+    const [tab, setTab] = useState(1)
     const [selected, setSelected] = useState([])
 
     function handleSelected(item, state) {
@@ -361,7 +361,7 @@ function home() {
             {page === 1 && (
                 <div className="flex animate-in duration-500 slide-in-from-right">
                     {/* Side Bar */}
-                    <div className="w-1/6 h-screen left-0 flex flex-col">
+                    <div className="w-1/6 h-screen left-0 flex flex-col mt-4">
                         {sidebars.map((e, idx) => (
                             <button
                                 className={
