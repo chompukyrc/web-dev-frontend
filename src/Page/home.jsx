@@ -41,6 +41,18 @@ function home() {
         }
     }
 
+    // Sidebar tabs
+    const sidebars = [
+        {
+            title: 'ทั้งหมด',
+        },
+        { title: 'รอการยืนยัน' },
+        { title: 'ยืนยันแล้ว' },
+        { title: 'ดำเนินการอยู่' },
+        { title: 'เสร็จสิ้นแล้ว' },
+        { title: 'ถูกปฏิเสธ' },
+    ]
+
     useEffect(() => {
         // Fetch Profile
         const fetchProfile = async () => {
@@ -350,42 +362,18 @@ function home() {
                 <div className="flex animate-in duration-500 slide-in-from-right">
                     {/* Side Bar */}
                     <div className="bg-green-500 w-1/6 h-screen left-0 flex flex-col">
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(0)}
-                        >
-                            ทั้งหมด
-                        </button>
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(1)}
-                        >
-                            รอการยืนยัน
-                        </button>
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(2)}
-                        >
-                            ยืนยันแล้ว
-                        </button>
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(3)}
-                        >
-                            ดำเนินการอยู่
-                        </button>
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(4)}
-                        >
-                            เสร็จสิ้นแล้ว
-                        </button>
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(5)}
-                        >
-                            ถูกปฏิเสธ
-                        </button>
+                        {sidebars.map((e, idx) => (
+                            <button
+                                className={
+                                    'py-8 bg-green-600 hover:bg-green-800 ' +
+                                    (tab === idx ? ' bg-red-300 ' : ' ')
+                                }
+                                key={idx}
+                                onClick={() => setTab(idx)}
+                            >
+                                {e.title}
+                            </button>
+                        ))}
                     </div>
 
                     {/* ALL */}
