@@ -50,7 +50,7 @@ export default function myJobCard({
 
     return (
         <div className="flex justify-center mx-10">
-            <div className="w-5/6 rounded-3xl shadow-xl cursor-pointer mb-1.5 hover:scale-105 justify-center p-3 bg-gray-300">
+            <div className="w-5/6 rounded-3xl shadow-xl cursor-pointer mb-1.5 hover:scale-105 justify-center p-3 bg-white">
                 <div className="flex justify-between">
                     <Avatar className="w-14 h-14 absolute " {...config} />
                     <div className="flex font-Kanit w-3/5 px-3.5">
@@ -67,24 +67,24 @@ export default function myJobCard({
                     </div>
                     <div
                         className={
-                            'flex items-center rounded-xl px-2 mx-8 bg-opacity-60  ' +
+                            'flex items-center rounded-3xl px-3 mr-4 bg-opacity-30  ' +
                             (myOrder?.status === 'waiting'
-                                ? 'bg-yellow-500'
+                                ? 'bg-yellow-500 text-yellow-700'
                                 : myOrder?.status === 'accept'
-                                ? 'bg-green-500'
+                                ? 'bg-green-500 text-green-700'
                                 : myOrder?.status === 'reject'
-                                ? 'bg-red-500'
+                                ? 'bg-red-500 text-red-700'
                                 : myOrder?.status === 'Done'
-                                ? 'bg-blue-500'
-                                : 'bg-black')
+                                ? 'bg-blue-500 text-blue-700'
+                                : 'bg-black text-black')
                         }
                     >
                         {myOrder?.status === 'waiting'
-                            ? 'รอการยืนยันออเดอร์'
+                            ? 'รอการยืนยัน'
                             : myOrder?.status === 'accept'
                             ? 'ออเดอร์ของคุณได้รับการยืนยันแล้ว'
                             : myOrder?.status === 'reject'
-                            ? 'ออเดอร์ของคุณถูกปฏิเสธแล้ว'
+                            ? 'ออเดอร์ของคุณถูกปฏิเสธ'
                             : myOrder?.status === 'Done'
                             ? 'ออเดอร์นี้สำเร็จแล้ว'
                             : 'error'}
@@ -94,10 +94,10 @@ export default function myJobCard({
                 <div className="flex pl-2.5 pt-2 pb-2">
                     <div className="bg-[#c3c3c3] bg-opacity-40 w-3/5 flex flex-col rounded-3xl ml-4 mr-2 items-center font-Kanit">
                         <div className="my-4">เมนูที่คุณฝากซื้อ</div>
-                        <div className="text-4xl text-[#FFFFFF]">
+                        <div className="text-4xl text-black">
                             {myOrder?.menu}
                         </div>
-                        <div className="mb-4">
+                        <div className="m-4">
                             {myOrder?.count} กล่อง ร้าน{myOrder?.restaurant}
                         </div>
                         <div className="flex w-full justify-around mb-2">
@@ -106,18 +106,20 @@ export default function myJobCard({
                         </div>
                     </div>
                     <div className="bg-[#d9d9d9] bg-opacity-[0.23] w-2/5 rounded-3xl ml-2 mr-4 flex flex-col items-center justify-center">
-                        <div className="">เพื่อนของคุณจะออกไปเมื่อถึงเวลา</div>
+                        <div className="">
+                            เพื่อนของคุณจะเริ่มออกไปซื้อเมื่อถึงเวลา
+                        </div>
                         <div className="text-4xl mb-4">
                             {convertTimestampToTime(time)} น.
                         </div>
-                        <div className="text-[#FFFFFF] mb-2">
-                            สถานะตอนนี้{' '}
+                        <div className="mb-2 text-orange-600">
+                            ตอนนี้เพื่อนที่ไปซื้อ{' '}
                             {status === 'unfinish'
                                 ? 'กำลังเปิดรับออเดอร์อยู่'
                                 : status === 'close'
                                 ? 'ปิดรับออเดอร์แล้ว กำลังออกไปซื้อ'
                                 : status === 'finish'
-                                ? 'ส่งออเดอร์ครบแล้ว ปิดจ๊อบ'
+                                ? 'ส่งออเดอร์ครบแล้ว ปิดจ๊อบแล้วจ้า'
                                 : 'error'}
                         </div>
                     </div>
