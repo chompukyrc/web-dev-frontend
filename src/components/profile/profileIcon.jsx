@@ -59,8 +59,7 @@ export default function ProfileIcon() {
                     }}
                 >
                     <Avatar className="mr-4 w-8 h-8 " {...config} />
-                    <p className='hidden md:block '>{profile.username}</p>
-                    
+                    <p className="hidden md:block ">{profile.username}</p>
                 </div>
 
                 {open && (

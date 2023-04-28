@@ -50,20 +50,7 @@ export default function myJobCard({
 
     return (
         <div className="flex justify-center mx-10">
-            <div
-                className={
-                    'w-5/6 rounded-3xl shadow-xl cursor-pointer mb-1.5 hover:scale-105 justify-center p-3 ' +
-                    (myOrder?.status === 'waiting'
-                        ? 'bg-[#FFC979]'
-                        : myOrder?.status === 'accept'
-                        ? 'bg-[#60b664]'
-                        : myOrder?.status === 'reject'
-                        ? 'bg-gray-400'
-                        : myOrder?.status === 'Done'
-                        ? 'bg-gray-200'
-                        : 'error')
-                }
-            >
+            <div className="w-5/6 rounded-3xl shadow-xl cursor-pointer mb-1.5 hover:scale-105 justify-center p-3 bg-gray-300">
                 <div className="flex justify-between">
                     <Avatar className="w-14 h-14 absolute " {...config} />
                     <div className="flex font-Kanit w-3/5 px-3.5">
@@ -78,7 +65,20 @@ export default function myJobCard({
                             เบอร์ติดต่อ {profile?.phone}
                         </div>
                     </div>
-                    <div className="flex items-center bg-white bg-opacity-60 rounded-xl px-2 mx-8">
+                    <div
+                        className={
+                            'flex items-center rounded-xl px-2 mx-8 bg-opacity-60  ' +
+                            (myOrder?.status === 'waiting'
+                                ? 'bg-yellow-500'
+                                : myOrder?.status === 'accept'
+                                ? 'bg-green-500'
+                                : myOrder?.status === 'reject'
+                                ? 'bg-red-500'
+                                : myOrder?.status === 'Done'
+                                ? 'bg-blue-500'
+                                : 'bg-black')
+                        }
+                    >
                         {myOrder?.status === 'waiting'
                             ? 'รอการยืนยันออเดอร์'
                             : myOrder?.status === 'accept'
@@ -111,7 +111,7 @@ export default function myJobCard({
                             {convertTimestampToTime(time)} น.
                         </div>
                         <div className="text-[#FFFFFF] mb-2">
-                            ตอนนี้กำลัง{' '}
+                            สถานะตอนนี้{' '}
                             {status === 'unfinish'
                                 ? 'กำลังเปิดรับออเดอร์อยู่'
                                 : status === 'close'
