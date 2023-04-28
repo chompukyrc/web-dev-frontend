@@ -235,7 +235,7 @@ export default function statusJob() {
                                         className="bg-red-400 m-2 p-4 hover:scale-110 rounded-xl"
                                         onClick={() => finishJobHandler()}
                                     >
-                                        สิ้นสุดการฝากซื้อครั้งนี้
+                                        ส่งของหมดแล้ว ปิดจ๊อบนี้เลย
                                     </button>
                                 )}
                             </div>

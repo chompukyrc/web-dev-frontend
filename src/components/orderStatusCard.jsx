@@ -45,15 +45,17 @@ export default function orderStatusCard({
     return (
         <div
             className={
-                'px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4 bg-white ' +
-                (status === 'reject'
-                    ? ' bg-gray-500 text-white w-2/5'
+                'px-16 py-4 rounded-3xl shadow-xl cursor-pointer mb-4 w-3/5 hover:scale-105  ' +
+                (status === 'accept'
+                    ? 'bg-white w-3/6'
+                    : status === 'reject'
+                    ? 'bg-gray-300  w-3/6'
                     : status === 'waiting'
-                    ? ' w-3/5'
-                    : ' w-2/5')
+                    ? 'bg-white'
+                    : '')
             }
         >
-            <div className="font-Kanit flex flex-row text-xl">
+            <div className="font-Kanit flex flex-row text-xl justify-around">
                 <div className="flex flex-col w-4/5">
                     <div className="flex flex-row ">
                         <div className=" font-medium text-xl flex flex-row items-center pb-2 w-1/3 ">
@@ -94,16 +96,16 @@ export default function orderStatusCard({
                     </div>
                 </div>
                 {status == 'waiting' && (
-                    <div className="basis-1/3 flex justify-center">
-                        <div className="basis-3/4 flex items-center justify-center">
+                    <div className="flex justify-center">
+                        <div className="flex items-center justify-center mx-2">
                             <button
-                                className="bg-[#1E8449] hover:bg-[#196F3D] active:bg-[#145A32] text-white h-2/5  rounded-xl w-20 "
+                                className="bg-[#1E8449] hover:bg-[#196F3D] active:bg-[#145A32] text-white h-2/5 rounded-xl w-20 "
                                 onClick={() => acceptHandler()}
                             >
                                 ยืนยัน
                             </button>
                         </div>
-                        <div className="basis-3/4 flex items-center justify-center">
+                        <div className="flex items-center justify-center mx-2">
                             <button
                                 className="bg-[#FDFEFE] hover:bg-[#E5E7E9] active:bg-[#D7DBDD] text-black h-2/5 rounded-xl border-solid border-neutral-300 border-2 w-20  "
                                 onClick={() => rejectHandler()}
