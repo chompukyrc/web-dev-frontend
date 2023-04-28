@@ -41,6 +41,18 @@ function home() {
         }
     }
 
+    // Sidebar tabs
+    const sidebars = [
+        {
+            title: 'ทั้งหมด',
+        },
+        { title: 'รอการยืนยัน' },
+        { title: 'ยืนยันแล้ว' },
+        { title: 'ดำเนินการอยู่' },
+        { title: 'เสร็จสิ้นแล้ว' },
+        { title: 'ถูกปฏิเสธ' },
+    ]
+
     useEffect(() => {
         // Fetch Profile
         const fetchProfile = async () => {
@@ -194,7 +206,7 @@ function home() {
                     (e) =>
                         e.myOrder !== undefined &&
                         e.status === 'finish' &&
-                        e.myOrder.status === 'done',
+                        e.myOrder.status === 'Done',
                 )
 
                 const myOrder_finish_done = [...temp]
@@ -349,43 +361,21 @@ function home() {
             {page === 1 && (
                 <div className="flex animate-in duration-500 slide-in-from-right">
                     {/* Side Bar */}
-                    <div className="bg-green-500 w-1/6 h-screen left-0 flex flex-col">
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(0)}
-                        >
-                            ทั้งหมด
-                        </button>
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(1)}
-                        >
-                            รอการยืนยัน
-                        </button>
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(2)}
-                        >
-                            ยืนยันแล้ว
-                        </button>
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(3)}
-                        >
-                            ดำเนินการอยู่
-                        </button>
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(4)}
-                        >
-                            เสร็จสิ้นแล้ว
-                        </button>
-                        <button
-                            className="py-8 bg-green-600 hover:bg-green-800"
-                            onClick={() => setTab(5)}
-                        >
-                            ถูกปฏิเสธ
-                        </button>
+                    <div className="w-1/6 h-screen left-0 flex flex-col">
+                        {sidebars.map((e, idx) => (
+                            <button
+                                className={
+                                    'py-8 bg-gray-300 hover:bg-gray-200' +
+                                    (tab === idx
+                                        ? ' bg-gray-200 border-r-4 border-green-600 text-green-600 font-semibold'
+                                        : ' ')
+                                }
+                                key={idx}
+                                onClick={() => setTab(idx)}
+                            >
+                                {e.title}
+                            </button>
+                        ))}
                     </div>
 
                     {/* ALL */}
@@ -462,10 +452,12 @@ function home() {
                                 </div>
                             )}
 
-                            {/* line */}
-                            <div className="w-full flex justify-center items-center p-8 flex-col">
-                                <div className="w-9/12 border-b-2 mb-2 border-black">
-                                    reject & done
+                            <div className="flex flex-col w-full">
+                                <div className=" flex items-center justify-center">
+                                    {/* line */}
+                                    <div className="w-9/12 border-b-2 mb-2 border-black">
+                                        reject & done
+                                    </div>
                                 </div>
                                 <p className="mt-12 font-semibold text-2xl m-4 text-center">
                                     ออเดอร์ที่เสร็จสิ้นแล้ว
