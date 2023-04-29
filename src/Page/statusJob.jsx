@@ -184,12 +184,16 @@ export default function statusJob() {
                 handleConfirm={closeJobHandler}
                 textConfirm={'closeJob'}
             />
+            
             <ToastContainer />
-            <nav className="shadow-xl text-center font-Kanit text-2xl">
-                <div className="bg-white text-xl flex justify-center relative">
-                    <img src={food} className="opacity-25 w-[100%] " />
+            <nav className="shadow-xl text-center font-Kanit md:text-2xl text:sm">
+                <div className="bg-white md:text-xl text-xs flex justify-center relative">
+                    <img src={food} className="opacity-25 w-[100%]" />
+                    <img src={food} className="block md:hidden opacity-25 w-[100%]" />
+                    <img src={food} className="block md:hidden opacity-25 w-[100%]" />
+
                     <div className="flex justify-center absolute top-0 left-0 w-[100%]">
-                        <div className="bg-white rounded-3xl w-1/4 border-4 border-green-800 m-[3%]">
+                        <div className="bg-white rounded-3xl md:w-1/4 w-3/5 border-4 border-green-800 m-[3%]">
                             <div className="mt-10">
                                 <p
                                     className={`mb-3 ${
@@ -212,7 +216,7 @@ export default function statusJob() {
                                         : 'error'}
                                 </p>
                                 <p>ร้านที่คุณจะไป {job.restaurants}</p>
-                                <p className="text-3xl my-3">
+                                <p className="md:text-3xl text-lg my-3">
                                     {convertTimestampToTime(job.time)} น.
                                 </p>
                                 <p>
