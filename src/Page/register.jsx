@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 
 function register() {
-    console.log(import.meta.env.VITE_API)
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [userRegister, setUserRegister] = useState({

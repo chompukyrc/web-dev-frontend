@@ -28,9 +28,15 @@ function home() {
     })
     const [showModal, setShowModal] = useState(false)
     const [job, setJob] = useState(false)
-    const [page, setPage] = useState(0)
+    const [page, setPage] = useState(
+        parseInt(localStorage.getItem('home_page_inedx') || 0),
+    )
     const [tab, setTab] = useState(1)
     const [selected, setSelected] = useState([])
+
+    useEffect(() => {
+        localStorage.setItem('home_page_inedx', page)
+    }, [page])
 
     function handleSelected(item, state) {
         if (state) {
@@ -53,6 +59,185 @@ function home() {
         { title: 'ถูกปฏิเสธ' },
     ]
 
+    // Fetch MY order
+    const fetchMyOrder = async () => {
+        try {
+            const res = await axios({
+                url: import.meta.env.VITE_API + '/api/Order/GetMyOrder',
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+
+            return res.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    // Fetch Jobs
+    const fetchJob = async () => {
+        try {
+            const res = await axios({
+                url: import.meta.env.VITE_API + '/api/Job/List',
+                method: 'GET',
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+
+            return res.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const processJobAndMyorder = async () => {
+        try {
+            let jobs = await fetchJob()
+            const myOrder = await fetchMyOrder()
+
+            jobs = jobs.map((e) => {
+                const orderOfThisJob = myOrder.find((_e) => _e.job === e.id)
+                return {
+                    ...e,
+                    myOrder: orderOfThisJob,
+                    // generate Left ถ้า < 0 จะ display แค่ 0
+                    left: Math.max(e.limit - e.count, 0),
+                }
+            })
+
+            // ============ Calculate notMyOrder ===============
+            // reverse array -> show latest job first
+            let temp = [...jobs]
+
+            // Remove pass job (job.time < now)
+            temp = temp.filter((e) => new Date().getTime() < e.time)
+
+            // sort by newest
+            temp.sort((a, b) => a.time - b.time)
+
+            // move zero left (or less) to end of array
+            temp.sort((a, b) => (a.left === 0) - (b.left === 0))
+
+            // Check myOrder is undifined -> ยังไม่เคยสั่ง
+            temp = temp.filter(
+                (e) => e.myOrder === undefined && e.status === 'unfinish',
+            )
+            const notMyOrder = [...temp]
+
+            // ============ Calculate myOrder_unfinish_accept ===============
+            temp = [...jobs]
+
+            temp = temp.filter(
+                (e) =>
+                    e.myOrder !== undefined &&
+                    e.status === 'unfinish' &&
+                    e.myOrder.status === 'accept',
+            )
+
+            const myOrder_unfinish_accept = [...temp]
+
+            // ============ Calculate myOrder_unfinish_waiting ===============
+            temp = [...jobs]
+
+            temp = temp.filter(
+                (e) =>
+                    e.myOrder !== undefined &&
+                    e.status === 'unfinish' &&
+                    e.myOrder.status === 'waiting',
+            )
+
+            const myOrder_unfinish_waiting = [...temp]
+
+            // ============ Calculate myOrder_unfinish_reject ===============
+            temp = [...jobs]
+
+            temp = temp.filter(
+                (e) =>
+                    e.myOrder !== undefined &&
+                    e.status === 'unfinish' &&
+                    e.myOrder.status === 'reject',
+            )
+
+            const myOrder_unfinish_reject = [...temp]
+
+            // ============ Calculate myOrder_close_accept ===============
+            temp = [...jobs]
+
+            temp = temp.filter(
+                (e) =>
+                    e.myOrder !== undefined &&
+                    e.status === 'close' &&
+                    e.myOrder.status === 'accept',
+            )
+
+            const myOrder_close_accept = [...temp]
+
+            // ============ Calculate myOrder_close_reject ===============
+            temp = [...jobs]
+
+            temp = temp.filter(
+                (e) =>
+                    e.myOrder !== undefined &&
+                    e.status === 'close' &&
+                    e.myOrder.status === 'reject',
+            )
+
+            const myOrder_close_reject = [...temp]
+
+            // ============ Calculate myOrder_finish_done ===============
+            temp = [...jobs]
+
+            temp = temp.filter(
+                (e) =>
+                    e.myOrder !== undefined &&
+                    e.status === 'finish' &&
+                    e.myOrder.status === 'Done',
+            )
+
+            const myOrder_finish_done = [...temp]
+
+            // ============ Calculate myOrder_finish_reject ===============
+            temp = [...jobs]
+
+            temp = temp.filter(
+                (e) =>
+                    e.myOrder !== undefined &&
+                    e.status === 'finish' &&
+                    e.myOrder.status === 'reject',
+            )
+
+            const myOrder_finish_reject = [...temp]
+
+            setJobs(jobs)
+            setJobsCetagory({
+                notMyOrder: notMyOrder,
+                myOrder_unfinish_waiting: myOrder_unfinish_waiting,
+                myOrder_unfinish_accept: myOrder_unfinish_accept,
+                myOrder_unfinish_reject: myOrder_unfinish_reject,
+                myOrder_close_accept: myOrder_close_accept,
+                myOrder_close_reject: myOrder_close_reject,
+                myOrder_finish_done: myOrder_finish_done,
+                myOrder_finish_reject: myOrder_finish_reject,
+            })
+
+            // console.log({
+            //     notMyOrder: notMyOrder,
+            //     myOrder_unfinish_waiting: myOrder_unfinish_waiting,
+            //     myOrder_unfinish_accept: myOrder_unfinish_accept,
+            //     myOrder_unfinish_reject: myOrder_unfinish_reject,
+            //     myOrder_close_accept: myOrder_close_accept,
+            //     myOrder_close_reject: myOrder_close_reject,
+            //     myOrder_finish_done: myOrder_finish_done,
+            //     myOrder_finish_reject: myOrder_finish_reject,
+            // })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {
         // Fetch Profile
         const fetchProfile = async () => {
@@ -66,185 +251,6 @@ function home() {
                 })
                 setProfile(res.data)
                 // console.log(res.data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        // Fetch Jobs
-        const fetchJob = async () => {
-            try {
-                const res = await axios({
-                    url: import.meta.env.VITE_API + '/api/Job/List',
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                })
-
-                return res.data
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        // Fetch MY order
-        const fetchMyOrder = async () => {
-            try {
-                const res = await axios({
-                    url: import.meta.env.VITE_API + '/api/Order/GetMyOrder',
-                    method: 'GET',
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                })
-
-                return res.data
-            } catch (error) {
-                console.log(error)
-            }
-        }
-
-        const processJobAndMyorder = async () => {
-            try {
-                let jobs = await fetchJob()
-                const myOrder = await fetchMyOrder()
-
-                jobs = jobs.map((e) => {
-                    const orderOfThisJob = myOrder.find((_e) => _e.job === e.id)
-                    return {
-                        ...e,
-                        myOrder: orderOfThisJob,
-                        // generate Left ถ้า < 0 จะ display แค่ 0
-                        left: Math.max(e.limit - e.count, 0),
-                    }
-                })
-
-                // ============ Calculate notMyOrder ===============
-                // reverse array -> show latest job first
-                let temp = [...jobs]
-
-                // Remove pass job (job.time < now)
-                temp = temp.filter((e) => new Date().getTime() < e.time)
-
-                // sort by newest
-                temp.sort((a, b) => a.time - b.time)
-
-                // move zero left (or less) to end of array
-                temp.sort((a, b) => (a.left === 0) - (b.left === 0))
-
-                // Check myOrder is undifined -> ยังไม่เคยสั่ง
-                temp = temp.filter(
-                    (e) => e.myOrder === undefined && e.status === 'unfinish',
-                )
-                const notMyOrder = [...temp]
-
-                // ============ Calculate myOrder_unfinish_accept ===============
-                temp = [...jobs]
-
-                temp = temp.filter(
-                    (e) =>
-                        e.myOrder !== undefined &&
-                        e.status === 'unfinish' &&
-                        e.myOrder.status === 'accept',
-                )
-
-                const myOrder_unfinish_accept = [...temp]
-
-                // ============ Calculate myOrder_unfinish_waiting ===============
-                temp = [...jobs]
-
-                temp = temp.filter(
-                    (e) =>
-                        e.myOrder !== undefined &&
-                        e.status === 'unfinish' &&
-                        e.myOrder.status === 'waiting',
-                )
-
-                const myOrder_unfinish_waiting = [...temp]
-
-                // ============ Calculate myOrder_unfinish_reject ===============
-                temp = [...jobs]
-
-                temp = temp.filter(
-                    (e) =>
-                        e.myOrder !== undefined &&
-                        e.status === 'unfinish' &&
-                        e.myOrder.status === 'reject',
-                )
-
-                const myOrder_unfinish_reject = [...temp]
-
-                // ============ Calculate myOrder_close_accept ===============
-                temp = [...jobs]
-
-                temp = temp.filter(
-                    (e) =>
-                        e.myOrder !== undefined &&
-                        e.status === 'close' &&
-                        e.myOrder.status === 'accept',
-                )
-
-                const myOrder_close_accept = [...temp]
-
-                // ============ Calculate myOrder_close_reject ===============
-                temp = [...jobs]
-
-                temp = temp.filter(
-                    (e) =>
-                        e.myOrder !== undefined &&
-                        e.status === 'close' &&
-                        e.myOrder.status === 'reject',
-                )
-
-                const myOrder_close_reject = [...temp]
-
-                // ============ Calculate myOrder_finish_done ===============
-                temp = [...jobs]
-
-                temp = temp.filter(
-                    (e) =>
-                        e.myOrder !== undefined &&
-                        e.status === 'finish' &&
-                        e.myOrder.status === 'Done',
-                )
-
-                const myOrder_finish_done = [...temp]
-
-                // ============ Calculate myOrder_finish_reject ===============
-                temp = [...jobs]
-
-                temp = temp.filter(
-                    (e) =>
-                        e.myOrder !== undefined &&
-                        e.status === 'finish' &&
-                        e.myOrder.status === 'reject',
-                )
-
-                const myOrder_finish_reject = [...temp]
-
-                setJobs(jobs)
-                setJobsCetagory({
-                    notMyOrder: notMyOrder,
-                    myOrder_unfinish_waiting: myOrder_unfinish_waiting,
-                    myOrder_unfinish_accept: myOrder_unfinish_accept,
-                    myOrder_unfinish_reject: myOrder_unfinish_reject,
-                    myOrder_close_accept: myOrder_close_accept,
-                    myOrder_close_reject: myOrder_close_reject,
-                    myOrder_finish_done: myOrder_finish_done,
-                    myOrder_finish_reject: myOrder_finish_reject,
-                })
-
-                // console.log({
-                //     notMyOrder: notMyOrder,
-                //     myOrder_unfinish_waiting: myOrder_unfinish_waiting,
-                //     myOrder_unfinish_accept: myOrder_unfinish_accept,
-                //     myOrder_unfinish_reject: myOrder_unfinish_reject,
-                //     myOrder_close_accept: myOrder_close_accept,
-                //     myOrder_close_reject: myOrder_close_reject,
-                //     myOrder_finish_done: myOrder_finish_done,
-                //     myOrder_finish_reject: myOrder_finish_reject,
-                // })
             } catch (error) {
                 console.log(error)
             }
@@ -274,7 +280,12 @@ function home() {
 
     return (
         <div className="font-Kanit">
-            <NewOrderModal job={job} setJob={setJob} />
+            <NewOrderModal
+                job={job}
+                setJob={setJob}
+                processJobAndMyorder={processJobAndMyorder}
+                setPage={setPage}
+            />
 
             <NewJobModal showModal={showModal} setShowModal={setShowModal} />
 
