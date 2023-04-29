@@ -26,6 +26,16 @@ function register() {
             userRegister.lastname == '' ||
             userRegister.phone == ''
         ) {
+            toast.error('🍔 กรอกข้อมูลให้ครบถ้วน', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
             return
         }
         if (userRegister.password != userRegister.confirmpassword) {
