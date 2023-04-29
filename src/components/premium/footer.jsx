@@ -116,12 +116,14 @@ export default function PremiumFooter({ isPremium }) {
                 className=" animate animate-in slide-in-from-bottom pt-8 pb-4 pl-4 pr-4 fixed inset-x-0 bottom-0 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-opacity-60 h-24 z-50 flex items-center space-x-4 justify-center"
             >
                 <ToastContainer />
-                <p className=" text-white text-3xl mb-4">
+                <p className=" text-white text-3xl mb-4 md:text-lg">
                     สมัครพรีเมียมเมมเบอร์วันนี้ เพื่อรับ
-                    <span className=" font-bold text-6xl">สิทธิพิเศษ</span>
+                    <span className=" font-bold text-6xl md:text-base">
+                        สิทธิพิเศษ
+                    </span>
                     กว่าใคร
                 </p>
-                <div className="p-2 text-center text-white animate animate-bounce duration-1500 font-bold">
+                <div className="p-2 text-center text-white animate animate-bounce duration-1500 font-bold md:text-base">
                     <p className="text-2xl">
                         เพียง{' '}
                         <span className="text-4xl text-green-400">50</span>{' '}
