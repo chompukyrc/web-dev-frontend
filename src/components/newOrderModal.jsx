@@ -108,6 +108,8 @@ export default function newOrderModal({ job, setJob }) {
                         description: '',
                         count: 1,
                     })
+                    // Show Ads
+                    localStorage.setItem('show_ads', 'show')
                     return setJob(false)
                 }, 1000)
             }

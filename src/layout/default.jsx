@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PremiumFooter from '../components/premium/footer'
+import PremiumPopup from '../components/premium/popup'
 import axios from 'axios'
 import NotificationIcon from '../components/notification/notificationIcon'
 import ProfileIcon from '../components/profile/profileIcon'
@@ -152,6 +153,7 @@ const Layout = ({ children }) => {
             <main>{children}</main>
             {/* Premium Popup! */}
             <PremiumFooter isPremium={profile?.premiumMember} />
+            <PremiumPopup isPremium={profile?.premiumMember} />
         </div>
     )
 }
