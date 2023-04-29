@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Avatar, { genConfig } from 'react-nice-avatar'
-import axios, { Axios } from 'axios'
+import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify'
 
 export default function profile() {

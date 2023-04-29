@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import PremiumPopup from '../components/premium/popup'
+import PremiumFooter from '../components/premium/footer'
 import axios from 'axios'
 import NotificationIcon from '../components/notification/notificationIcon'
 import ProfileIcon from '../components/profile/profileIcon'
@@ -41,12 +41,22 @@ const Layout = ({ children }) => {
                     }}
                 >
                     <div className="flex flex-col items-center md:ml-0 ml-[40%]">
-                        <p className="md:hidden h-5 text-lg ">🍔</p>
+                        <p className="md:hidden h-5 text-lg ">🍔`</p>
                         <div className="flex ">
                             <p className="md:block hidden mr-[4%] ">🍔</p>
-                            <p className="mr-[2%]">Feed</p>
-                            <p className="text-amber-300 mr-[2%]">My</p>
-                            <p>Friend</p>
+                            {profile?.premiumMember === true ? (
+                                <p className="text-amber-300 uppercase">
+                                    Premium
+                                </p>
+                            ) : (
+                                <p className="w-40">
+                                    <span className="mr-[2%]">Feed </span>
+                                    <span className="text-amber-300 mr-[2%]">
+                                        My
+                                    </span>
+                                    <span>Friend</span>
+                                </p>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -141,7 +151,7 @@ const Layout = ({ children }) => {
             </div>
             <main>{children}</main>
             {/* Premium Popup! */}
-            <PremiumPopup />
+            <PremiumFooter isPremium={profile?.premiumMember} />
         </div>
     )
 }
