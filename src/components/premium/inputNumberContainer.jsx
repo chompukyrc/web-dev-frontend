@@ -34,6 +34,10 @@ export default function InputNumberContainer({ trueMoney, setTrueMoney }) {
                 const temp = [...trueMoney]
                 temp[idx - 1] = ''
                 setTrueMoney(temp)
+            } else if (idx === 13) {
+                const temp = [...trueMoney]
+                temp[13] = ''
+                setTrueMoney(temp)
             }
         }
     }
