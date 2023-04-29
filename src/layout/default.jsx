@@ -42,11 +42,11 @@ const Layout = ({ children }) => {
                     }}
                 >
                     <div className="flex flex-col items-center md:ml-0 ml-[40%]">
-                        <p className="md:hidden h-5 text-lg ">🍔`</p>
+                        <p className="md:hidden h-5 text-lg ">🍔</p>
                         <div className="flex ">
                             <p className="md:block hidden mr-[4%] ">🍔</p>
                             {profile?.premiumMember === true ? (
-                                <p className="text-amber-300 uppercase">
+                                <p className="text-amber-400 uppercase">
                                     Premium
                                 </p>
                             ) : (
@@ -64,7 +64,7 @@ const Layout = ({ children }) => {
                 <div className="md:block order-2 hidden mr-[5%] w-[40%]">
                     <div className="flex items-center ">
                         <div
-                            className=" flex justify-center hover:bg-[#4da452] cursor-pointer text-white w-1/4 py-4 mx-[2%]"
+                            className=" flex justify-center hover:bg-[#4da452] cursor-pointer text-white w-1/5 py-4 mx-[2%]"
                             onClick={() => {
                                 navigate('/')
                             }}
@@ -73,7 +73,7 @@ const Layout = ({ children }) => {
                             หน้าหลัก
                         </div>
                         <div
-                            className="flex justify-center hover:bg-[#4da452] cursor-pointer text-white w-1/4 py-4 mx-[2%]"
+                            className="flex justify-center hover:bg-[#4da452] cursor-pointer text-white w-1/5 py-4 mx-[2%]"
                             onClick={() => {
                                 navigate('/aboutUs')
                             }}
