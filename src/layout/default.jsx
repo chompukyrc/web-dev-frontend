@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import Dialog from '../components/dialog'
-// import Avatar, { genConfig } from 'react-nice-avatar'
+import PremiumPopup from '../components/premium/popup'
 import axios from 'axios'
 import NotificationIcon from '../components/notification/notificationIcon'
 import ProfileIcon from '../components/profile/profileIcon'
@@ -141,6 +140,8 @@ const Layout = ({ children }) => {
                 </div>
             </div>
             <main>{children}</main>
+            {/* Premium Popup! */}
+            <PremiumPopup />
         </div>
     )
 }
