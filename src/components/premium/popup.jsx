@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 export default function PremiumPopup({ isPremium }) {
     const [countdown, setCountdown] = useState(5)
-    const [isShow, setIsShow] = useState(false)
+    const [isShow, setIsShow] = useState(true)
 
     useEffect(() => {
         countdown > 0 && setTimeout(() => setCountdown(countdown - 1), 1000)
