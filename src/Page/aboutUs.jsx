@@ -47,13 +47,11 @@ export default function aboutUs() {
     return (
         <div className=" flex flex-col items-center font-Kanit">
             <div className="mt-8 mb-3 md:text-2xl md:w-screen w-5/6 text-base text-center">
-                <p>โปรเจคนี้เป็นส่วนหนึ่งของวิชา</p> 
+                <p>โปรเจคนี้เป็นส่วนหนึ่งของวิชา</p>
                 <p>WEB APPLICATION DEVELOPMENT</p>
                 <p>ซึ่งพัฒนาโดย</p>
             </div>
-            <div
-                className="z-20 justify-center flex flex-wrap mx-auto md:w-[80%] w-[70%] bg-white md:pt-20 pt-10 rounded-[30px] shadow-xl"
-            >
+            <div className="z-20 justify-center flex flex-wrap mx-auto md:w-[80%] w-[70%] bg-white md:pt-20 pt-10 rounded-[30px] shadow-xl">
                 {profiles.map((profile) => {
                     return (
                         <div

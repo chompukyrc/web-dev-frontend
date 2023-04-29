@@ -55,7 +55,6 @@ export default function orderStatusCard({
                     : '')
             }
         >
-        
             <div className="font-Kanit flex flex-row text-xl justify-around">
                 <div className="flex flex-col w-4/5">
                     <div className="flex flex-row ">

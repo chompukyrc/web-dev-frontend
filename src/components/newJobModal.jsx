@@ -138,7 +138,6 @@ export default function newJobModal({ showModal, setShowModal }) {
                                                 },
                                             )}
                                         </select>
-                                        
 
                                         <div className="flex justify-between">
                                             {/* เวลา */}
