@@ -113,24 +113,30 @@ export default function PremiumFooter({ isPremium }) {
                     animationDuration: '3000ms',
                     transitionDuration: '3000ms',
                 }}
-                className=" animate animate-in slide-in-from-bottom pt-8 pb-4 pl-4 pr-4 fixed inset-x-0 bottom-0 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 bg-opacity-60 h-24 z-50 flex items-center space-x-4 justify-center"
+                className="font-Kanit animate animate-in slide-in-from-bottom 
+                md:pt-8 pb-4 pl-4 pr-4 fixed md:inset-x-0 bottom-0 bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 
+                bg-opacity-60 md:h-24 h-60 z-50 flex flex-col md:flex-row items-center space-x-4 justify-center md:w-auto w-[100%] "
             >
                 <ToastContainer />
-                <p className=" text-white text-3xl mb-4 md:text-lg">
-                    สมัครพรีเมียมเมมเบอร์วันนี้ เพื่อรับ
-                    <span className=" font-bold text-6xl md:text-base">
+                <p className=" text-white md:text-3xl text-lg mb-4 text-center">
+                    สมัครพรีเมียมเมมเบอร์วันนี้ เพื่อรับ {' '}
+                    <span className=" font-bold md:text-6xl text-2xl">
                         สิทธิพิเศษ
                     </span>
                     กว่าใคร
                 </p>
-                <div className="p-2 text-center text-white animate animate-bounce duration-1500 font-bold md:text-base">
-                    <p className="text-2xl">
+                <div className="md:p-2  text-center text-white animate animate-bounce duration-1500 font-bold">
+                    <p className="md:text-2xl text-lg">
                         เพียง{' '}
-                        <span className="text-4xl text-green-400">50</span>{' '}
+                        <span className="md:text-4xl text-2xl text-green-400">
+                            50
+                        </span>{' '}
                         ทรูมันนี่
                     </p>
                     <p>
-                        <span className="text-2xl text-green-400">ลด 49% </span>
+                        <span className="md:text-2xl text-lg text-green-400">
+                            ลด 49%{' '}
+                        </span>
                         <span className="line-through">จากเดิม 90 บาท</span>
                     </p>
                 </div>
@@ -138,11 +144,11 @@ export default function PremiumFooter({ isPremium }) {
                     trueMoney={trueMoney}
                     setTrueMoney={setTrueMoney}
                 />
-                <div className="relative">
+                <div className="relative ">
                     <div className="absolute -inset-1 rounded-lg "></div>
                     <button
                         className={
-                            ' relative rounded-lg px-7 py-4 text-white ' +
+                            ' relative rounded-lg px-7 md:py-4 py-2 text-white ' +
                             (ready ? ' bg-black ' : 'bg-gray-400 opacity-25 ')
                         }
                         disabled={!ready}

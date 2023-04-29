@@ -51,10 +51,10 @@ export default function InputNumberContainer({ trueMoney, setTrueMoney }) {
     }
 
     return (
-        <div className="space-x-2 flex justify-center items-center">
+        <div className="space-x-2 flex justify-center items-center ">
             {[0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0].map((e, idx) => (
                 <div
-                    className="flex justify-center items-center space-x-2"
+                    className="flex justify-center items-center md:space-x-2 space-x-1 md:mb-0 mb-2"
                     key={idx}
                 >
                     <input
@@ -62,7 +62,7 @@ export default function InputNumberContainer({ trueMoney, setTrueMoney }) {
                         value={trueMoney[idx]}
                         ref={refs[idx]}
                         onChange={(e) => onChangeHandle(e, idx)}
-                        className="p-2 h-8 w-8 text-center text-xl"
+                        className="md:p-2 md:h-8 md:w-8 h-[14px] w-[14px] text-center text-xl"
                         maxLength={1}
                     ></input>
                     {e === 1 && <p className="text-center text-white">-</p>}
