@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import PremiumFooter from '../components/premium/footer'
+import PremiumPopup from '../components/premium/popup'
 import axios from 'axios'
 import NotificationIcon from '../components/notification/notificationIcon'
 import ProfileIcon from '../components/profile/profileIcon'
@@ -45,7 +46,7 @@ const Layout = ({ children }) => {
                         <div className="flex ">
                             <p className="md:block hidden mr-[4%]  ">🍔</p>
                             {profile?.premiumMember === true ? (
-                                <p className="text-amber-300 uppercase">
+                                <p className="text-amber-400 uppercase">
                                     Premium
                                 </p>
                             ) : (
@@ -63,7 +64,7 @@ const Layout = ({ children }) => {
                 <div className="md:block order-2 hidden mr-[5%] w-[40%]">
                     <div className="flex items-center ">
                         <div
-                            className=" flex justify-center hover:bg-[#4da452] cursor-pointer text-white w-1/4 py-4 mx-[2%]"
+                            className=" flex justify-center hover:bg-[#4da452] cursor-pointer text-white w-1/5 py-4 mx-[2%]"
                             onClick={() => {
                                 navigate('/')
                             }}
@@ -72,7 +73,7 @@ const Layout = ({ children }) => {
                             หน้าหลัก
                         </div>
                         <div
-                            className="flex justify-center hover:bg-[#4da452] cursor-pointer text-white w-1/4 py-4 mx-[2%]"
+                            className="flex justify-center hover:bg-[#4da452] cursor-pointer text-white w-1/5 py-4 mx-[2%]"
                             onClick={() => {
                                 navigate('/aboutUs')
                             }}
@@ -152,6 +153,7 @@ const Layout = ({ children }) => {
             <main>{children}</main>
             {/* Premium Popup! */}
             <PremiumFooter isPremium={profile?.premiumMember} />
+            <PremiumPopup isPremium={profile?.premiumMember} />
         </div>
     )
 }

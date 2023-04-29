@@ -291,7 +291,7 @@ function home() {
             <nav className="text-center md:text-2xl text-sm">
                 <div className="flex justify-start h-16 bg-white">
                     <button
-                        className={`md:w-1/3 w-1/2 ; ${
+                        className={`w-1/2 ; ${
                             page === 0
                                 ? 'border-b-4 border-green-600 bg-gray-200'
                                 : 'bg-gray-300'
@@ -301,7 +301,7 @@ function home() {
                         ใครไปซื้อบ้างน้า
                     </button>
                     <button
-                        className={`md:w-1/3 w-1/2 ; ${
+                        className={` w-1/2 ; ${
                             page === 1
                                 ? 'border-b-4 border-green-600 bg-gray-200'
                                 : 'bg-gray-300'
@@ -310,9 +310,9 @@ function home() {
                     >
                         ดูที่สั่งไปแล้ว
                     </button>
-                    <div className=" md:block hidden w-1/3 ">
+                    {/* <div className=" md:block hidden w-1/3 ">
                         <img src={cover} className="h-16 w-screen opacity-75" />
-                    </div>
+                    </div> */}
                 </div>
             </nav>
 
