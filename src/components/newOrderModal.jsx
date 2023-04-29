@@ -132,15 +132,19 @@ export default function newOrderModal({ job, setJob }) {
             {job ? (
                 <>
                     <ToastContainer />
-                    <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                    <div className=" justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                        <div className="relative md:w-auto w-[80%] my-6 mx-auto max-w-3xl">
                             {/*content*/}
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                 {/*header*/}
-                                <div className="flex flex-col items-center justify-center center pt-8 border-b border-solid">
-                                    <div className=" text-xl font-semibold flex items-center">
+                                <div className="flex flex-col items-center justify-center center md:pt-8 pt-4 border-b border-solid ">
+                                    <Avatar
+                                        className="block md:hidden w-14 h-14 mr-2"
+                                        {...config}
+                                    />
+                                    <div className=" md:text-xl text-lg font-semibold flex items-center">
                                         <Avatar
-                                            className="w-14 h-14 mr-2"
+                                            className="md:block hidden w-14 h-14 mr-2"
                                             {...config}
                                         />
                                         {ownerData.firstname}{' '}
@@ -158,7 +162,7 @@ export default function newOrderModal({ job, setJob }) {
                                     </div>
 
                                     <button
-                                        className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                                        className="ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                                         onClick={() => setJob(false)}
                                     >
                                         <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
@@ -167,126 +171,129 @@ export default function newOrderModal({ job, setJob }) {
                                     </button>
                                 </div>
                                 {/*body*/}
-                                {/* <div>
-                                    <pre>{JSON.stringify(creatOrder)}</pre>
-                                </div> */}
-                                <div className="relative p-6 flex-auto">
-                                    {/* ชื่อร้าน */}
-                                    <label
-                                        htmlFor="restaurant"
-                                        className="font-normal text-lg mt-4 text-black"
-                                    >
-                                        ร้านไหนดีเอ่ย ?
-                                    </label>
-                                    <select
-                                        className="block  w-full bg-white border border-green-500 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                        value={creatOrder.restaurant}
-                                        onChange={(e) => {
-                                            setCreatOrder({
-                                                ...creatOrder,
-                                                restaurant: e.target.value,
-                                            })
-                                        }}
-                                    >
-                                        <option>{job.restaurants}</option>
+                                <div className="relative px-4  flex-auto">
+                                    <div className="my-4 text-slate-500 md:text-lg text-sm leading-relaxed">
+                                        {/* ชื่อร้าน */}
+                                        <label
+                                            htmlFor="restaurant"
+                                            className="font-normal md:md:text-lg text-sm  mt-2 text-black"
+                                        >
+                                            ร้านเดียวกัน หรือร้านไหนดีเอ่ย ?
+                                        </label>
+                                        <select
+                                            className="block w-full bg-white border my-2 border-green-500 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                            value={creatOrder.restaurant}
+                                            onChange={(e) => {
+                                                setCreatOrder({
+                                                    ...creatOrder,
+                                                    restaurant: e.target.value,
+                                                })
+                                            }}
+                                        >
+                                            <option>{job.restaurants}</option>
 
-                                        {restaurant.map((restaurants, idx) => {
-                                            return (
-                                                <option key={idx}>
-                                                    {restaurants.name}
-                                                </option>
-                                            )
-                                        })}
-                                    </select>
+                                            {restaurant.map(
+                                                (restaurants, idx) => {
+                                                    return (
+                                                        <option key={idx}>
+                                                            {restaurants.name}
+                                                        </option>
+                                                    )
+                                                },
+                                            )}
+                                        </select>
 
-                                    <div className="flex justify-between">
-                                        <div className="w-full">
-                                            {/* เมนู */}
-                                            <label
-                                                htmlFor="menu"
-                                                className="font-normal text-lg mt-4 text-black"
-                                            >
-                                                เมนู
-                                            </label>
-                                            <input
-                                                type="text"
-                                                id="menu"
-                                                className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                                                placeholder="eg. พาสต้า"
-                                                value={creatOrder.menu}
-                                                onChange={(e) => {
-                                                    setCreatOrder({
-                                                        ...creatOrder,
-                                                        menu: e.target.value,
-                                                    })
-                                                }}
-                                            />
+                                        <div className="flex justify-between mt-4">
+                                            <div className="w-full">
+                                                {/* เมนู */}
+                                                <label
+                                                    htmlFor="menu"
+                                                    className="font-normal md:text-lg text-sm mt-2 text-black"
+                                                >
+                                                    เมนู
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    id="menu"
+                                                    className="w-full px-4 py-2 mt-2 mb-2 shadow-lg"
+                                                    placeholder="eg. พาสต้า"
+                                                    value={creatOrder.menu}
+                                                    onChange={(e) => {
+                                                        setCreatOrder({
+                                                            ...creatOrder,
+                                                            menu: e.target
+                                                                .value,
+                                                        })
+                                                    }}
+                                                />
+                                            </div>
+                                            <div>
+                                                {/* จำนวน */}
+                                                <label
+                                                    htmlFor="count"
+                                                    className="font-normal md:text-lg text-sm mt-2 text-black"
+                                                >
+                                                    จำนวน
+                                                </label>
+                                                <input
+                                                    type="number"
+                                                    min="1"
+                                                    id="count"
+                                                    className="w-full px-4 py-2 mt-2 mb-2 shadow-lg"
+                                                    placeholder="eg. 1"
+                                                    value={creatOrder.count}
+                                                    onChange={(e) => {
+                                                        setCreatOrder({
+                                                            ...creatOrder,
+                                                            count: e.target
+                                                                .value,
+                                                        })
+                                                    }}
+                                                />
+                                            </div>
                                         </div>
-                                        <div>
-                                            {/* จำนวน */}
-                                            <label
-                                                htmlFor="count"
-                                                className="font-normal text-lg mt-4 text-black"
-                                            >
-                                                จำนวน
-                                            </label>
-                                            <input
-                                                type="number"
-                                                min="1"
-                                                id="count"
-                                                className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                                                placeholder="eg. 1"
-                                                value={creatOrder.count}
-                                                onChange={(e) => {
-                                                    setCreatOrder({
-                                                        ...creatOrder,
-                                                        count: e.target.value,
-                                                    })
-                                                }}
-                                            />
-                                        </div>
+
+                                        {/* จัดส่งที่ */}
+                                        <label
+                                            htmlFor="destination"
+                                            className="font-normal md:text-lg text-sm mt-2 text-black"
+                                        >
+                                            จัดส่งที่
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="destination"
+                                            className="w-full px-4 py-2 mt-2 mb-2 shadow-lg"
+                                            placeholder="eg. ECC ISAG(701)"
+                                            value={creatOrder.destination}
+                                            onChange={(e) => {
+                                                setCreatOrder({
+                                                    ...creatOrder,
+                                                    destination: e.target.value,
+                                                })
+                                            }}
+                                        />
+                                        {/* หมายเหตุ */}
+                                        <label
+                                            htmlFor="description"
+                                            className="font-normal md:text-lg text-sm mt-4 text-black"
+                                        >
+                                            หมายเหตุ
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="description"
+                                            className="w-full px-4 py-2 mt-2 shadow-lg"
+                                            placeholder="eg. ไม่ใส่กระเทียม"
+                                            value={creatOrder.description}
+                                            onChange={(e) => {
+                                                setCreatOrder({
+                                                    ...creatOrder,
+                                                    description: e.target.value,
+                                                })
+                                            }}
+                                        />
                                     </div>
-
-                                    {/* จัดส่งที่ */}
-                                    <label
-                                        htmlFor="destination"
-                                        className="font-normal text-lg mt-4 text-black"
-                                    >
-                                        จัดส่งที่
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="destination"
-                                        className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                                        placeholder="eg. ECC ISAG(701)"
-                                        value={creatOrder.destination}
-                                        onChange={(e) => {
-                                            setCreatOrder({
-                                                ...creatOrder,
-                                                destination: e.target.value,
-                                            })
-                                        }}
-                                    />
-                                    {/* หมายเหตุ */}
-                                    <label
-                                        htmlFor="description"
-                                        className="font-normal text-lg mt-4 text-black"
-                                    >
-                                        หมายเหตุ
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="description"
-                                        className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                                        placeholder="eg. ไม่ใส่กระเทียม"
-                                        value={creatOrder.description}
-                                        onChange={(e) => {
-                                            setCreatOrder({
-                                                ...creatOrder,
-                                                description: e.target.value,
-                                            })
-                                        }}
-                                    />
                                 </div>
                                 {/*footer*/}
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">

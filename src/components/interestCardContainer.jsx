@@ -12,14 +12,14 @@ export default function InterestCardContainer({ selected, handleSelected }) {
 
     return (
         <div>
-            <div className="bg-white h-20  ">
-                <p className="p-6 md:text-2xl text-sm text-left md:ml-40">
+            <div className="bg-white md:h-20 h-13  ">
+                <p className="md:p-6 p-4 pb-2 md:text-2xl text-sm text-left md:ml-40">
                     เลือกร้านที่คุณสนใจ 🔍{' '}
                 </p>
             </div>
 
-            <div className="flex justify-center">
-                {/* <div className="flex flex-row flex-wrap h-[120px] md:w-3/4 w-auto text-sm md:text-lg ">
+            <div className="flex justify-center md:h-auto h-[100px]">
+                <div className="flex flex-row flex-wrap md:h-[120px] md:w-3/4 w-[90%] text-xs md:text-lg ">
                     {interestDataJSON.map((interest, idx) => {
                         return (
                             <Tag
@@ -29,7 +29,7 @@ export default function InterestCardContainer({ selected, handleSelected }) {
                             />
                         )
                     })}
-                </div> */}
+                </div>
             </div>
         </div>
     )
@@ -46,13 +46,13 @@ const Tag = ({ interest, handleSelected }) => {
     return (
         <>
             <button
-                className={`mx-5 bg-green-600 h-8 w-auto rounded-full text-center drop-shadow-sm hover:bg-slate-800 ; ${
+                className={`md:mx-5 mx-1 bg-green-600 md:h-8 h-6 w-auto rounded-full text-center drop-shadow-sm hover:bg-slate-800 ; ${
                     clicked ? 'bg-green-900' : ''
                 }
         `}
                 onClick={() => clickHandler(interest)}
             >
-                <p className="px-6 text-white">{interest.name}</p>
+                <p className="md:px-6 px-2 text-white">{interest.name}</p>
             </button>
         </>
     )

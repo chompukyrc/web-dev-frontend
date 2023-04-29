@@ -14,7 +14,7 @@ export default function statusJob() {
     const { jobId } = useParams()
     const [orders, setOrder] = useState([])
     const [job, setJob] = useState({})
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(0)
     const [open, setOpen] = useState(false)
 
     useEffect(() => {
@@ -186,17 +186,16 @@ export default function statusJob() {
             />
             
             <ToastContainer />
-            <nav className="shadow-xl text-center font-Kanit md:text-2xl text:sm">
-                <div className="bg-white md:text-xl text-xs flex justify-center relative">
+            <nav className="shadow-xl text-center font-Kanit md:text-2xl text-sm">
+                <div className="bg-white md:text-xl text-xs flex justify-center md:flex-row flex-col relative">
                     <img src={food} className="opacity-25 w-[100%]" />
-                    <img src={food} className="block md:hidden opacity-25 w-[100%]" />
                     <img src={food} className="block md:hidden opacity-25 w-[100%]" />
 
                     <div className="flex justify-center absolute top-0 left-0 w-[100%]">
                         <div className="bg-white rounded-3xl md:w-1/4 w-3/5 border-4 border-green-800 m-[3%]">
-                            <div className="mt-10">
+                            <div className="md:mt-10 mt-3">
                                 <p
-                                    className={`mb-3 ${
+                                    className={`md:mb-3 mb-1 ${
                                         job.status === 'unfinish'
                                             ? 'text-green-500'
                                             : job.status === 'close'
@@ -216,7 +215,7 @@ export default function statusJob() {
                                         : 'error'}
                                 </p>
                                 <p>ร้านที่คุณจะไป {job.restaurants}</p>
-                                <p className="md:text-3xl text-lg my-3">
+                                <p className="md:text-3xl text-lg md:my-3 my-1">
                                     {convertTimestampToTime(job.time)} น.
                                 </p>
                                 <p>
@@ -228,7 +227,7 @@ export default function statusJob() {
                             <div>
                                 {job.status === 'unfinish' && (
                                     <button
-                                        className="bg-red-400 m-2 p-4 hover:scale-110 rounded-xl"
+                                        className="bg-red-400 md:m-2 m-2 md:p-4 p-2 hover:scale-110 rounded-xl"
                                         onClick={() => closeJobHandler(true)}
                                     >
                                         ปิดการรับฝาก
@@ -236,7 +235,7 @@ export default function statusJob() {
                                 )}
                                 {job.status === 'close' && (
                                     <button
-                                        className="bg-red-400 m-2 p-4 hover:scale-110 rounded-xl"
+                                        className="bg-red-400 m-2 md:p-4 p-2 hover:scale-110 rounded-xl"
                                         onClick={() => finishJobHandler()}
                                     >
                                         ส่งของหมดแล้ว ปิดจ๊อบนี้เลย
@@ -247,7 +246,7 @@ export default function statusJob() {
                     </div>
                     <img
                         src={burgur}
-                        className="absolute right-[25%] rotate-[0.5rad] top-[-20%] scale-[40%]"
+                        className="hidden md:block absolute right-[25%] rotate-[0.5rad] top-[-20%] scale-[40%]"
                     />
                 </div>
                 <div className="flex justify-around h-16">

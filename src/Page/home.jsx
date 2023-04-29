@@ -370,7 +370,7 @@ function home() {
                                         ? ' bg-gray-200 border-r-4 border-green-600 text-green-600 font-semibold'
                                         : ' ')
                                 }
-                                key={idx} 
+                                key={idx}
                                 onClick={() => setTab(idx)}
                             >
                                 {e.title}
@@ -455,8 +455,7 @@ function home() {
                             <div className="flex flex-col md:w-full">
                                 <div className=" flex items-center justify-center">
                                     {/* line */}
-                                    <div className="w-9/12 border-b-2 my-4 border-black">
-                                    </div>
+                                    <div className="w-9/12 border-b-2 mb-2 border-black"></div>
                                 </div>
                                 <p className=" font-semibold md:text-2xl text-base text-center">
                                     ออเดอร์ที่เสร็จสิ้นแล้ว
