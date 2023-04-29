@@ -50,7 +50,7 @@ export default function myJobCard({
 
     return (
         <div className="flex justify-center mx-10">
-            <div className="w-5/6 rounded-3xl shadow-xl cursor-pointer mb-1.5 hover:scale-105 justify-center p-3 bg-white">
+            <div className="md:w-5/6 w-2/3 rounded-3xl shadow-xl cursor-pointer mb-1.5 hover:scale-105 justify-center p-3 bg-white">
                 <div className="flex justify-between">
                     <Avatar className="w-14 h-14 absolute " {...config} />
                     <div className="flex font-Kanit w-3/5 px-3.5">

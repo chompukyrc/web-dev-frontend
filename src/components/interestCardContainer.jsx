@@ -13,13 +13,13 @@ export default function InterestCardContainer({ selected, handleSelected }) {
     return (
         <div>
             <div className="bg-white h-20  ">
-                <p className="p-6 text-2xl text-left ml-40">
+                <p className="p-6 md:text-2xl text-sm text-left md:ml-40">
                     เลือกร้านที่คุณสนใจ 🔍{' '}
                 </p>
             </div>
 
             <div className="flex justify-center">
-                <div className="flex flex-row flex-wrap h-[120px] w-3/4 ">
+                {/* <div className="flex flex-row flex-wrap h-[120px] md:w-3/4 w-auto text-sm md:text-lg ">
                     {interestDataJSON.map((interest, idx) => {
                         return (
                             <Tag
@@ -29,7 +29,7 @@ export default function InterestCardContainer({ selected, handleSelected }) {
                             />
                         )
                     })}
-                </div>
+                </div> */}
             </div>
         </div>
     )

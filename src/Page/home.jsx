@@ -288,10 +288,10 @@ function home() {
                     handleSelected={handleSelected}
                 />
             </div>
-            <nav className="text-center text-2xl">
+            <nav className="text-center md:text-2xl text-sm">
                 <div className="flex justify-start h-16 bg-white">
                     <button
-                        className={`w-1/3 ; ${
+                        className={`md:w-1/3 w-1/2 ; ${
                             page === 0
                                 ? 'border-b-4 border-green-600 bg-gray-200'
                                 : 'bg-gray-300'
@@ -301,7 +301,7 @@ function home() {
                         ใครไปซื้อบ้างน้า
                     </button>
                     <button
-                        className={`w-1/3 ; ${
+                        className={`md:w-1/3 w-1/2 ; ${
                             page === 1
                                 ? 'border-b-4 border-green-600 bg-gray-200'
                                 : 'bg-gray-300'
@@ -310,22 +310,22 @@ function home() {
                     >
                         ดูที่สั่งไปแล้ว
                     </button>
-                    <div className="w-1/3 ">
+                    <div className=" md:block hidden w-1/3 ">
                         <img src={cover} className="h-16 w-screen opacity-75" />
                     </div>
                 </div>
             </nav>
 
             {page === 0 && (
-                <div className=" px-64 py-12 grid grid-cols-3 gap-x-24 gap-y-16 animate-in duration-500 slide-in-from-left">
+                <div className=" md:px-10 px-2 py-6 md:py-12 grid md:grid-cols-3 grid-col-2 md:gap-x-24 md:gap-y-16 gap-y-10 animate-in duration-500 slide-in-from-left justify-center">
                     {' '}
                     {/* Job Container */}
                     {jobsCetagory.notMyOrder
                         .filter((e) =>
                             selected.length > 0
                                 ? selected
-                                      .map((s) => s.name)
-                                      .includes(e.restaurants)
+                                    .map((s) => s.name)
+                                    .includes(e.restaurants)
                                 : true,
                         )
                         .map((e, idx) => (
@@ -361,7 +361,7 @@ function home() {
             {page === 1 && (
                 <div className="flex animate-in duration-500 slide-in-from-right">
                     {/* Side Bar */}
-                    <div className="w-1/6 h-screen left-0 flex flex-col mt-4">
+                    <div className="md:w-1/6 w-1/4 md:text-sm text-xs h-screen left-0 flex flex-col ">
                         {sidebars.map((e, idx) => (
                             <button
                                 className={
@@ -370,7 +370,7 @@ function home() {
                                         ? ' bg-gray-200 border-r-4 border-green-600 text-green-600 font-semibold'
                                         : ' ')
                                 }
-                                key={idx}
+                                key={idx} 
                                 onClick={() => setTab(idx)}
                             >
                                 {e.title}
@@ -380,8 +380,8 @@ function home() {
 
                     {/* ALL */}
                     {tab === 0 && (
-                        <div className="flex flex-col w-full">
-                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                        <div className="flex flex-col md:w-full w-3/4">
+                            <p className="md:mt-12 mt-5 font-semibold md:text-2xl text-xl m-4 text-center">
                                 ออเดอร์ที่รอการยืนยัน
                             </p>
                             {jobsCetagory.myOrder_unfinish_waiting.length >
@@ -405,7 +405,7 @@ function home() {
                                     ไม่มีออเดอร์ที่รอการยืนยัน
                                 </div>
                             )}
-                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                            <p className="mt-12 font-semibold md:text-2xl text-xl m-4 text-center">
                                 ออเดอร์ที่ได้รับการยืนยันแล้ว
                             </p>
                             {jobsCetagory.myOrder_unfinish_accept.length > 0 ? (
@@ -428,7 +428,7 @@ function home() {
                                     ไม่มีออเดอร์ที่ได้รับการยืนยันแล้ว
                                 </div>
                             )}
-                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                            <p className="mt-12 font-semibold md:text-2xl text-xl text-center">
                                 ออเดอร์ที่กำลังดำเนินการ
                             </p>
                             {jobsCetagory.myOrder_close_accept.length > 0 ? (
@@ -452,14 +452,13 @@ function home() {
                                 </div>
                             )}
 
-                            <div className="flex flex-col w-full">
+                            <div className="flex flex-col md:w-full w-3/4">
                                 <div className=" flex items-center justify-center">
                                     {/* line */}
                                     <div className="w-9/12 border-b-2 mb-2 border-black">
-                                        reject & done
                                     </div>
                                 </div>
-                                <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                <p className="mt-12 font-semibold md:text-2xl text-xl text-center">
                                     ออเดอร์ที่เสร็จสิ้นแล้ว
                                 </p>
                                 {jobsCetagory.myOrder_finish_done.length > 0 ? (
@@ -482,7 +481,7 @@ function home() {
                                         ไม่มีออเดอร์ที่เสร็จสิ้นแล้ว
                                     </div>
                                 )}
-                                <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                                <p className="mt-12 font-semibold md:text-2xl text-xl text-center">
                                     ออเดอร์ที่ถูกปฏิเสธ
                                 </p>
                                 {jobsCetagory.myOrder_unfinish_reject.length +
@@ -550,8 +549,8 @@ function home() {
 
                     {/* WAITING */}
                     {tab === 1 && (
-                        <div className="flex flex-col w-full">
-                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                        <div className="flex flex-col md:w-full w-3/4">
+                            <p className="md:mt-12 mt-5 font-semibold md:text-2xl text-xl m-4 text-center">
                                 ออเดอร์ที่รอการยืนยัน
                             </p>
                             {jobsCetagory.myOrder_unfinish_waiting.length >
@@ -579,8 +578,8 @@ function home() {
                     )}
 
                     {tab === 2 && (
-                        <div className="flex flex-col w-full">
-                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                        <div className="flex flex-col md:w-full w-3/4">
+                            <p className="md:mt-12 mt-5 font-semibold md:text-2xl text-xl text-center">
                                 ออเดอร์ที่ได้รับการยืนยันแล้ว
                             </p>
                             {/* myOrder_unfinish_accept */}
@@ -608,8 +607,8 @@ function home() {
                     )}
 
                     {tab === 3 && (
-                        <div className="flex flex-col w-full">
-                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                        <div className="flex flex-col md:w-full w-3/4">
+                            <p className="md:mt-12 mt-5 font-semibold md:text-2xl text-xl text-center">
                                 ออเดอร์ที่กำลังดำเนินการอยู่
                             </p>
                             {/* myOrder_close_accept */}
@@ -637,8 +636,8 @@ function home() {
                     )}
 
                     {tab === 4 && (
-                        <div className="flex flex-col w-full">
-                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                        <div className="flex flex-col md:w-full w-3/4">
+                            <p className="md:mt-12 mt-5 font-semibold md:text-2xl text-xl text-center">
                                 ออเดอร์ที่เสร็จสิ้นแล้ว
                             </p>
                             {/* myOrder_finish_done */}
@@ -666,8 +665,8 @@ function home() {
                     )}
 
                     {tab === 5 && (
-                        <div className="flex flex-col w-full">
-                            <p className="mt-12 font-semibold text-2xl m-4 text-center">
+                        <div className="flex flex-col md:w-full w-3/4">
+                            <p className="md:mt-12 mt-5 font-semibold md:text-2xl text-xl text-center">
                                 ออเดอร์ที่ถูกปฏิเสธ
                             </p>
                             {jobsCetagory.myOrder_unfinish_reject.length +

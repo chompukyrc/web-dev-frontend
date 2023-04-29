@@ -138,19 +138,7 @@ export default function newJobModal({ showModal, setShowModal }) {
                                                 },
                                             )}
                                         </select>
-                                        {/* <input
-                                            type="text"
-                                            id="restaurant"
-                                            className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
-                                            placeholder="eg. ทุกร้านในโรงพระเทพ"
-                                            value={creatJob.restaurant}
-                                            onChange={(e) => {
-                                                setCreatJob({
-                                                    ...creatJob,
-                                                    restaurant: e.target.value,
-                                                })
-                                            }}
-                                        /> */}
+                                        
 
                                         <div className="flex justify-between">
                                             {/* เวลา */}
