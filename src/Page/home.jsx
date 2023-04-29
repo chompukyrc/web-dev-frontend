@@ -324,8 +324,8 @@ function home() {
                         .filter((e) =>
                             selected.length > 0
                                 ? selected
-                                    .map((s) => s.name)
-                                    .includes(e.restaurants)
+                                      .map((s) => s.name)
+                                      .includes(e.restaurants)
                                 : true,
                         )
                         .map((e, idx) => (
@@ -370,7 +370,7 @@ function home() {
                                         ? ' bg-gray-200 border-r-4 border-green-600 text-green-600 font-semibold'
                                         : ' ')
                                 }
-                                key={idx} 
+                                key={idx}
                                 onClick={() => setTab(idx)}
                             >
                                 {e.title}
@@ -455,8 +455,7 @@ function home() {
                             <div className="flex flex-col md:w-full w-3/4">
                                 <div className=" flex items-center justify-center">
                                     {/* line */}
-                                    <div className="w-9/12 border-b-2 mb-2 border-black">
-                                    </div>
+                                    <div className="w-9/12 border-b-2 mb-2 border-black"></div>
                                 </div>
                                 <p className="mt-12 font-semibold md:text-2xl text-xl text-center">
                                     ออเดอร์ที่เสร็จสิ้นแล้ว

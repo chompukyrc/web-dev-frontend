@@ -6,7 +6,9 @@ export default function Dialog({ text, open, handleConfirm, textConfirm }) {
             <div className={open ? 'confirm show' : 'confirm'}>
                 <div className="confirm-content">
                     <div>
-                        <h2 className=" font-normal mt-12 md:text-xl text-sm">{text}</h2>
+                        <h2 className=" font-normal mt-12 md:text-xl text-sm">
+                            {text}
+                        </h2>
                     </div>
                 </div>
                 <div className="flex md:justify-end justify-start h-16 items-center p-4 ">
