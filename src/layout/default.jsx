@@ -63,7 +63,7 @@ const Layout = ({ children }) => {
                             หน้าหลัก
                         </div>
                         <div
-                            className="flex justify-center hover:bg-[#4da452] cursor-pointer text-white  w-1/4 py-4 mx-[2%]"
+                            className="flex justify-center hover:bg-[#4da452] cursor-pointer text-white w-1/4 py-4 mx-[2%]"
                             onClick={() => {
                                 navigate('/aboutUs')
                             }}
@@ -79,9 +79,9 @@ const Layout = ({ children }) => {
                     <NotificationIcon />
                     <ProfileIcon />
                 </div>
-                <div class="block md:hidden ml-[4%] order-1">
+                <div className="block md:hidden ml-[4%] order-1">
                     <button
-                        class="flex items-center  rounded text-white "
+                        className="flex items-center  rounded text-white "
                         onClick={() => {
                             setOpen(!open)
                         }}
@@ -95,11 +95,11 @@ const Layout = ({ children }) => {
                         >
                             <g
                                 fill="none"
-                                fill-rule="evenodd"
+                                fillRule="evenodd"
                                 stroke="#FFF"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 transform="translate(1 1)"
                             >
                                 <path d="M0 6h18M0 0h18M0 12h18"></path>
@@ -108,9 +108,9 @@ const Layout = ({ children }) => {
                     </button>
                     {open && (
                         <div>
-                            <div className="top-[60px] text-lg absolute left-0 z-40 w-1/2 flex flex-col   bg-white  h-screen slide-in-from-left-full animate-in duration-1000 ">
+                            <div className="top-[60px] text-lg absolute left-0 z-40 w-1/2 flex flex-col bg-white h-screen slide-in-from-left-full animate-in duration-1000 ">
                                 <div
-                                    className="flex justify-start cursor-pointer text-black py-4  hover:bg-slate-200"
+                                    className="flex justify-start cursor-pointer text-black py-4 hover:bg-slate-200"
                                     onClick={() => {
                                         navigate('/')
                                         setOpen(!open)
@@ -120,7 +120,7 @@ const Layout = ({ children }) => {
                                     หน้าหลัก
                                 </div>
                                 <div
-                                    className="flex justify-start cursor-pointer text-black py-4  hover:bg-slate-200"
+                                    className="flex justify-start cursor-pointer text-black py-4 hover:bg-slate-200"
                                     onClick={() => {
                                         navigate('/aboutUs')
                                         setOpen(!open)
@@ -130,19 +130,16 @@ const Layout = ({ children }) => {
                                     เกี่ยวกับเรา
                                 </div>
                             </div>
-                            <div 
-                            className="top-[60px] text-lg absolute right-0 z-30 w-screen bg-black bg-opacity-20  h-screen "
-                            onClick={() => {
-                                setOpen(!open)
-                            }}
-                            >
-
-                            </div>
+                            <div
+                                className="top-[60px] text-lg absolute right-0 z-30 w-screen bg-black bg-opacity-20 h-screen "
+                                onClick={() => {
+                                    setOpen(!open)
+                                }}
+                            ></div>
                         </div>
                     )}
                 </div>
             </div>
-
             <main>{children}</main>
         </div>
     )

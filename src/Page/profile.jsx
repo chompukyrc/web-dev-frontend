@@ -21,7 +21,7 @@ export default function profile() {
 
     useEffect(() => {
         fetchProfile()
-    }, [])
+    }, [editProfile])
 
     async function fetchProfile() {
         try {
@@ -131,9 +131,7 @@ export default function profile() {
         <div>
             <ToastContainer />
             <div className="flex justify-center w-screen h-screen md:text-base text-sm">
-                
-                <div className="absolute z-0 rounded-full bg-gradient-to-br from-[#4a9d51] to-[#66aac0] h-secondary w-secondary mt-[12%]">
-                </div>
+                <div className="absolute z-0 rounded-full bg-gradient-to-br from-[#4a9d51] to-[#66aac0] h-secondary w-secondary mt-[12%]"></div>
                 <div className="flex flex-col  items-center h-screen w-screen  ">
                     <img
                         src="/assets/burgur-top.png"
