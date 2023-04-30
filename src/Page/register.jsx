@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 
 function register() {
-    console.log(import.meta.env.VITE_API)
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [userRegister, setUserRegister] = useState({
@@ -27,6 +26,16 @@ function register() {
             userRegister.lastname == '' ||
             userRegister.phone == ''
         ) {
+            toast.error('🍔 กรอกข้อมูลให้ครบถ้วน', {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            })
             return
         }
         if (userRegister.password != userRegister.confirmpassword) {

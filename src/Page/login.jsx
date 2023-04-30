@@ -108,7 +108,7 @@ function login() {
                         <input
                             type="text"
                             id="username"
-                            className="w-full pl-8 p-2 mt-4 mb-8 shadow-lg"
+                            className="w-full pl-8 p-4 rounded-md mt-4 mb-8 shadow-md shadow-slate-200"
                             placeholder="ชื่อผู้ใช้ของคุณ"
                             value={userLogin.username}
                             onChange={(e) => {
@@ -125,7 +125,7 @@ function login() {
                         <input
                             type="password"
                             id="password"
-                            className="w-full pl-8 p-2 mt-2 mb-8 shadow-lg"
+                            className="w-full pl-8 p-4 mt-2 rounded-md mb-8 shadow-md shadow-slate-200"
                             placeholder="รหัสผ่านของคุณ"
                             value={userLogin.password}
                             onChange={(e) => {
@@ -147,7 +147,7 @@ function login() {
                             </button>
                         </div>
                         {/* line */}
-                        <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                        <hr className="h-px my-8 bg-gray-300 border-0"></hr>
                         <div className="p-2 w-full flex flex-row justify-center md:text-lg text-sm ">
                             <div>ยังไม่มีบัญชีอย่างนั้นหรอ ?</div>
                             <div

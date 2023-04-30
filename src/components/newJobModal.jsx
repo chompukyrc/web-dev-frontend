@@ -3,13 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
 import axios from 'axios'
 import restaurant from './data/restaurant.json'
+import { getCurrentTime } from '../utils/time'
 
 export default function newJobModal({ showModal, setShowModal }) {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const [creatJob, setCreatJob] = useState({
         restaurant: '',
-        time: '00:00',
+        time: getCurrentTime(),
         limit: 1,
         description: '',
     })
@@ -150,8 +151,8 @@ export default function newJobModal({ showModal, setShowModal }) {
                                                 <input
                                                     type="time"
                                                     id="time"
-                                                    min="12:34"
                                                     className="w-full px-4 py-2 mt-2 mb-4 shadow-lg"
+                                                    min={getCurrentTime()}
                                                     value={creatJob.time}
                                                     onChange={(e) => {
                                                         setCreatJob({

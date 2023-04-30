@@ -73,7 +73,9 @@ export default function PremiumFooter({ isPremium }) {
                     theme: 'light',
                 })
 
-                window.location.reload()
+                setTimeout(() => {
+                    window.location.reload()
+                }, 5000)
             } else {
                 toast.error('🍔 เลขบัตรไม่ถูกต้อง!!', {
                     position: 'bottom-right',

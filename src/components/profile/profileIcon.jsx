@@ -47,7 +47,7 @@ export default function ProfileIcon() {
                 text={'คุณยืนยันที่จะออกจากระบบ ?'}
                 open={showLogout}
                 handleConfirm={handleLogout}
-                textConfirm={'ออกจากระบบ'}
+                textConfirm={'ยืนยัน'}
             />
             <div className="relative md:w-1/4 w-auto mx-[2%] text-lg">
                 <div

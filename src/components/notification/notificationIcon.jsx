@@ -25,7 +25,7 @@ export default function NotificationIcon() {
 
             {open && (
                 <div
-                    className=" absolute right-0 z-20 bg-gray-200 w-96 rounded-md text-sm bg-opacity-80"
+                    className=" absolute right-0 bg-gray-200 w-96 rounded-md text-sm bg-opacity-80 z-50"
                     style={{ top: '4.5rem' }}
                 >
                     <div className="bg-white p-2 px-4 m-2 rounded-xl flex">
