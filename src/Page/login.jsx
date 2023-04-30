@@ -31,7 +31,7 @@ function login() {
                 setTimeout(() => {
                     setIsLoading(false)
                     localStorage.setItem('token', res.data)
-                    return navigate('/')
+                    return navigate('/greeting')
                 }, 2000)
             }
         } catch (error) {
