@@ -42,15 +42,15 @@ const Layout = ({ children }) => {
                     }}
                 >
                     <div className="flex flex-col items-center md:ml-0 ml-[40%]">
-                        <p className="md:hidden h-5 text-lg ">🍔</p>
+                        <p className="md:hidden  h-5 text-lg ">🍔</p>
                         <div className="flex ">
-                            <p className="md:block hidden mr-[4%] ">🍔</p>
+                            <p className="md:block hidden mr-[4%]  ">🍔</p>
                             {profile?.premiumMember === true ? (
                                 <p className="text-amber-400 uppercase">
                                     Premium
                                 </p>
                             ) : (
-                                <p className="w-40">
+                                <p className="flex">
                                     <span className="mr-[2%]">Feed </span>
                                     <span className="text-amber-300 mr-[2%]">
                                         My

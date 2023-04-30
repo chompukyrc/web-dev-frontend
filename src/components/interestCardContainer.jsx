@@ -12,8 +12,8 @@ export default function InterestCardContainer({ selected, handleSelected }) {
 
     return (
         <div>
-            <div className="bg-white h-20  ">
-                <p className="p-6 md:text-2xl text-sm text-left md:ml-40">
+            <div className="bg-white md:h-20 h-13  ">
+                <p className="md:p-6 p-4 pb-2 md:text-2xl text-sm text-left md:ml-40">
                     เลือกร้านที่คุณสนใจ 🔍{' '}
                 </p>
             </div>
