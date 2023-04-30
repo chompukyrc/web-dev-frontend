@@ -61,14 +61,16 @@ export default function orderStatusCard({
                         className="md:hidden md:w-14 md:h-14 w-10 h-10 mr-2"
                         {...config}
                     />
-                    
+
                     <div className="flex md:flex-row flex-col w-[100%]">
                         <Avatar
                             className="md:block hidden md:w-14 md:h-14 w-10 h-10 mr-2"
                             {...config}
                         />
                         <div className="font-medium md:text-base text-base md:flex items-center text-center md:pb-2 md:w-1/3 w-[100%] ">
-                            <p>{owner.firstname} {owner.lastname}</p>
+                            <p>
+                                {owner.firstname} {owner.lastname}
+                            </p>
                         </div>
                         <div className="md:text-sm text-xs md:w-1/2 text-center items-center md:py-6 mt-1 md:mt-0">
                             <p>โทร&nbsp;:&nbsp;&nbsp;{owner.phone}</p>

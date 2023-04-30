@@ -121,7 +121,7 @@ export default function PremiumFooter({ isPremium }) {
             >
                 <ToastContainer />
                 <p className=" text-white md:text-3xl text-lg mb-4 text-center">
-                    สมัครพรีเมียมเมมเบอร์วันนี้ เพื่อรับ {' '}
+                    สมัครพรีเมียมเมมเบอร์วันนี้ เพื่อรับ{' '}
                     <span className=" font-bold md:text-6xl text-2xl">
                         สิทธิพิเศษ
                     </span>
