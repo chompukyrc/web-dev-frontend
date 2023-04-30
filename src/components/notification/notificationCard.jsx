@@ -13,7 +13,7 @@ export default function NotificationCard({
     let _time = new Date(time)
     _time.setHours(_time.getHours() + 7)
     return (
-        <div className="bg-white p-2 px-4 m-2 rounded-xl flex">
+        <div className="bg-white p-2 px-4 m-2 rounded-xl flex min-h-10">
             <div className="flex justify-center items-center">
                 {action === 'accept' ? (
                     <p className="mdi mdi-comment-check text-green-600 text-3xl mx-2"></p>
