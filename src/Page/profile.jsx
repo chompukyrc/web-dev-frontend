@@ -251,6 +251,7 @@ export default function profile() {
                                                 รหัสผ่านเดิม :
                                             </p>
                                             <input
+                                                type="password"
                                                 onChange={(e) => {
                                                     setPassword({
                                                         ...password,
@@ -266,6 +267,7 @@ export default function profile() {
                                                 รหัสผ่านใหม่ :
                                             </p>
                                             <input
+                                                type="password"
                                                 onChange={(e) => {
                                                     setPassword({
                                                         ...password,
@@ -281,6 +283,7 @@ export default function profile() {
                                                 ยืนยันรหัสผ่านใหม่ :
                                             </p>
                                             <input
+                                                type="password"
                                                 onChange={(e) => {
                                                     setPassword({
                                                         ...password,

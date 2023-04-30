@@ -39,7 +39,7 @@ function register() {
             return
         }
         if (userRegister.password != userRegister.confirmpassword) {
-            toast.error('🍔 Confirm password is incorrect', {
+            toast.error('🍔 ยืนยันรหัสผ่านตรงกัน', {
                 position: 'top-center',
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -70,7 +70,7 @@ function register() {
                 },
             })
             if (res.data) {
-                toast.success('🍔 Registration successful', {
+                toast.success('🍔 สมัครสำเร็จแล้ว', {
                     position: 'top-center',
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -86,7 +86,7 @@ function register() {
                 }, 3000)
             }
         } catch (error) {
-            toast.error('🍔 Username already in use', {
+            toast.error('🍔 ชื่อผู้ใช้นี้มีผู้ใช้แล้ว', {
                 position: 'top-center',
                 autoClose: 5000,
                 hideProgressBar: false,
