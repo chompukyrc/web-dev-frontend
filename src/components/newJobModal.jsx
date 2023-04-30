@@ -60,7 +60,7 @@ export default function newJobModal({ showModal, setShowModal }) {
             })
             console.log(res)
             if (res.data) {
-                toast.success('🍔 คุณได้เป็นคนรักฝากซื้อแล้ว', {
+                toast.success('🍔 คุณได้เป็นคนรับฝากซื้อแล้ว', {
                     position: 'top-center',
                     autoClose: 5000,
                     hideProgressBar: false,
