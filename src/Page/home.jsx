@@ -264,9 +264,9 @@ function home() {
         // console.log(profile, jobs)
         let tempJob = []
         jobs.forEach(async (e) => {
-            if (e.owner === profile.id) console.log(e)
+            // if (e.owner === profile.id) console.log(e)
             if (e.owner === profile.id && e.status !== 'finish') {
-                console.log('You r rider na!')
+                // console.log('You r rider na!')
                 return navigate('/statusJob/' + e.id)
             }
         })
@@ -335,8 +335,8 @@ function home() {
                         .filter((e) =>
                             selected.length > 0
                                 ? selected
-                                    .map((s) => s.name)
-                                    .includes(e.restaurants)
+                                      .map((s) => s.name)
+                                      .includes(e.restaurants)
                                 : true,
                         )
                         .map((e, idx) => (
