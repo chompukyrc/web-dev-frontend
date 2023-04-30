@@ -1,8 +1,60 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import NotificationCard from './notificationCard'
 
 export default function NotificationIcon() {
     const [open, setOpen] = useState(false)
+    const [notification, setNotification] = useState([])
+    const [notReadCounter, setNotReadCounter] = useState(0)
+
+    async function fetchNotification() {
+        const res = await axios({
+            url: import.meta.env.VITE_API + '/api/Notification/ListByUserId',
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+        })
+
+        const counter = res.data?.filter((e) => e.isRead === false).length
+        setNotReadCounter(counter)
+        setNotification(res.data?.reverse())
+        // console.log(res.data)
+    }
+
+    // Fetch notification on init
+    // and set interval for 2 second
+    useEffect(() => {
+        setInterval(() => {
+            fetchNotification()
+        }, 3000)
+    }, [])
+
+    useEffect(() => {
+        async function updateToRead() {
+            try {
+                let temp = notification.map((e) => ({ ...e, isRead: true }))
+                setNotification(temp)
+
+                await axios({
+                    url:
+                        import.meta.env.VITE_API +
+                        '/api/Notification/UpdateToRead',
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            'token',
+                        )}`,
+                    },
+                })
+            } catch (error) {}
+        }
+
+        // Update All Notification Status to isRead = true
+        if (open) {
+            updateToRead()
+        }
+    }, [open])
 
     return (
         <div className="relative md:w-1/12 w-1/2 flex justify-center font-Kanit">
@@ -15,9 +67,9 @@ export default function NotificationIcon() {
                     setOpen(!open)
                 }}
             >
-                {!open ? (
+                {!open && notReadCounter !== 0 ? (
                     <span className="absolute flex items-center justify-center mb-8 ml-8 w-4 h-4 p-2 text-xs font-bold text-white bg-red-500 rounded-full">
-                        3
+                        {notReadCounter}
                     </span>
                 ) : (
                     <span></span>
@@ -29,25 +81,9 @@ export default function NotificationIcon() {
                     className=" absolute right-0 bg-gray-200 w-96 rounded-md text-sm bg-opacity-80 z-50"
                     style={{ top: '4.5rem' }}
                 >
-                    <NotificationCard />
-                    <div className="bg-white p-2 px-4 m-2 rounded-xl flex">
-                        <p className="mdi mdi-comment-remove text-red-600 text-3xl mx-2"></p>
-                        <div className="flex flex-col justify-center">
-                            ออเดอร์ของคุณ ที่ไปร้านเทคโนอินเตอร์ ถูกปฏิเสธ
-                            <div className="text-blue-500 text-xs text-end">
-                                8 minute ago
-                            </div>
-                        </div>
-                    </div>
-                    <div className="bg-white p-2 px-4 m-2 rounded-xl flex">
-                        <p className="mdi mdi-playlist-check text-blue-600 text-3xl mx-2"></p>
-                        <div className="flex flex-col justify-center">
-                            ออเดอร์ของคุณ ที่ไปร้านเทคโนอินเตอร์ ถูกปฏิเสธ
-                            <div className="text-blue-500 text-xs text-end">
-                                8 minute ago
-                            </div>
-                        </div>
-                    </div>
+                    {notification.map((e, idx) => (
+                        <NotificationCard key={idx} {...e} />
+                    ))}
                 </div>
             )}
         </div>
