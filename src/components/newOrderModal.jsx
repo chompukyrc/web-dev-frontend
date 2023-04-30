@@ -55,7 +55,7 @@ export default function newOrderModal({
             creatOrder.count == '' ||
             creatOrder.destination == ''
         ) {
-            toast.error('🍔 Missing Information', {
+            toast.error('🍔 กรอกข้อมูลให้ครบถ้วน', {
                 position: 'top-center',
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -94,7 +94,7 @@ export default function newOrderModal({
                 },
             })
             if (res.data) {
-                toast.success('🍔 You just order now', {
+                toast.success('🍔 คุณสั่งออเดอร์แล้ว', {
                     position: 'top-center',
                     autoClose: 5000,
                     hideProgressBar: false,

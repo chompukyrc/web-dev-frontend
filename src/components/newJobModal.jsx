@@ -23,7 +23,7 @@ export default function newJobModal({ showModal, setShowModal }) {
             creatJob.time == '' ||
             creatJob.limit == ''
         ) {
-            toast.error('🍔 Missing Information', {
+            toast.error('🍔 กรอกข้อมูลให้ครบถ้วน', {
                 position: 'top-center',
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -60,7 +60,7 @@ export default function newJobModal({ showModal, setShowModal }) {
             })
             console.log(res)
             if (res.data) {
-                toast.success('🍔 You are delivery man now', {
+                toast.success('🍔 คุณได้เป็นคนรักฝากซื้อแล้ว', {
                     position: 'top-center',
                     autoClose: 5000,
                     hideProgressBar: false,

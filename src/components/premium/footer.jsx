@@ -62,7 +62,7 @@ export default function PremiumFooter({ isPremium }) {
                     },
                 })
 
-                toast.success('🍔 You are premium member <3', {
+                toast.success('👑 คุณเป็น Premium Member แล้ว 👑', {
                     position: 'bottom-right',
                     autoClose: 5000,
                     hideProgressBar: false,
