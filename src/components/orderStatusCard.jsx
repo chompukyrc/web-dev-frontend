@@ -56,30 +56,38 @@ export default function orderStatusCard({
             }
         >
             <div className="font-Kanit flex md:flex-row flex-col md:text-xl">
-                <div className="flex flex-col items-center md:items-start md:w-4/5 w-[100%] justify-center mt-2 md:mt-0">
+                <div
+                    className={
+                        status == 'waiting'
+                            ? 'flex flex-col items-center md:items-start md:w-4/5 w-[100%] mt-2 md:mt-0'
+                            : 'flex flex-col items-center md:items-start w-full mt-2 md:mt-0'
+                    }
+                >
                     <Avatar
                         className="md:hidden md:w-14 md:h-14 w-10 h-10 mr-2"
                         {...config}
                     />
-                    
+
                     <div className="flex md:flex-row flex-col w-[100%]">
                         <Avatar
                             className="md:block hidden md:w-14 md:h-14 w-10 h-10 mr-2"
                             {...config}
                         />
                         <div className="font-medium md:text-base text-base md:flex items-center text-center md:pb-2 md:w-1/3 w-[100%] ">
-                            <p>{owner.firstname} {owner.lastname}</p>
+                            <p>
+                                {owner.firstname} {owner.lastname}
+                            </p>
                         </div>
                         <div className="md:text-sm text-xs md:w-1/2 text-center items-center md:py-6 mt-1 md:mt-0">
                             <p>โทร&nbsp;:&nbsp;&nbsp;{owner.phone}</p>
                         </div>
                     </div>
 
-                    <div className="flex md:flex-row flex-col justify-end md:w-auto w-[100%] px-[15%] md:px-0  ">
-                        <div className="md:w-[50%] w-[100%]  items-start flex flex-col ">
-                            <div className=" flex ">
+                    <div className="flex w-full md:flex-row flex-col md:px-0">
+                        <div className="md:w-[50%] w-[100%] items-start flex flex-col">
+                            <div className=" flex">
                                 <p>ร้าน&nbsp;:&nbsp;&nbsp;</p>
-                                <p className="md:font-medium ">{restaurant}</p>
+                                <p className="md:font-medium">{restaurant}</p>
                             </div>
                             <div className=" flex">
                                 <p>เมนู&nbsp;:&nbsp;&nbsp;</p>
@@ -91,9 +99,9 @@ export default function orderStatusCard({
                             </div>
                             <div className=" flex"></div>
                         </div>
-                        <div className="md:w-[40%] w-[100%]">
-                            <div className=" flex items-center">
-                                <p className="w-24">จำนวน: </p>
+                        <div className="md:w-[40%]">
+                            <div className="flex items-center">
+                                <p>จำนวน&nbsp;:&nbsp;</p>
                                 <p className="md:font-medium">{count}</p>
                             </div>
                             <div className=" flex items-center">

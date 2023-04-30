@@ -117,8 +117,8 @@ export default function newJobModal({ showModal, setShowModal }) {
                                             ร้านที่จะไป
                                         </label>
                                         <select
-                                        className="block  w-full bg-white border border-green-500 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                        value={creatJob.restaurant}
+                                            className="block  w-full bg-white border border-green-500 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+                                            value={creatJob.restaurant}
                                             onChange={(e) => {
                                                 setCreatJob({
                                                     ...creatJob,

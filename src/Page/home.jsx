@@ -355,7 +355,7 @@ function home() {
                         ...jobsCetagory.myOrder_unfinish_waiting,
                     ]) == false && (
                         <div
-                            className="cursor-pointer p-4 rounded-lg bg-gray-200 hover:bg-gray-100 h-56 flex items-center justify-center"
+                            className="cursor-pointer p-4 rounded-[30px] bg-gray-200 hover:bg-gray-100 h-56 flex items-center justify-center"
                             onClick={() => setShowModal(true)}
                         >
                             <button
@@ -466,7 +466,7 @@ function home() {
                             <div className="flex flex-col md:w-full">
                                 <div className=" flex items-center justify-center">
                                     {/* line */}
-                                    <div className="w-9/12 border-b-2 mb-2 border-black"></div>
+                                    <div className="w-9/12 h-12  border-b-2 mb-8 border-black"></div>
                                 </div>
                                 <p className=" font-semibold md:text-2xl text-base text-center">
                                     ออเดอร์ที่เสร็จสิ้นแล้ว

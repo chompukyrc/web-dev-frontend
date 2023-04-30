@@ -16,6 +16,7 @@ export default function statusJob() {
     const [job, setJob] = useState({})
     const [page, setPage] = useState(0)
     const [open, setOpen] = useState(false)
+    const now = new Date().getTime()
 
     useEffect(() => {
         async function getJobById() {
@@ -26,9 +27,17 @@ export default function statusJob() {
                         Authorization: `Bearer ${token}`,
                     },
                 })
-                const now = new Date().getTime()
+                console.log(res)
+
                 console.log(now, res.data?.time, res.data.status)
                 if (now > res.data?.time && res.data.status === 'unfinish') {
+                    console.log('show alert')
+                    setOpen(true)
+                }
+                if (
+                    res.data?.count >= res.data?.limit &&
+                    res.data.status === 'unfinish'
+                ) {
                     console.log('show alert')
                     setOpen(true)
                 }
@@ -179,17 +188,26 @@ export default function statusJob() {
         <div>
             {/* dialog */}
             <Dialog
-                text={'เกินเวลา'}
+                text={
+                    now > job.time
+                        ? 'เกินเวลาที่คุณกำหนดไว้ ปิดรับแล้วไปออกไปซื้อเลยมั้ย'
+                        : job.count >= job.limit
+                        ? 'เกินจำนวนกล่องที่คุณกำหนดไว้ ปิดรับออเดอร์เลยมั้ย'
+                        : 'error'
+                }
                 open={open}
                 handleConfirm={closeJobHandler}
                 textConfirm={'closeJob'}
             />
-            
+
             <ToastContainer />
             <nav className="shadow-xl text-center font-Kanit md:text-2xl text-sm">
                 <div className="bg-white md:text-xl text-xs flex justify-center md:flex-row flex-col relative">
                     <img src={food} className="opacity-25 w-[100%]" />
-                    <img src={food} className="block md:hidden opacity-25 w-[100%]" />
+                    <img
+                        src={food}
+                        className="block md:hidden opacity-25 w-[100%]"
+                    />
 
                     <div className="flex justify-center absolute top-0 left-0 w-[100%]">
                         <div className="bg-white rounded-3xl md:w-1/4 w-3/5 border-4 border-green-800 m-[3%]">
