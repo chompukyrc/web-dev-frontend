@@ -60,7 +60,7 @@ export default function NotificationIcon() {
         <div className="relative md:w-1/12 w-1/2 flex justify-center font-Kanit">
             <i
                 className={
-                    'hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center mx-[3%] p-4 px-8 mdi w-8' +
+                    'hover:bg-[#4da452] cursor-pointer text-white flex justify-center items-center mx-[3%] p-4 px-8 mdi w-8 ' +
                     (open ? ' mdi-bell ' : ' mdi-bell-outline ')
                 }
                 onClick={() => {
@@ -77,10 +77,7 @@ export default function NotificationIcon() {
             </i>
 
             {open && (
-                <div
-                    className=" absolute right-0 bg-gray-200 w-96 rounded-md text-sm bg-opacity-80 z-50"
-                    style={{ top: '4.5rem' }}
-                >
+                <div className=" absolute left-[-290px] bg-gray-200 w-96 rounded-md text-sm bg-opacity-80 z-50 top-[4.5rem] md:right-0 ">
                     {notification.map((e, idx) => (
                         <NotificationCard key={idx} {...e} />
                     ))}

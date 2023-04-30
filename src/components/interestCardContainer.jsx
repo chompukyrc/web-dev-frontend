@@ -19,7 +19,7 @@ export default function InterestCardContainer({ selected, handleSelected }) {
             </div>
 
             <div className="flex justify-center">
-                <div className="flex flex-row flex-wrap h-24 md:w-3/4 w-auto text-sm md:text-lg ">
+                <div className="flex flex-row flex-wrap h-24 md:w-3/4 w-auto text-xs md:text-lg md:mx-0 mx-4">
                     {interestDataJSON.map((interest, idx) => {
                         return (
                             <Tag
@@ -46,13 +46,13 @@ const Tag = ({ interest, handleSelected }) => {
     return (
         <>
             <button
-                className={`mx-2 border-2 border-green-600 h-8 w-auto rounded-full text-center drop-shadow-sm hover:bg-green-600 ; ${
+                className={`md:mx-2 mx-1 border-2 border-green-600 md:h-8 h-6 w-auto rounded-full text-center drop-shadow-sm hover:bg-green-600 ; ${
                     clicked ? 'bg-green-600 text-white' : ''
                 }
         `}
                 onClick={() => clickHandler(interest)}
             >
-                <p className="px-6">{interest.name}</p>
+                <p className="md:px-6 px-2">{interest.name}</p>
             </button>
         </>
     )

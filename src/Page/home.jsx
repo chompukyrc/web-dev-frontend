@@ -328,7 +328,7 @@ function home() {
             </nav>
 
             {page === 0 && (
-                <div className=" md:px-10 px-2 py-6 md:py-12 grid md:grid-cols-3 grid-col-2 md:gap-x-24 md:gap-y-16 gap-y-10 animate-in duration-500 slide-in-from-left justify-center">
+                <div className="px-10 py-6 md:py-12 grid md:grid-cols-3 grid-col-2 md:gap-x-24 md:gap-y-16 gap-y-10 animate-in duration-500 slide-in-from-left justify-center">
                     {' '}
                     {/* Job Container */}
                     {jobsCetagory.notMyOrder
