@@ -4,7 +4,12 @@ import { toast, ToastContainer } from 'react-toastify'
 import Avatar, { genConfig } from 'react-nice-avatar'
 import restaurant from './data/restaurant.json'
 
-export default function newOrderModal({ job, setJob }) {
+export default function newOrderModal({
+    job,
+    setJob,
+    processJobAndMyorder,
+    setPage,
+}) {
     const [isLoading, setIsLoading] = useState(false)
     const [ownerData, setOwnerData] = useState({})
     const [creatOrder, setCreatOrder] = useState({
@@ -99,7 +104,7 @@ export default function newOrderModal({ job, setJob }) {
                     progress: undefined,
                     theme: 'light',
                 })
-                setTimeout(() => {
+                setTimeout(async () => {
                     setIsLoading(false)
                     setCreatOrder({
                         restaurant: '',
@@ -110,6 +115,9 @@ export default function newOrderModal({ job, setJob }) {
                     })
                     // Show Ads
                     localStorage.setItem('show_ads', 'show')
+                    // Auto set tab after submit order
+                    await processJobAndMyorder()
+                    setPage(1)
                     return setJob(false)
                 }, 1000)
             }
