@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import NotificationCard from './notificationCard'
 
 export default function NotificationIcon() {
     const [open, setOpen] = useState(false)
@@ -28,15 +29,7 @@ export default function NotificationIcon() {
                     className=" absolute right-0 z-20 bg-gray-200 w-96 rounded-md text-sm bg-opacity-80"
                     style={{ top: '4.5rem' }}
                 >
-                    <div className="bg-white p-2 px-4 m-2 rounded-xl flex">
-                        <p className="mdi mdi-comment-check text-green-600 text-3xl mx-2"></p>
-                        <div className="flex flex-col justify-center">
-                            ออเดอร์ของคุณ ที่ไปร้านพี่ฝน ได้รับการยืนยันแล้ว
-                            <div className="text-blue-500 text-xs text-end">
-                                8 minute ago
-                            </div>
-                        </div>
-                    </div>
+                    <NotificationCard />
                     <div className="bg-white p-2 px-4 m-2 rounded-xl flex">
                         <p className="mdi mdi-comment-remove text-red-600 text-3xl mx-2"></p>
                         <div className="flex flex-col justify-center">
