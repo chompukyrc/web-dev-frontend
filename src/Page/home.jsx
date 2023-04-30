@@ -264,9 +264,9 @@ function home() {
         // console.log(profile, jobs)
         let tempJob = []
         jobs.forEach(async (e) => {
-            if (e.owner === profile.id) console.log(e)
+            // if (e.owner === profile.id) console.log(e)
             if (e.owner === profile.id && e.status !== 'finish') {
-                console.log('You r rider na!')
+                // console.log('You r rider na!')
                 return navigate('/statusJob/' + e.id)
             }
         })
