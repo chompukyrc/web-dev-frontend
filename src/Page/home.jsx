@@ -355,9 +355,15 @@ function home() {
                         ...jobsCetagory.myOrder_unfinish_waiting,
                     ]) == false && (
                         <div
-                            className="cursor-pointer p-4 rounded-[30px] bg-gray-200 hover:bg-gray-100 h-56 flex items-center justify-center"
+                            className="cursor-pointer p-4 rounded-[30px] bg-white hover:bg-gray-100 h-56 flex flex-col items-center justify-center"
                             onClick={() => setShowModal(true)}
                         >
+                            <div className="m-8 text-lg">
+                                ว่างจัง เดี๋ยวออกไปซื้อให้นะ{' '}
+                                <span className="text-xl font-semibold text-green-500">
+                                    กดที่นี่เลย
+                                </span>
+                            </div>
                             <button
                                 onClick={() => setShowModal(true)}
                                 className="bg-green-600 rounded-full text-white w-16"
