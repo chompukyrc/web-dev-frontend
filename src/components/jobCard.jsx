@@ -48,22 +48,20 @@ export default function jobCard({
 
     return (
         <div
-            className={`cursor-pointer p-4 rounded-[30px] drop-shadow-xl text-white hover:bg-slate-800 w-[100%]  ;
-        ${limit - count <= 0 ? 'bg-[#FF6B6B]' : 'bg-[#499D4D]'} 
-        `}
+            className="cursor-pointer p-4 rounded-[30px] drop-shadow-xl text-white w-[100%] bg-[#499D4D] hover:scale-105"
             onClick={onClick}
         >
-            <div className=" flex items-center">
+            <div className=" flex items-center pb-4">
                 <Avatar className="w-14 h-14 mr-2" {...config} />
-                <div className="flex items-baseline align-bottom">
-                    <div className=" text-xl mr-2">{ownerData.username}</div>
-                    <div className=" text-md opacity-50 ">
+                <div className="flex align-bottom  items-center">
+                    <div className=" text-2xl mr-2">{ownerData.username}</div>
+                    <div className=" text-lg opacity-50">
                         {'@ '}
                         {ownerData.firstname} {ownerData.lastname}
                     </div>
                 </div>
             </div>
-            <div className="w-100 h-50 p-3 rounded-[20px] backdrop-opacity-10 backdrop-invert bg-white/30 text-center ">
+            <div className="w-100 h-50 p-3 rounded-md backdrop-opacity-10 backdrop-invert bg-white/30 text-center mx-4">
                 <div>
                     <p>
                         จะไปร้าน{' '}

@@ -120,12 +120,12 @@ export default function PremiumFooter({ isPremium }) {
                 bg-opacity-60 md:h-24 h-60 z-50 flex flex-col md:flex-row items-center space-x-4 justify-center md:w-auto w-[100%] "
             >
                 <ToastContainer />
-                <p className=" text-white md:text-3xl text-lg mb-4 text-center">
-                    สมัครพรีเมียมเมมเบอร์วันนี้ เพื่อรับ{' '}
-                    <span className=" font-bold md:text-6xl text-2xl">
-                        สิทธิพิเศษ
+                <p className=" text-white md:text-2xl text-lg mb-4 text-center">
+                    รำคาญโฆษณาอยู่หรือเปล่า สมัคร{' '}
+                    <span className=" font-bold md:text-3xl text-2xl text-yellow-400">
+                        Premium Member{' '}
                     </span>
-                    กว่าใคร
+                    สิ
                 </p>
                 <div className="md:p-2  text-center text-white animate animate-bounce duration-1500 font-bold">
                     <p className="md:text-2xl text-lg">

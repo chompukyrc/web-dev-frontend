@@ -27,10 +27,6 @@ export default function myJobCard({
 
     const [ownerData, setOwnerData] = useState({})
 
-    useEffect(() => {
-        getProfileById(owner)
-    }, [owner])
-
     async function getProfileById(id) {
         try {
             const res = await axios({
@@ -40,11 +36,18 @@ export default function myJobCard({
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },
             })
+
             setOwnerData(res.data)
         } catch (error) {
             console.log(error)
         }
     }
+
+    useEffect(() => {
+        getProfileById(owner)
+    }, [owner])
+
+    // console.log(profile)
 
     const config = genConfig(ownerData.firstname + ownerData.lastname)
 
@@ -65,7 +68,7 @@ export default function myJobCard({
                             {ownerData?.firstname} {ownerData?.lastname}
                         </div>
                         <div className="md:pl-2.5 md:py-2.5 md:text-lg text-xs">
-                            โทร {profile?.phone}
+                            โทร {ownerData?.phone}
                         </div>
                     </div>
                     <div className="flex justify-center md:w-2/5 w-[100%] py-2 md:py-0">
@@ -98,18 +101,14 @@ export default function myJobCard({
 
                 <div className="flex justify-between md:pl-2.5 md:py-2">
                     <div className="bg-[#c3c3c3] bg-opacity-40 md:w-3/5 w-1/2 flex flex-col rounded-3xl md:ml-4 md:mr-2 items-center ">
-                        <div className="hidden md:block my-2">
-                            เมนูที่คุณฝากซื้อ
-                        </div>
-                        <div className="block md:hidden mt-1">เมนูที่ฝาก</div>
-                        <div className="md:text-4xl text-xl text-black ">
-                            {myOrder?.menu}
-                        </div>
-                        <div className="flex md:flex-row flex-col mt-1 items-center">
+                        <div className="flex md:flex-row flex-col mt-4 items-center">
                             <p className="mr-1">{myOrder?.count} กล่อง </p>
                             <p>ร้าน{myOrder?.restaurant}</p>
                         </div>
-                        <div className="flex w-full justify-around mb-2 md:mt-1">
+                        <div className="md:text-4xl text-xl text-black my-4">
+                            {myOrder?.menu}
+                        </div>
+                        <div className="flex w-full justify-around mb-2 md:mt-1 my-2">
                             <div>ส่งที่: {myOrder?.destination}</div>
                             <div className="hidden md:block">
                                 หมายเหตุ: {myOrder?.description}

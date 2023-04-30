@@ -45,15 +45,15 @@ const Tag = ({ interest, handleSelected }) => {
 
     return (
         <>
-            {/* <button
+            <button
                 className={`mx-2 border-2 border-green-600 h-8 w-auto rounded-full text-center drop-shadow-sm hover:bg-green-600 ; ${
-                    clicked ? 'bg-green-700 text-white' : ''
+                    clicked ? 'bg-green-600 text-white' : ''
                 }
         `}
                 onClick={() => clickHandler(interest)}
             >
-                <p className="px-6 text-green-600">{interest.name}</p>
-            </button> */}
+                <p className="px-6">{interest.name}</p>
+            </button>
         </>
     )
 }
