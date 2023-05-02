@@ -12,4 +12,6 @@ yarn dev
 �
 �
 
-[![login](https://github.com/chompukyrc/web-dev-frontend/blob/main/Pasted%20image%2020230501220535.png?raw=true)
+[![img1](https://github.com/chompukyrc/web-dev-frontend/blob/main/ResultProjectImage/1.png)
+
+[![img2](https://github.com/chompukyrc/web-dev-frontend/blob/main/ResultProjectImage/2.png)
